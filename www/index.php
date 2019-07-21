@@ -14,9 +14,5 @@ require(ROOT_PATH . 'layout.php');
 // require database helpers
 require(ROOT_PATH . 'db.php');
 
-// connect to database
-// print error 500 if fail
-dbConnect();
-
 // require the URL router
 require(ROOT_PATH . 'router.php');
