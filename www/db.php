@@ -8,7 +8,7 @@ $dbConnection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
 // if somthing goes wrong, print error 500
 if ($dbConnection->connect_errno) {
-  error500();
+  error500('Can not connect to the database.');
 }
 
 /**

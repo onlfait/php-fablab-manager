@@ -28,7 +28,7 @@ if (empty($routerAction)) {
     // try to include './pages/$routerPage/index.php'
     if (!includeFile(PAGES_PATH . $routerPage . '/index.php')) {
       // file not found, include './errors/404.php'
-      error404();
+      error404('File not found.');
     }
   }
 } else {
@@ -36,7 +36,7 @@ if (empty($routerAction)) {
   // try to include [./pages/$routerPage/$routerAction.php]
   if (!includeFile(PAGES_PATH . $routerPage . '/' . $routerAction . '.php')) {
     // file not found, include './errors/404.php'
-    error404();
+    error404('File not found.');
   }
 }
 
