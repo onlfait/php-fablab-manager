@@ -20,7 +20,9 @@ if ($dbConnection->connect_errno) {
  */
 function dbSelect ($what, $from, $option = '') {
   global $dbConnection;
-  return $dbConnection->query('SELECT ' . $what . ' FROM ' . $from . ' ' . $option);
+  return $dbConnection->query(
+    'SELECT ' . $what . ' FROM ' . DB_PREFIX . $from . ' ' . $option
+  );
 }
 
 /**
