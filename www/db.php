@@ -33,11 +33,20 @@ function dbSelect ($what, $from, $option = '') {
  * @return [array]
  */
 function dbSelectArray ($what, $from, $option = '') {
+  // set empty results array
   $results = [];
+  // query the database
   $result = dbSelect($what, $from, $option = '');
+  // if no results, return empty array
+  if (!$result) {
+    return $results;
+  }
+  // fetch all result row
   while ($row = $result->fetch_assoc()) {
     array_push($results, $row);
   }
+  // free MySQL result
   $result->free();
+  // return results array
   return $results;
 }
