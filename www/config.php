@@ -5,7 +5,7 @@ define('SITE_URL', 'http://localhost/');
 
 // MySQL settings
 define('DB_USER', 'root');
-define('DB_PASS', '');
+define('DB_PASS', '1234');
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'php-fablab-manager');
 define('DB_CHARSET' , 'utf8');
