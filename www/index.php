@@ -2,14 +2,21 @@
 // define absolute root path (where this file is located)
 define('ROOT_PATH', dirname(__FILE__) . '/');
 
-// require the global configuration
+// require global configuration
 require(ROOT_PATH . 'config.php');
 
 // require global helper functions
 require(ROOT_PATH . 'helpers.php');
 
-// require the layout helpers
+// require layout helpers
 require(ROOT_PATH . 'layout.php');
+
+// require database helpers
+require(ROOT_PATH . 'db.php');
+
+// connect to database
+// print error 500 if fail
+dbConnect();
 
 // require the URL router
 require(ROOT_PATH . 'router.php');

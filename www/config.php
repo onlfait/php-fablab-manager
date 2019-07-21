@@ -3,6 +3,14 @@
 define('SITE_NAME', 'PHP Fablab Manager');
 define('SITE_URL', 'http://localhost/');
 
+// MySQL settings
+define('DB_USER', 'root');
+define('DB_PASS', '');
+define('DB_HOST', 'localhost');
+define('DB_NAME', 'php-fablab-manager');
+define('DB_CHARSET' , 'utf8');
+define('DB_PREFIX' , 'pfm_');
+
 // Router settings
 define('ROUTER_404', '404');
 define('ROUTER_PAGES', 'pages/');
