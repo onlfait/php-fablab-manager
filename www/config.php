@@ -11,8 +11,11 @@ define('ROUTER_DEFAULT_ACTION', '');
 
 // DO NOT EDIT BELOW IF YOU DO NOT KNOW WHAT YOU ARE DOING
 
+// define absolute path to pages directory
+define('PAGES_PATH', ROOT_PATH . 'pages/');
+
 // define absolute path to layout directory
 define('LAYOUT_PATH', ROOT_PATH . 'layout/');
 
-// define absolute path to pages directory
-define('PAGES_PATH', ROOT_PATH . 'pages/');
+// define absolute path to errors directory
+define('ERRORS_PATH', LAYOUT_PATH . 'errors/');

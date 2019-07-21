@@ -4,10 +4,10 @@
  *
  * ex.: Calling [?page=home] try to load first [./pages/home.php],
  *      if not found try to load [./pages/home/index.php],
- *      if not found load [./pages/404.php]
+ *      if not found load [./errors/404.php]
  *
  * ex.: Calling [?page=member&action=login] try to load [./pages/membre/login.php],
- *      if not found load [./pages/404.php]
+ *      if not found load [./errors/404.php]
  *
  * - The name of the pages and actions must always be lowercase,
  *   and must contain only [a-z], [0-9] and [-_] characters.
@@ -21,29 +21,13 @@ $routerAction = getArrayItem($_GET, 'action', ROUTER_DEFAULT_ACTION);
 $routerPage = normalizeFilename($routerPage);
 $routerAction = normalizeFilename($routerAction);
 
-/**
- * Error 404
- * - send 404 header
- * - include the error 404 page
- * - exit PHP
- * @return [void]
- */
-function error404 () {
-  // send http 404 header
-  http_response_code(404);
-  // include page 404
-  require(PAGES_PATH . ROUTER_404 . '.php');
-  // exit with 404 status
-  exit(404);
-}
-
 // no action
 if (empty($routerAction)) {
   // try to include first [./pages/$routerPage.php]
   if (!includeFile(PAGES_PATH . $routerPage . '.php')) {
     // try to include './pages/$routerPage/index.php'
     if (!includeFile(PAGES_PATH . $routerPage . '/index.php')) {
-      // file not found, include './pages/404.php'
+      // file not found, include './errors/404.php'
       error404();
     }
   }
@@ -51,7 +35,7 @@ if (empty($routerAction)) {
   // action provided
   // try to include [./pages/$routerPage/$routerAction.php]
   if (!includeFile(PAGES_PATH . $routerPage . '/' . $routerAction . '.php')) {
-    // file not found, include './pages/404.php'
+    // file not found, include './errors/404.php'
     error404();
   }
 }
