@@ -1,5 +1,9 @@
 <?php
 /**
+ * This file provide some global helper functions
+ */
+
+/**
  * Return an item from an array or the default value if not set
  * @param  [array]  $array                 source array
  * @param  [string] $key                   item key
