@@ -3,9 +3,6 @@
  * This file provide some helpers to construct page layouts
  */
 
-// define absolute path to layout directory
-define('LAYOUT_PATH', ROOT_PATH . '/layout/');
-
 /**
  * Print the layout header
  * @return [void]

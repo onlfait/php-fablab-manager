@@ -13,9 +13,6 @@
  *   and must contain only [a-z], [0-9] and [-_] characters.
  */
 
-// define absolute path to router pages directory
-define('ROUTER_PAGES_PATH', ROOT_PATH . ROUTER_PAGES);
-
 // initialize page and action variables
 $routerPage = getArrayItem($_GET, 'page', ROUTER_DEFAULT_PAGE);
 $routerAction = getArrayItem($_GET, 'action', ROUTER_DEFAULT_ACTION);
@@ -35,7 +32,7 @@ function error404 () {
   // send http 404 header
   http_response_code(404);
   // include page 404
-  require(ROUTER_PAGES_PATH . ROUTER_404 . '.php');
+  require(PAGES_PATH . ROUTER_404 . '.php');
   // exit with 404 status
   exit(404);
 }
@@ -43,9 +40,9 @@ function error404 () {
 // no action
 if (empty($routerAction)) {
   // try to include first [./pages/$routerPage.php]
-  if (!includeFile(ROUTER_PAGES_PATH . $routerPage . '.php')) {
+  if (!includeFile(PAGES_PATH . $routerPage . '.php')) {
     // try to include './pages/$routerPage/index.php'
-    if (!includeFile(ROUTER_PAGES_PATH . $routerPage . '/index.php')) {
+    if (!includeFile(PAGES_PATH . $routerPage . '/index.php')) {
       // file not found, include './pages/404.php'
       error404();
     }
@@ -53,7 +50,7 @@ if (empty($routerAction)) {
 } else {
   // action provided
   // try to include [./pages/$routerPage/$routerAction.php]
-  if (!includeFile(ROUTER_PAGES_PATH . $routerPage . '/' . $routerAction . '.php')) {
+  if (!includeFile(PAGES_PATH . $routerPage . '/' . $routerAction . '.php')) {
     // file not found, include './pages/404.php'
     error404();
   }
