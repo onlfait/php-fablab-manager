@@ -2,6 +2,7 @@
 // Site settings
 define('SITE_NAME', 'PHP Fablab Manager');
 define('SITE_URL', 'http://localhost/');
+define('SITE_LANG', 'fr');
 
 // MySQL settings
 define('DB_USER', 'root');

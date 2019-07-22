@@ -8,6 +8,9 @@ require(ROOT_PATH . 'config.php');
 // require global helper functions
 require(ROOT_PATH . 'helpers.php');
 
+// require l10n helpers
+require(ROOT_PATH . 'l10n.php');
+
 // require layout helpers
 require(ROOT_PATH . 'layout.php');
 
