@@ -83,11 +83,14 @@ function printURL ($uri) {
  * Print an HTML link
  * @param [string] [$uri = '']
  * @param [string] [$text = null]
+ * @param [string] [$class = null]
  * @return [void]
  */
-function printLink ($uri = '', $text = null) {
+function printLink ($uri = '', $text = null, $class = null) {
   // by default $text = $uri
   $text = is_null($text) ? $uri : $text;
+  // add class if provided
+  $class = is_null($class) ? '' : ' class="' . $class . '"';
   // print the html link
-  echo('<a href="' . siteURL($uri) . '">' . $text . '</a>');
+  echo('<a href="' . siteURL($uri) . '"' . $class . '>' . $text . '</a>');
 }

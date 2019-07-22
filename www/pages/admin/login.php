@@ -1,8 +1,7 @@
 <?php printHeader(); ?>
 
-<section class="body">
+<section class="section">
   Admin login...
 </section>
-<!-- end .main .body -->
 
 <?php printFooter(); ?>

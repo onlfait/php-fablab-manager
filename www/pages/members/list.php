@@ -1,6 +1,6 @@
 <?php printHeader(); ?>
 
-<section class="body">
+<section class="section">
   <h1>Members</h1>
   <?php $members = dbSelectArray('login', 'members'); ?>
   <?php if (count($members) === 0) { ?>
@@ -13,6 +13,5 @@
     <?php } ?>
   <?php } ?>
 </section>
-<!-- end .main .body -->
 
 <?php printFooter(); ?>
