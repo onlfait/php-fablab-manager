@@ -22,6 +22,3 @@ routerInit();
 
 // dispatch main request (GET)
 routerDispatch($_GET);
-
-// DEBUG state
-debugVar($_PFM);

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PHP Fablab Manager - Main module\n"
-"POT-Creation-Date: 2019-07-29 18:25+0200\n"
-"PO-Revision-Date: 2019-07-29 18:25+0200\n"
+"POT-Creation-Date: 2019-07-29 18:35+0200\n"
+"PO-Revision-Date: 2019-07-29 18:35+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -27,3 +27,15 @@ msgstr "Le code source est sous licence"
 #: layout/footer.php:8
 msgid "The website content is licensed"
 msgstr "Le contenu du site Web est sous licence"
+
+#: layout/header.php:13
+msgid "Go to the home page"
+msgstr "Aller à la page d’accueil"
+
+#: layout/header.php:31
+msgid "Sign up"
+msgstr "Inscription"
+
+#: layout/header.php:34
+msgid "Log in"
+msgstr "Connexion"
