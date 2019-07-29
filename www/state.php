@@ -7,7 +7,7 @@ stateSet('site', [
 ]);
 
 stateSet('modules', [
-  'names' => ['errors', 'main']
+  'names' => ['main']
 ]);
 
 stateSet('router', [

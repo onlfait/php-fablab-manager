@@ -42,20 +42,30 @@ function routerInit () {
   stateSet('modules.paths', $paths);
 }
 
-// include first file found in modules paths
-function routerInclude (string $file) {
+// return first file found in modules paths
+function routerFindFile (string $file) {
   foreach (stateGet('modules.paths', []) as $path) {
     if (is_file($path . $file)) {
-      include($path . $file);
-      return true;
+      return $path . $file;
     }
   }
   return false;
 }
 
+// include first file found in modules paths
+function routerInclude (string $file, string $ext = '.php') {
+  $path = routerFindFile($file . $ext);
+  if ($path) {
+    include($path);
+    return true;
+  }
+  trigger_error('File not found: ' . $file . $ext, E_USER_WARNING);
+  return false;
+}
+
 // include first page/action found in modules paths
 function routerIncludePage (string $page, string $action) {
-  return routerInclude('pages/' . $page . '/' . $action . '.php');
+  return routerInclude('pages/' . $page . '/' . $action);
 }
 
 // display an error page from modules paths or a static one if none found
@@ -106,4 +116,12 @@ function routerDispatch (array $route) {
       'The requested page [' . $page . '/' . $action . '] was not found on this server.'
     );
   }
+}
+
+function routerFileURL (string $file) {
+  $moduleFile = routerFindFile($file);
+  if ($moduleFile) {
+    $file = str_replace(PFM_ROOT_PATH, '', $moduleFile);
+  }
+  return url($file);
 }
