@@ -23,7 +23,7 @@ function routerInit () {
   if ($done) return;
   $done = true;
   // init empty modules paths
-  stateSet('modules.paths', []);
+  $paths = [];
   // for each modules
   foreach (stateGet('modules.names', []) as $name) {
     $path = PFM_ROOT_PATH . 'modules/' . $name . '/';
@@ -36,9 +36,10 @@ function routerInit () {
     if (is_file($init)) {
       require_once($init);
     }
-    // add module path
-    stateSet('modules.paths.' . $name, $path);
+    // add module path at first place
+    array_unshift($paths, $path);
   }
+  stateSet('modules.paths', $paths);
 }
 
 // include first file found in modules paths
