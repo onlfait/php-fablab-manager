@@ -22,6 +22,13 @@ function stateGet (string $key, $defaultValue = null) {
   return arrayGet($_PFM, $key, $defaultValue);
 }
 
+// print a state key/value
+// or the default value if not set
+function statePrint (string $key, $defaultValue = null) {
+  global $_PFM;
+  echo(stateGet($key, $defaultValue));
+}
+
 // remove a state key/value at first level
 function stateRemove (string $key) {
   global $_PFM;
