@@ -30,7 +30,7 @@ function routerInit () {
     $l10n = 'modules/' . $name . '/l10n/';
     $init = $path . 'init.php';
     if (!is_dir($path)) {
-      trigger_error(text('core', 'Module not found: %s', [$path]), E_USER_WARNING);
+      trigger_error(text('Module not found: %s', [$path], 'core'), E_USER_WARNING);
       continue;
     }
     // initialize module
@@ -58,29 +58,33 @@ function routerFindFile (string $file) {
 }
 
 // include first file found in modules paths
-function routerInclude (string $file, string $ext = '.php', bool $warn = true) {
-  $path = routerFindFile($file . $ext);
+function routerInclude (string $file, array $vars = null, bool $warn = true) {
+  $path = routerFindFile($file);
   if ($path) {
+    if (is_array($vars)) {
+      extract($vars);
+    }
     include($path);
     return true;
   }
   if ($warn) {
-    trigger_error(text('core', 'File not found: %s', [$file . $ext]), E_USER_WARNING);
+    trigger_error(text('File not found: %s', [$file], 'core'), E_USER_WARNING);
   }
   return false;
 }
 
 // include first page/action found in modules paths
-function routerIncludePage (string $page, string $action, bool $warn = null) {
-  return routerInclude('pages/' . $page . '/' . $action, '.php', $warn);
+function routerIncludePage (string $page, string $action, array $vars = null, bool $warn = null) {
+  return routerInclude('pages/' . $page . '/' . $action . '.php', $vars, $warn);
 }
 
 // display an error page from modules paths or a static one if none found
-function routerError (int $code, string $title = null, string $message = null) {
+function routerError (int $code, string $title, string $message = null) {
   http_response_code($code);
-  if (!routerIncludePage('errors', $code, false)) {
+  $error = compact('title', 'message');
+  if (!routerIncludePage('errors', $code, $error, false)) {
     if ($title === null) {
-      $title = 'Error ' . $code;
+      $title = text('Error', null, 'core') . ' ' . $code;
     }
     echo('<!DOCTYPE html><html><head><meta charset="utf-8"><title>' . $title . '</title></head><body><h1>' . $title . '</h1>');
     if ($message !== null) {
@@ -92,12 +96,12 @@ function routerError (int $code, string $title = null, string $message = null) {
 }
 
 // error 404 shortcuts
-function routerError404 (string $title = null, string $message = null) {
+function routerError404 (string $title, string $message = null) {
   routerError(404, $title, $message);
 }
 
 // error 500 shortcuts
-function routerError500 (string $title = null, string $message = null) {
+function routerError500 (string $title, string $message = null) {
   routerError(500, $title, $message);
 }
 
@@ -115,12 +119,12 @@ function routerDispatch (array $route) {
   stateSet('router.requested.page', $page);
   stateSet('router.requested.action', $action);
   // try to include the page
-  if (!routerIncludePage($page, $action, false)) {
+  if (!routerIncludePage($page, $action, [], false)) {
     stateSet('router.current.page', 'errors');
     stateSet('router.current.action', '404');
     routerError404(
-      text('core', 'Error 404 - Page Not Found'),
-      text('core', 'The requested page [%s/%s] was not found on this server.', [$page, $action])
+      text('Error 404 - Page Not Found', null, 'core'),
+      text('The requested page [%s/%s] was not found on this server.', [$page, $action], 'core')
     );
   }
 }

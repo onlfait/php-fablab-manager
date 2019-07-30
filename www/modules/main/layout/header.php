@@ -10,7 +10,7 @@
   <body>
     <nav class="main-navbar navbar has-shadow is-danger" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
-        <a href="<?php echo(url('')) ?>" class="navbar-item" title="<?php textPrint('main', 'Go to the home page') ?>">
+        <a href="<?php echo(url('')) ?>" class="navbar-item" title="<?php textPrint('Go to the home page') ?>">
           <?php echo file_get_contents(routerFileURL('layout/images/logo.svg')) ?>
           <strong><?php statePrint('site.title') ?></strong>
         </a>
@@ -28,10 +28,10 @@
           <div class="navbar-item">
             <div class="buttons">
               <a class="button is-dark">
-                <strong><?php textPrint('main', 'Sign up') ?></strong>
+                <strong><?php textPrint('Sign up') ?></strong>
               </a>
               <a class="button is-light">
-                <?php textPrint('main', 'Log in') ?>
+                <?php textPrint('Log in') ?>
               </a>
             </div>
           </div>

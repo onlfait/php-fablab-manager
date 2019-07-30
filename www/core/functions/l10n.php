@@ -7,10 +7,14 @@ function l10nSetLang (string $lang) {
 
 function l10nBindTextDomain (string $domain, string $directory, string $codeset = 'UTF-8') {
   if (function_exists('bindtextdomain')) {
-    // this will make Gettext look for ./core/l10n/<lang>/LC_MESSAGES/main.mo
     bindtextdomain($domain, PFM_ROOT_PATH . $directory);
-    // indicates in what encoding the file should be read
     bind_textdomain_codeset($domain, $codeset);
+  }
+}
+
+function l10nSetTextDomain (string $domain = null) {
+  if (function_exists('textdomain')) {
+    textdomain($domain);
   }
 }
 
@@ -27,21 +31,29 @@ if (!function_exists('gettext')) {
 }
 
 // return translated text from domain
-function text (string $domain, string $text, array $args = null) {
-  return vsprintf(dgettext($domain, $text), $args);
+function text (string $text, array $args = null, string $domain = null) {
+  if (empty($domain)) {
+    return vsprintf(gettext($text), $args);
+  } else {
+    return vsprintf(dgettext($domain, $text), $args);
+  }
 }
 
 // return translated plural text from domain
-function textPlural (string $domain, string $text1, string $text2, int $n, array $args = null) {
-  return vsprintf(dngettext($domain, $text1, $text2, $n), $args);
+function textPlural (string $text1, string $text2, int $n, array $args = null, string $domain = null) {
+  if (empty($domain)) {
+    return vsprintf(ngettext($text1, $text2, $n), $args);
+  } else {
+    return vsprintf(dngettext($domain, $text1, $text2, $n), $args);
+  }
 }
 
 // print translated text from domain
-function textPrint (string $domain, string $text, array $args = null) {
-  echo(text($domain, $text, $args));
+function textPrint (string $text, array $args = null, string $domain = null) {
+  echo(text($text, $args, $domain));
 }
 
 // print translated plural text from domain
-function textPluralPrint (string $domain, string $text1, string $text2, int $n, array $args = null) {
-  echo(textPlural($domain, $text1, $text2, $n, $args));
+function textPluralPrint (string $text1, string $text2, int $n, array $args = null, string $domain = null) {
+  echo(textPlural($text1, $text2, $n, $args, $domain));
 }

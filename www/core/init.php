@@ -17,6 +17,9 @@ l10nSetLang(stateGet('site.lang'));
 // initialize localization (l10n)
 l10nBindTextDomain('core', 'core/l10n');
 
+// set default text domain
+l10nSetTextDomain('main');
+
 // initialize router (modules)
 routerInit();
 
