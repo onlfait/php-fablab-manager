@@ -136,3 +136,24 @@ function routerFileURL (string $file) {
   }
   return url($file);
 }
+
+// TODO sanitize $data
+function routerURL (string $page, string $action = null, array $data = []) {
+  if (stateGet('router.urlRewrite')) {
+    $query = formatFilename($page);
+    if (!empty($action)) {
+      $query .= '/' . formatFilename($action);
+    }
+    if (!empty($data)) {
+      $query .= '/?' . http_build_query($data);
+    }
+    return url($query);
+  } else {
+    $query = ['page' => formatFilename($page)];
+    if (!empty($action)) {
+      $query['action'] = formatFilename($action);
+    }
+    $query = array_merge($data, $query);
+    return url('?' . http_build_query($query));
+  }
+}

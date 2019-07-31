@@ -22,7 +22,7 @@
       </div>
       <div class="navbar-menu">
         <div class="navbar-start">
-          ...
+          <?php printNavBarMenu(stateGet('main.menus.header')) ?>
         </div>
         <div class="navbar-end">
           <div class="navbar-item">

@@ -14,5 +14,6 @@ stateSet('router', [
   'defaults' => [
     'page' => 'home',
     'action' => 'index'
-  ]
+  ],
+  'urlRewrite' => true
 ]);
