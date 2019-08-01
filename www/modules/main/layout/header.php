@@ -14,13 +14,13 @@
           <?php echo file_get_contents(routerFileURL('layout/images/logo.svg')) ?>
           <strong><?php statePrint('site.title') ?></strong>
         </a>
-        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+        <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
         </a>
       </div>
-      <div class="navbar-menu">
+      <div class="navbar-menu" id="navMenu">
         <div class="navbar-start">
           <?php printNavBarMenu(stateGet('main.menus.header')) ?>
         </div>

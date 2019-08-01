@@ -4,10 +4,15 @@ require_once(PFM_ROOT_PATH . 'modules/main/functions/layout.php');
 stateSet('main', [
   'menus' => [
     'header' => [
-      'Association',
-      'Projects',
-      'Members',
-      'Contact'
+      text('Workspace') => [
+        text('Equipments') => ['page' => 'workspace', 'action' => 'equipments'],
+        text('Booking') => ['page' => 'workspace', 'action' => 'booking']
+      ],
+      text('Projects') => ['page' => 'projects'],
+      text('Members') => ['page' => 'members'],
+      text('Events') => ['page' => 'events'],
+      text('Contact') => ['page' => 'contact'],
+      text('About') => ['page' => 'about']
     ]
   ]
 ]);
