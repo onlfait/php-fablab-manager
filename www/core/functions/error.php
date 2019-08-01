@@ -36,10 +36,7 @@ function errorPrint (array $error) {
     bufferClean();
     $title = text('Error', null, 'core') . ' 500';
     $message = stateGet('debug') ? errorToString($error) : null;
-    stateSet('error.title', $title);
-    stateSet('error.message', $message);
-    routerDispatch(['page' => 'errors', 'action' => '500']);
-    exit($error['type']);
+    routerError500($title, $message);
   } catch (Exception $exception) {
     bufferClean();
     echo('<!DOCTYPE html><html>');

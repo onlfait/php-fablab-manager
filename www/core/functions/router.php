@@ -81,12 +81,13 @@ function routerIncludePage (string $page, string $action, array $vars = null, bo
 // display an error page from modules paths or a static one if none found
 function routerError (int $code, string $title, string $message = null) {
   http_response_code($code);
+  stateSet('error.title', $title);
+  stateSet('error.message', $message);
   $error = compact('title', 'message');
   if (!routerIncludePage('errors', $code, $error, false)) {
-    if ($title === null) {
-      $title = text('Error', null, 'core') . ' ' . $code;
-    }
-    echo('<!DOCTYPE html><html><head><meta charset="utf-8"><title>' . $title . '</title></head><body><h1>' . $title . '</h1>');
+    echo('<!DOCTYPE html><html>');
+    echo('<head><meta charset="utf-8"><title>' . $title . '</title></head>');
+    echo('<body><h1>' . $title . '</h1>');
     if ($message !== null) {
       echo('<p>' . $message . '</p>');
     }
