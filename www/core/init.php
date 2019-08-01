@@ -1,4 +1,7 @@
 <?php
+// start buffer
+ob_start();
+
 // require core functions
 require_once(PFM_ROOT_PATH . 'core/functions/debug.php');
 require_once(PFM_ROOT_PATH . 'core/functions/array.php');
@@ -7,6 +10,7 @@ require_once(PFM_ROOT_PATH . 'core/functions/format.php');
 require_once(PFM_ROOT_PATH . 'core/functions/url.php');
 require_once(PFM_ROOT_PATH . 'core/functions/l10n.php');
 require_once(PFM_ROOT_PATH . 'core/functions/router.php');
+require_once(PFM_ROOT_PATH . 'core/functions/error.php');
 
 // require main state file
 require_once(PFM_ROOT_PATH . 'state.php');
@@ -23,5 +27,11 @@ l10nSetTextDomain('main');
 // initialize router (modules)
 routerInit();
 
+// set global error/exception handler
+errorHandlerRegister();
+
 // dispatch main request (GET)
 routerDispatch($_GET);
+
+// clean and print buffer
+ob_end_flush();

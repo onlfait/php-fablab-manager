@@ -1,4 +1,6 @@
 <?php
+stateSet('debug', true);
+
 stateSet('site', [
   'title' => 'PHP Fablab Manager',
   'host' => 'localhost/',

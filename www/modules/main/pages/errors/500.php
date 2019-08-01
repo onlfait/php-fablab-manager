@@ -3,13 +3,15 @@
 <section class="section error">
   <article class="message is-danger">
     <div class="message-header">
-      <p><?php echo($title) ?></p>
+      <p><?php statePrint('error.title') ?></p>
     </div>
-    <?php if (!is_null($message)) { ?>
     <div class="message-body">
-      <?php echo($message) ?>
+      <?php if (stateGet('error.message')) {
+        statePrint('error.message');
+      } else {
+        textPrint('Internal server error.');
+      } ?>
     </div>
-  <?php } ?>
   </article>
 </section>
 
