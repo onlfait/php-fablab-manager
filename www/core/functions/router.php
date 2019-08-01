@@ -158,3 +158,8 @@ function routerURL (string $page, string $action = null, array $data = []) {
     return url('?' . http_build_query($query));
   }
 }
+
+function routerRedirect ($page, $action = null, $data = []) {
+  header('Location:' . routerURL($page, $action, $data));
+  exit();
+}

@@ -1,5 +1,6 @@
 <?php
 require_once(PFM_ROOT_PATH . 'modules/main/functions/layout.php');
+require_once(PFM_ROOT_PATH . 'modules/main/functions/user.php');
 
 stateSet('main', [
   'menus' => [

@@ -6,6 +6,7 @@
     <title><?php statePrint('site.title') ?></title>
     <link rel="stylesheet" type="text/css" href="<?php echo(routerFileURL('layout/styles/bulma.min.css')) ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo(routerFileURL('layout/styles/layout.css')) ?>">
+    <script src="https://kit.fontawesome.com/b8646eefa3.js"></script>
   </head>
   <body>
     <nav class="main-navbar navbar has-shadow is-danger" role="navigation" aria-label="main navigation">
@@ -25,16 +26,54 @@
           <?php printNavBarMenu(stateGet('main.menus.header')) ?>
         </div>
         <div class="navbar-end">
+
+          <?php if (userConnected()) { ?>
+
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link">
+              <span class="icon">
+                <i class="fas fa-user-circle"></i>
+              </span>
+            </a>
+            <div class="navbar-dropdown is-right">
+              <div class="navbar-item">
+                <?php sessionPrint('user.email') ?>
+              </div>
+              <hr class="navbar-divider">
+              <a class="navbar-item">
+                <?php textPrint('Your profile') ?>
+              </a>
+              <a class="navbar-item">
+                <?php textPrint('Your projects') ?>
+              </a>
+              <a class="navbar-item">
+                <?php textPrint('Your bookings') ?>
+              </a>
+              <hr class="navbar-divider">
+              <a class="navbar-item">
+                <?php textPrint('Settings') ?>
+              </a>
+              <a class="navbar-item" href="<?php echo routerURL('members', 'log-out') ?>">
+                <?php textPrint('Log out') ?>
+              </a>
+            </div>
+          </div>
+
+          <?php } else { ?>
+
           <div class="navbar-item">
             <div class="buttons">
-              <a class="button is-dark">
+              <a class="button is-dark" href="<?php echo routerURL('members', 'sign-up') ?>">
                 <strong><?php textPrint('Sign up') ?></strong>
               </a>
-              <a class="button is-light">
+              <a class="button is-light" href="<?php echo routerURL('members', 'log-in') ?>">
                 <?php textPrint('Log in') ?>
               </a>
             </div>
           </div>
+
+          <?php } ?>
+
         </div>
       </div>
     </nav>

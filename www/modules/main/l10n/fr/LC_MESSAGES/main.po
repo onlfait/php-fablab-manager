@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PHP Fablab Manager - Main module\n"
-"POT-Creation-Date: 2019-08-01 14:16+0200\n"
-"PO-Revision-Date: 2019-08-01 14:18+0200\n"
+"POT-Creation-Date: 2019-08-01 15:38+0200\n"
+"PO-Revision-Date: 2019-08-01 15:39+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -61,15 +61,16 @@ msgstr "Le code source est sous licence"
 msgid "The website content is licensed"
 msgstr "Le contenu du site Web est sous licence"
 
-#: layout/header.php:13
+#: layout/header.php:14
 msgid "Go to the home page"
 msgstr "Aller à la page d’accueil"
 
-#: layout/header.php:31
+#: layout/header.php:32
 msgid "Sign up"
 msgstr "Inscription"
 
-#: layout/header.php:34
+#: layout/header.php:35 pages/members/log-in.php:6 pages/members/log-in.php:31
+#: pages/members/log-in.php:51 pages/members/log-in.php:74
 msgid "Log in"
 msgstr "Connexion"
 
@@ -80,3 +81,19 @@ msgstr "Fichier non trouvé"
 #: pages/errors/500.php:12
 msgid "Internal server error."
 msgstr "Erreur interne du serveur."
+
+#: pages/members/log-in.php:11 pages/members/log-in.php:54
+msgid "Email"
+msgstr "Courriel"
+
+#: pages/members/log-in.php:22 pages/members/log-in.php:65
+msgid "Password"
+msgstr "Mot de passe"
+
+#: pages/members/log-in.php:40
+msgid "Remember me !"
+msgstr "Souviens-toi de moi !"
+
+#: pages/members/log-in.php:44
+msgid "Forgot password ?"
+msgstr "Mot de passe oublié ?"

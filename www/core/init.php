@@ -11,6 +11,7 @@ require_once(PFM_ROOT_PATH . 'core/functions/url.php');
 require_once(PFM_ROOT_PATH . 'core/functions/l10n.php');
 require_once(PFM_ROOT_PATH . 'core/functions/router.php');
 require_once(PFM_ROOT_PATH . 'core/functions/error.php');
+require_once(PFM_ROOT_PATH . 'core/functions/session.php');
 
 // require main state file
 require_once(PFM_ROOT_PATH . 'state.php');
@@ -26,6 +27,9 @@ l10nSetTextDomain('main');
 
 // initialize router (modules)
 routerInit();
+
+// initialize session
+sessionInit();
 
 // set global error/exception handler
 errorHandlerRegister();

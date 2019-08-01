@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PHP Fablab Manager - Core\n"
-"POT-Creation-Date: 2019-07-30 17:03+0200\n"
-"PO-Revision-Date: 2019-07-30 17:03+0200\n"
+"POT-Creation-Date: 2019-08-01 15:34+0200\n"
+"PO-Revision-Date: 2019-08-01 15:34+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -18,6 +18,10 @@ msgstr ""
 "textPluralPrint: 2,3\n"
 "X-Poedit-SearchPath-0: .\n"
 
+#: functions/error.php:37
+msgid "Error"
+msgstr "Erreur"
+
 #: functions/router.php:33
 #, php-format
 msgid "Module not found: %s"
@@ -28,15 +32,11 @@ msgstr "Module non trouvé : %s"
 msgid "File not found: %s"
 msgstr "Fichier non trouvé : %s"
 
-#: functions/router.php:87
-msgid "Error"
-msgstr "Erreur"
-
-#: functions/router.php:126
+#: functions/router.php:127
 msgid "Error 404 - Page Not Found"
 msgstr "Erreur 404 - Page Non Trouvée"
 
-#: functions/router.php:127
+#: functions/router.php:128
 #, php-format
 msgid "The requested page [%s/%s] was not found on this server."
 msgstr "La page demandée [%s/%s] n'a pas été trouvée sur ce serveur."
