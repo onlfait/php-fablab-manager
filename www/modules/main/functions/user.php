@@ -4,8 +4,7 @@ function userConnected () {
 }
 
 function userLogout () {
-  session_unset();
-  session_regenerate_id(true);
+  sessionDestroy();
 }
 
 function userLogin ($form) {
