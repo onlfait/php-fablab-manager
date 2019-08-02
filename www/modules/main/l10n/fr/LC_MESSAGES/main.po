@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PHP Fablab Manager - Main module\n"
-"POT-Creation-Date: 2019-08-01 15:38+0200\n"
-"PO-Revision-Date: 2019-08-01 15:39+0200\n"
+"POT-Creation-Date: 2019-08-02 08:28+0200\n"
+"PO-Revision-Date: 2019-08-02 08:31+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -17,35 +17,43 @@ msgstr ""
 "textPluralPrint:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: init.php:7
+#: functions/user.php:26
+msgid "This user does not exist."
+msgstr "Cet utilisateur n’existe pas."
+
+#: functions/user.php:28
+msgid "The password does not match."
+msgstr "Le mot de passe ne correspond pas."
+
+#: init.php:8
 msgid "Workspace"
 msgstr "Espace de travail"
 
-#: init.php:8
+#: init.php:9
 msgid "Equipments"
 msgstr "Équipements"
 
-#: init.php:9
+#: init.php:10
 msgid "Booking"
 msgstr "Réservation"
 
-#: init.php:11
+#: init.php:12
 msgid "Projects"
 msgstr "Réalisations"
 
-#: init.php:12
+#: init.php:13
 msgid "Members"
 msgstr "Membres"
 
-#: init.php:13
+#: init.php:14
 msgid "Events"
 msgstr "Événements"
 
-#: init.php:14
+#: init.php:15
 msgid "Contact"
 msgstr "Contact"
 
-#: init.php:15
+#: init.php:16
 msgid "About"
 msgstr "À propos"
 
@@ -65,12 +73,32 @@ msgstr "Le contenu du site Web est sous licence"
 msgid "Go to the home page"
 msgstr "Aller à la page d’accueil"
 
-#: layout/header.php:32
+#: layout/header.php:44
+msgid "Your profile"
+msgstr "Votre profil"
+
+#: layout/header.php:47
+msgid "Your projects"
+msgstr "Vos projets"
+
+#: layout/header.php:50
+msgid "Your bookings"
+msgstr "Vos réservations"
+
+#: layout/header.php:54
+msgid "Settings"
+msgstr "Paramètres"
+
+#: layout/header.php:57 pages/members/log-out.php:8
+msgid "Log out"
+msgstr "Déconnexion"
+
+#: layout/header.php:67
 msgid "Sign up"
 msgstr "Inscription"
 
-#: layout/header.php:35 pages/members/log-in.php:6 pages/members/log-in.php:31
-#: pages/members/log-in.php:51 pages/members/log-in.php:74
+#: layout/header.php:70 pages/members/log-in.php:9 pages/members/log-in.php:57
+#: pages/members/log-in.php:81
 msgid "Log in"
 msgstr "Connexion"
 
@@ -82,18 +110,26 @@ msgstr "Fichier non trouvé"
 msgid "Internal server error."
 msgstr "Erreur interne du serveur."
 
-#: pages/members/log-in.php:11 pages/members/log-in.php:54
+#: pages/members/log-in.php:14
+msgid "Error"
+msgstr "Erreur"
+
+#: pages/members/log-in.php:31
 msgid "Email"
 msgstr "Courriel"
 
-#: pages/members/log-in.php:22 pages/members/log-in.php:65
+#: pages/members/log-in.php:42
 msgid "Password"
 msgstr "Mot de passe"
 
-#: pages/members/log-in.php:40
+#: pages/members/log-in.php:68
 msgid "Remember me !"
 msgstr "Souviens-toi de moi !"
 
-#: pages/members/log-in.php:44
+#: pages/members/log-in.php:72
 msgid "Forgot password ?"
 msgstr "Mot de passe oublié ?"
+
+#: pages/members/log-out.php:11
+msgid "You are disconnected."
+msgstr "Vous êtes déconnecté."
