@@ -47,3 +47,51 @@ function pfm_dispatch_route($request) {
   // Include the page layout
   pfm_require_layout($layout);
 }
+
+// Return an local URL with [ http(s)://host(/uri) ]
+function pfm_url($uri = null) {
+  global $PFM;
+
+  // base url
+  $url = 'http';
+
+  // force https ?
+  if ($PFM['https']) {
+    $url .= 's';
+  }
+
+  // add hostname
+  $url .= '://' . $PFM['host'];
+
+  // add uri prefix
+  if ($uri !== null) {
+    $url .= '/' . $uri;
+  }
+
+  return $url;
+}
+
+// Return an local URL with [ http(s)://host/(?uri=...) ]
+function pfm_router_url($uri = null) {
+  global $PFM;
+
+  // add uri prefix
+  if ($uri !== null) {
+    $uri = '?uri=' . $uri;
+  }
+
+  return pfm_url($uri);
+}
+
+function pfm_print_menu($items) {
+  global $PFM;
+
+  foreach ($items as $key => $value) {
+    // If the value is a string, link to route name
+    if (is_string($value)) {
+      $url = pfm_router_url($value);
+      $title = $PFM['routes'][$value]['title'];
+      printf('<a href="%s">%s</a>', $url, $title);
+    }
+  }
+}

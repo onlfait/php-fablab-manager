@@ -15,7 +15,7 @@
       <p class="subtitle">Apprendre, Partager, s'Amuser!</p>
     </header>
     <nav>
-      Navigation...
+      <?php pfm_print_menu($PFM['menus']['main']) ?>
     </nav>
     <?php pfm_require_page($PFM['route']['page']) ?>
     <script src="./layouts/onlfait/default.js"></script>
