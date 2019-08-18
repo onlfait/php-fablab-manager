@@ -71,7 +71,7 @@ function pfm_url($uri = null) {
   return $url;
 }
 
-// Return an local URL with [ http(s)://host/(?uri=...) ]
+// Return an local URL with [ http(s)://host(/?uri=...) ]
 function pfm_router_url($uri = null) {
   global $PFM;
 
