@@ -5,63 +5,54 @@ $PFM['routes'] = [
   // default route
   '' => [
     'title'  => 'Accueil',
-    'page'   => 'home/index',
-    'layout' => 'onlfait/default'
+    'page'   => 'home/index'
   ],
 
   // association routes
   'association' => [
     'title'  => 'Association',
-    'page'   => 'association/index',
-    'layout' => 'onlfait/default'
+    'page'   => 'association/index'
   ],
 
   // contact routes
   'contact' => [
     'title'  => 'Contact',
-    'page'   => 'contact/index',
-    'layout' => 'onlfait/default'
+    'page'   => 'contact/index'
   ],
 
   // events routes
   'events' => [
-    'title'  => 'Événements / Ateliers',
-    'page'   => 'events/index',
-    'layout' => 'onlfait/default'
+    'title' => 'Événements / Ateliers',
+    'page'  => 'events/index'
   ],
 
   // members routes
   'members' => [
-    'title'  => 'Espace membres',
-    'page'   => 'members/index',
-    'layout' => 'onlfait/default'
+    'title' => 'Espace membres',
+    'page'  => 'members/index'
   ],
 
   'members/projects' => [
-    'title'  => 'Projets membres',
-    'page'   => 'members/projects',
-    'layout' => 'onlfait/default'
+    'title' => 'Projets membres',
+    'page'  => 'members/projects'
   ],
 
   // portfolio routes
   'portfolio' => [
-    'title'  => 'Portfolio',
-    'page'   => 'portfolio/index',
-    'layout' => 'onlfait/default'
+    'title' => 'Portfolio',
+    'page'  => 'portfolio/index'
   ],
 
   // workshop routes
   'workshop' => [
-    'title'  => 'Espace de travail',
-    'page'   => 'workshop/index',
-    'layout' => 'onlfait/default'
+    'title' => 'Espace de travail',
+    'page'  => 'workshop/index'
   ],
 
   // errors routes
   '404' => [
-    'title'  => 'Erreur 404',
-    'page'   => 'errors/404',
-    'layout' => 'onlfait/default'
+    'title' => 'Erreur 404',
+    'page'  => 'errors/404'
   ]
 
 ];

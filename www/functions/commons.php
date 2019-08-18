@@ -36,6 +36,14 @@ function pfm_dispatch_route($request) {
   $PFM['route'] = $PFM['routes'][$uri];
   $PFM['route']['uri'] = $uri;
 
+  // Get the default layout
+  $layout = $PFM['layout'];
+
+  // Get optional route layout
+  if (!empty($PFM['route']['layout'])) {
+    $layout = $PFM['route']['layout'];
+  }
+
   // Include the page layout
-  pfm_require_layout($PFM['route']['layout']);
+  pfm_require_layout($layout);
 }
