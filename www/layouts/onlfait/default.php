@@ -7,7 +7,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
     <title>Onl'Fait - <?php echo $PFM['route']['title'] ?></title>
-    <link rel="stylesheet" href="./layouts/onlfait/default.css">
+    <link rel="stylesheet" href="<?php echo pfm_url('layouts/onlfait/default.css') ?>">
   </head>
   <body>
     <header>
@@ -18,6 +18,6 @@
       <?php pfm_print_menu($PFM['menus']['main']) ?>
     </nav>
     <?php pfm_require_page($PFM['route']['page']) ?>
-    <script src="./layouts/onlfait/default.js"></script>
+    <script src="<?php echo pfm_url('layouts/onlfait/default.js') ?>"></script>
   </body>
 </html>
