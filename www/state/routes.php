@@ -4,20 +4,20 @@ $PFM['routes'] = [
 
   // default route
   '' => [
-    'title'  => 'Accueil',
-    'page'   => 'home/index'
+    'title' => 'Accueil',
+    'page'  => 'home/index'
   ],
 
   // association routes
   'association' => [
-    'title'  => 'Association',
-    'page'   => 'association/index'
+    'title' => 'Association',
+    'page'  => 'association/index'
   ],
 
   // contact routes
   'contact' => [
-    'title'  => 'Contact',
-    'page'   => 'contact/index'
+    'title' => 'Contact',
+    'page'  => 'contact/index'
   ],
 
   // events routes
