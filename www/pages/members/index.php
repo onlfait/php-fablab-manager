@@ -1,58 +1,40 @@
-<?php session_start();
+<?php
+session_start();
+include("FonctionsPHP/head_global.php");
+include("FonctionsPHP/head_datepicker.php");
+include("FonctionsPHP/SecurePOST2BDD.php");
 ?>
 
+<div id="content">
+  <div id="centercolumn">
 
-<html>
-<head>
-  <?php
-  include("FonctionsPHP/head_global.php");
-  include("FonctionsPHP/head_datepicker.php");
-  ?>
-</head>
+    <?php
+    //Vérification de l'authentification
+    if(ISSET($_SESSION['IDLogin']) AND ISSET($_SESSION['PwVerif'])){
+      MembrePersoOK();
+    }else{
+      $Login = securite_bdd($_POST['Login']);
+      $Pw = securite_bdd($_POST['Pw']);
 
-<body>
-  <?php
-  include("FonctionsPHP/entete.php");
-  include("FonctionsPHP/menu.php");
-
-  include("FonctionsPHP/SecurePOST2BDD.php");
-  ?>
-
-  <div id="content">
-    <div id="centercolumn">
-
-      <?php
-      //Vérification de l'authentification
-      if(ISSET($_SESSION['IDLogin']) AND ISSET($_SESSION['PwVerif'])){
-        MembrePersoOK();
-      }else{
+      if($Login!="" AND $Pw!=""){
+        include("FonctionsPHP/TestLogin.php");
         $Login = securite_bdd($_POST['Login']);
         $Pw = securite_bdd($_POST['Pw']);
-
-        if($Login!="" AND $Pw!=""){
-          include("FonctionsPHP/TestLogin.php");
-          $Login = securite_bdd($_POST['Login']);
-          $Pw = securite_bdd($_POST['Pw']);
-          $message=TestLogin($Login,$Pw);
-          if(ISSET($_SESSION['IDLogin']) AND ISSET($_SESSION['PwVerif'])){
-            MembrePersoOK();
-          }else{
-            MembrePersoKO($message);
-          }
+        $message=TestLogin($Login,$Pw);
+        if(ISSET($_SESSION['IDLogin']) AND ISSET($_SESSION['PwVerif'])){
+          MembrePersoOK();
         }else{
-          $message="Compléter tous les champs pour vous connecter";
           MembrePersoKO($message);
         }
+      }else{
+        $message="Compléter tous les champs pour vous connecter";
+        MembrePersoKO($message);
       }
-      ?>
+    }
+    ?>
 
-    </div><!-- #centercolumn -->
-  </div><!-- #content -->
-
-  <?php include("FonctionsPHP/pied_de_page.php"); ?>
-
-</body>
-</html>
+  </div><!-- #centercolumn -->
+</div><!-- #content -->
 
 
 
