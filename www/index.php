@@ -1,22 +1,32 @@
 <?php
-// define absolute root path (where this file is located)
-define('ROOT_PATH', dirname(__FILE__) . '/');
+/**
+ * This file is the single entry point of the application.
+ *
+ * This file is responsible to :
+ *  - Define the main namespace.
+ *  - Define some common constants.
+ *  - Require and call the startup function.
+ */
+namespace PFM;
 
-// require global configuration
-require(ROOT_PATH . 'config.php');
+/**
+ * Directory separator
+ *
+ * @var string Pouet tralala...
+ */
+const DS = DIRECTORY_SEPARATOR;
 
-// require global helper functions
-require(ROOT_PATH . 'helpers.php');
+/** Absolute path to root directory */
+define('PFM\ROOT_PATH', dirname(__FILE__) . DS);
 
-// require layout helpers
-require(ROOT_PATH . 'layout.php');
+/** Absolute path to core directory */
+define('PFM\CORE_PATH', ROOT_PATH . 'core' . DS);
 
-// require database helpers
-require(ROOT_PATH . 'db.php');
+/** Absolute path to main directory */
+define('PFM\MAIN_PATH', ROOT_PATH . 'main' . DS);
 
-// connect to database
-// print error 500 if fail
-dbConnect();
+// Require core startup functions
+require_once(CORE_PATH . 'functions' . DS . 'startup.php');
 
-// require the URL router
-require(ROOT_PATH . 'router.php');
+// Startup PHP Fablab Manager
+\PFM\core\functions\startup();
