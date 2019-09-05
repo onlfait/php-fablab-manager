@@ -11,7 +11,19 @@
     <link rel="stylesheet" href="<?php echo pfm_url('layouts/onlfait/styles/index.css') ?>">
   </head>
   <body>
-    <!-- contents here ... -->
+    <header>
+      <h1 class="title">Onl'Fait</h1>
+      <h1 class="subtitle">Apprendre, paratager, s'amuser !</h1>
+      <nav>
+        <?php pfm_print_menu($PFM['menus']['main']) ?>
+      </nav>
+    </header>
+    <main>
+      <?php pfm_require_page($PFM['route']['page']) ?>
+    </main>
+    <footer>
+      Copyleft 2019 - Onl'Fait
+    </footer>
     <script src="<?php echo pfm_url('layouts/onlfait/scripts/index.js') ?>"></script>
   </body>
 </html>

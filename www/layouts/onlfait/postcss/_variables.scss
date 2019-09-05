@@ -1,0 +1,35 @@
+// Font base unit & size
+$font-unit: 4px !default;
+$font-size: ($font-unit * 4) !default;
+
+$size-1: (5 * $font-size) !default;
+$size-2: (4 * $font-size) !default;
+$size-3: (3 * $font-size) !default;
+$size-4: (2 * $font-size) !default;
+$size-5: (1 * $font-size) !default;
+$size-6: (0.75 * $font-size) !default;
+
+$sizes: $size-1, $size-2, $size-3, $size-4, $size-5, $size-6 !default;
+
+$line-height-1: (6 * $font-size) !default;
+$line-height-2: (5 * $font-size) !default;
+$line-height-3: (4 * $font-size) !default;
+$line-height-4: (3 * $font-size) !default;
+$line-height-5: (2 * $font-size) !default;
+$line-height-6: (1 * $font-size) !default;
+
+$line-heights: $line-height-1, $line-height-2, $line-height-3, $line-height-4, $line-height-5, $line-height-6 !default;
+
+// Grid division
+$grid-division: 12 !default;
+
+// Grid breakpoints
+$grid-sm: 480px !default;  // mobile
+$grid-md: 768px !default;  // tablet
+$grid-lg: 1440px !default; // desktop
+
+// Colors palette
+$text-color      : #eeeeee !default;
+$background-color: #1a1a1d !default;
+$primary-color   : #c3073f !default;
+$secondary-color : #4e4e50 !default;

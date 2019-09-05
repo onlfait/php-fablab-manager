@@ -1,0 +1,9 @@
+@mixin sizes {
+  @each $size in $sizes {
+    $i: index($sizes, $size);
+    #{if(&, '&', '')}.size-#{$i} {
+      font-size: $size;
+      line-height: nth($line-heights, $i);
+    }
+  }
+}

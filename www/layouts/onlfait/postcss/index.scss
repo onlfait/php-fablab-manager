@@ -1,0 +1,54 @@
+@import "sanitize.css";
+@import "sanitize.css/forms.css";
+@import "sanitize.css/typography.css";
+
+@import "variables.scss";
+@import "mixins.scss";
+@import "grid.scss";
+
+body {
+  color: $text-color;
+  background-color: $background-color;
+  font-size: $font-size;
+  line-height: ($font-size * 1.5);
+  font-family:Roboto,system-ui,-apple-system,Segoe UI,Ubuntu,Cantarell,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+}
+
+header {
+  color: $primary-color;
+}
+
+@include sizes;
+
+.title, .subtitle {
+  margin: 0;
+  padding: 0;
+  word-break: break-word;
+}
+
+.title {
+  font-weight: 600;
+  font-size: $size-3;
+  line-height: $line-height-3;
+  @include sizes;
+}
+
+.subtitle {
+  font-weight: 400;
+  font-size: $size-4;
+  line-height: $line-height-5;
+  @include sizes;
+}
+
+// DEBUG
+.grid {
+  background-color: #555;
+}
+
+.cell:nth-child(even) {
+  background-color: #333;
+}
+
+.cell:nth-child(odd) {
+  background-color: #444;
+}
