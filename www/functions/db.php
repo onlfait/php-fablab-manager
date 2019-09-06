@@ -11,3 +11,9 @@ function pfm_db_connect() {
 
   $PFM['db']['link'] = $link;
 }
+
+function pfm_db_disconnect() {
+  global $PFM;
+  mysqli_close($PFM['db']['link']);
+  $PFM['db']['link'] = null;
+}

@@ -19,3 +19,6 @@ pfm_db_connect();
 
 // Dispatch main request
 pfm_dispatch_route($_GET);
+
+// Database disconnect
+pfm_db_disconnect();
