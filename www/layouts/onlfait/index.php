@@ -12,9 +12,7 @@
   </head>
   <body>
     <header>
-      <h1 class="title">Onl'Fait</h1>
-      <h1 class="subtitle">Apprendre, paratager, s'amuser !</h1>
-      <nav>
+      <nav class="menu">
         <?php pfm_print_menu($PFM['menus']['main']) ?>
       </nav>
     </header>
