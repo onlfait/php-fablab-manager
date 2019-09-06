@@ -2,34 +2,9 @@
 @import "sanitize.css/forms.css";
 @import "sanitize.css/typography.css";
 
-// images
-$background-image: "/layouts/onlfait/images/background.png";
-
-// Breakpoints
-$mobile : 480px  !default;
-$tablet : 768px  !default;
-$desktop: 1440px !default;
-
-// colors
-$primary-color  : #D6423B;
-$secondary-color: #F2EACC;
-$dark-color     : #182722;
-
-$black: #000;
-$white: #FFF;
-
-// unit
-$unit: 8px;
-
-$unit-x2 : (2 * $unit);
-$unit-x3 : (3 * $unit);
-$unit-x4 : (4 * $unit);
-$unit-x5 : (5 * $unit);
-$unit-x6 : (6 * $unit);
-$unit-x7 : (7 * $unit);
-$unit-x8 : (8 * $unit);
-$unit-x9 : (9 * $unit);
-$unit-x10: (10 * $unit);
+// imports
+@import "variables.scss";
+@import "grid.scss";
 
 // links
 a {
@@ -79,9 +54,6 @@ header {
   .menu {
     display: flex;
     flex-direction: column;
-    // flex-flow: column wrap;
-    // align-items: center;
-    // justify-content: center;
     font-weight: 500;
     font-size: $unit-x3;
     margin-top: $unit;
@@ -92,8 +64,6 @@ header {
     display: flex;
     flex: 1 1 auto;
     padding: $unit-x2;
-    // align-items: center;
-    // justify-content: center;
     color: $secondary-color;
     text-transform: uppercase;
     border-bottom: $unit solid $secondary-color;
@@ -116,8 +86,6 @@ section {
 }
 
 // breakpoints
-// @media all and (min-width: $mobile) {}
-
 @media all and (min-width: $tablet) {
   header {
     padding-top: 400px;
