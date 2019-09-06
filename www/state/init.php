@@ -10,3 +10,4 @@ $PFM = [
 // Require all state files
 require_once PFM_ROOT_PATH . 'state/routes.php';
 require_once PFM_ROOT_PATH . 'state/menus.php';
+require_once PFM_ROOT_PATH . 'state/db.php';
