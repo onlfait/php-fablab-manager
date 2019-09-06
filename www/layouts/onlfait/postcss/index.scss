@@ -111,6 +111,10 @@ main, footer {
   background-color: $white;
 }
 
+section {
+  padding: $unit-x2;
+}
+
 // breakpoints
 // @media all and (min-width: $mobile) {}
 
