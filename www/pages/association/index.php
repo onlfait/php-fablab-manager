@@ -17,31 +17,42 @@
 
   <h1 class="title">Le Comité</h1>
 
-  <table>
-    <tr>
-      <td>
-        <img src="Image/Comite/cristina.jpg" alt="Cristina">
-      </td>
-      <td>
-        Cristina Olivotto (secrétaire), physicienne de formation, travaille depuis 15 ans dans le domaine de la communication et didactique formelle et informelle de la science. Elle a travaillé dans des organisations nationales et internationales en tant qu’indépendante depuis 2011. Elle a rejoint le comité de l’association en juin 2017 en qualité de secrétaire. Impliquée dans le monde du “Fais-le toi-même” elle remporte la troisième place du Prix IDDEA 2016 avec son projet “Makeshop”.
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <img src="Image/Comite/mathieu.jpg" alt="Mathieu">
-      </td>
-      <td>
-        Mathieu Jacquesson (président), économiste d’entreprise, cofondateur de l’association Onl’Fait, s’est spécialisé dans l’entrepreneuriat social avec 6 ans d’expérience à la chambre de l’économie sociale et solidaire de Genève. Il est aussi entrepreneur et gère la société The Square Sarl. Reconnu pour son sens de la communication, il est également à l’origine des pochettes Paw!
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <img src="Image/Comite/sebastien.jpg" alt="Sébastien">
-      </td>
-      <td>
-        Sébastien Mischler (trésorier), électricien de formation, et cofondateur de l’association Onl’Fait. Il contribue activement depuis plusieurs années à des projets Open-Source tels que RepRap, LaserWeb, SmoothieBoard. Il est également le créateur d’un modèle d’imprimante 3D utilisé dans d’autres fablabs (le modèle RepRap iTopie).
-      </td>
-    </tr>
-  </table>
+  <div class="grid">
+
+    <div class="cell cell-12 cell-tablet-2">
+      <img class="responsive" src="Image/Comite/cristina.jpg" alt="Cristina Olivotto">
+    </div>
+    <div class="cell cell-12 cell-tablet-10 pad-x2">
+      Cristina Olivotto (secrétaire), physicienne de formation,
+      travaille depuis 15 ans dans le domaine de la communication et didactique formelle et informelle de la science.
+      Elle a travaillé dans des organisations nationales et internationales en tant qu’indépendante depuis 2011.
+      Elle a rejoint le comité de l’association en juin 2017 en qualité de secrétaire.
+      Impliquée dans le monde du “Fais-le toi-même” elle remporte la troisième place du Prix IDDEA 2016 avec son projet “Makeshop”.
+    </div>
+
+    <div class="cell h-spacer height-x5"></div>
+
+    <div class="cell cell-12 cell-tablet-2">
+      <img class="responsive" src="Image/Comite/mathieu.jpg" alt="Mathieu Jacquesson">
+    </div>
+    <div class="cell cell-12 cell-tablet-10 pad-x2">
+      Mathieu Jacquesson (président), économiste d’entreprise, cofondateur de l’association Onl’Fait,
+      s’est spécialisé dans l’entrepreneuriat social avec 6 ans d’expérience à la chambre de l’économie sociale et solidaire de Genève.
+      Il est aussi entrepreneur et gère la société The Square Sarl.
+      Reconnu pour son sens de la communication, il est également à l’origine des pochettes Paw!
+    </div>
+
+    <div class="cell h-spacer height-x5"></div>
+
+    <div class="cell cell-12 cell-tablet-2">
+      <img class="responsive" src="Image/Comite/sebastien.jpg" alt="Sébastien Mischler">
+    </div>
+    <div class="cell cell-12 cell-tablet-10 pad-x2">
+      Sébastien Mischler (trésorier), électricien de formation, et cofondateur de l’association Onl’Fait.
+      Il contribue activement depuis plusieurs années à des projets Open-Source tels que RepRap, LaserWeb, SmoothieBoard.
+      Il est également le créateur d’un modèle d’imprimante 3D utilisé dans d’autres fablabs (le modèle RepRap iTopie).
+    </div>
+
+  </div>
 
 </section>

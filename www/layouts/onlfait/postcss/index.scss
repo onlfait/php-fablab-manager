@@ -8,7 +8,12 @@
 
 // links
 a {
+  color: $primary-color;
   text-decoration: none;
+}
+
+.strong, strong {
+  font-weight: 600;
 }
 
 // modifiers
@@ -20,6 +25,66 @@ a {
 .flip-y {
   display: inline-block;
   transform: rotateY(180deg);
+}
+
+// spacers
+.h-spacer {
+  width: 100%;
+  height: $unit;
+
+  @for $i from 2 through 10 {
+    &.height-x#{$i} {
+      height: ($i * $unit);
+    }
+  }
+}
+
+// paddings & margins
+.pad {
+  padding: $unit;
+}
+
+@for $i from 2 through 10 {
+  .pad-x#{$i} {
+    padding: ($i * $unit);
+  }
+}
+
+.h-pad {
+  padding-left : $unit;
+  padding-right: $unit;
+}
+
+@for $i from 2 through 10 {
+  .h-pad-x#{$i} {
+    padding-left : ($i * $unit);
+    padding-right: ($i * $unit);
+  }
+}
+
+.v-pad {
+  padding-top   : $unit;
+  padding-bottom: $unit;
+}
+
+@for $i from 2 through 10 {
+  .v-pad-x#{$i} {
+    padding-top   : ($i * $unit);
+    padding-bottom: ($i * $unit);
+  }
+}
+
+// title, subtitle
+.title, .subtitle {
+  margin: 0;
+}
+
+// images
+img {
+  &.responsive {
+    width: 100%;
+    height: auto;
+  }
 }
 
 // layout

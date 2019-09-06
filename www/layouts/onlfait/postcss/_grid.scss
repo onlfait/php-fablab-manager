@@ -16,17 +16,12 @@
 
     @include grid-cell(cell);
 
-    // Grid breakpoints
-    @media all and (min-width: $mobile) {
-      @include grid-cell(cell-sm);
-    }
-
     @media all and (min-width: $tablet) {
-      @include grid-cell(cell-md);
+      @include grid-cell(cell-tablet);
     }
 
     @media all and (min-width: $desktop) {
-      @include grid-cell(cell-lg);
+      @include grid-cell(cell-desktop);
     }
   }
 
