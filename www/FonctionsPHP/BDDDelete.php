@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 include("SecurePOST2BDD.php");
 
@@ -138,10 +138,6 @@ if($DeleteWhat=="DeleteOutil"){
 
   $message="L'événements' a été supprimé";
 }
-
-
-//Fermeture de BDD
-mysqli_close($PFM['db']['link']);
 ?>
 
 

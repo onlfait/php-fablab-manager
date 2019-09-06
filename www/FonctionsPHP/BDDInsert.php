@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 include("SecurePOST2BDD.php");
 
@@ -82,7 +82,7 @@ if($InsertWhat=='Reservation'){
 
   //Disponibilité de la plage horaire
   //Connection à la BDD
-  
+
   //Requête pour récupérer les réservations dans la plage horaire de la réservation
   $result = mysqli_query($PFM['db']['link'],"SELECT COUNT(*) as Occupation FROM $TableCalendrier WHERE ((title='$Subject' or title='Fablab') and start_timestamp<$EndTimeTS and end_timestamp>$StartTimeTS)");
   $Array = mysqli_fetch_array($result);
@@ -118,8 +118,6 @@ if($InsertWhat=='Reservation'){
   }else{
     $message=$MessageError;
   }
-  //Fermeture de BDD
-  mysqli_close($PFM['db']['link']);
 
 
 
@@ -134,7 +132,7 @@ if($InsertWhat=='Reservation'){
   $DateSave = date("Y.m.d");
 
   //Connection à la BDD
-  
+
   //Requête pour récupérer l'ID du dernier projet. Incrémenté de 1, il correspondra au nom de l'image et du zip
   $result = mysqli_query($PFM['db']['link'],"SELECT MAX(ID) as MaxID FROM $TableProjetPerso");
   $Array = mysqli_fetch_array($result);
@@ -182,8 +180,6 @@ if($InsertWhat=='Reservation'){
   }else{
     $message=$MessageImage;
   }
-  //Fermeture de BDD
-  mysqli_close($PFM['db']['link']);
 
 
 
@@ -216,7 +212,7 @@ if($InsertWhat=='Reservation'){
   $Description = securite_bdd($_POST['Description']);
 
   //Connection à la BDD
-  
+
 
   if($StartTimeTS<$EndTimeTS){
     //Requête pour récupérer l'ID du dernier événement. Incrémenté de 1, il correspondra au nom de l'image
@@ -264,8 +260,6 @@ if($InsertWhat=='Reservation'){
   }else{
     $message="Le temps de réservation est trop court";
   }
-  //Fermeture de BDD
-  mysqli_close($PFM['db']['link']);
 
 
 
@@ -292,19 +286,17 @@ if($InsertWhat=='Reservation'){
     if(strpos($Email,'@')!==false){
 
       //Connection à la BDD
-      
+
 
       //Requête pour récupérer un Login identique à celui utilisé pour l'enregistrement d'un nouveau membre
       $result = mysqli_query($PFM['db']['link'],"SELECT * FROM $TableLogin WHERE Login='$Login'");
       $NbreLogin = mysqli_num_rows($result);
 
-      //Fermeture de BDD
-      mysqli_close($PFM['db']['link']);
 
       if($NbreLogin==0){
 
         //Connection à la BDD
-        
+
 
         $DateInscription = date("y.m.d");
         $EcheanceCoti = date("y.m.d");
@@ -341,20 +333,12 @@ if($InsertWhat=='Reservation'){
             $result = mysqli_query($PFM['db']['link'],"INSERT INTO $TableLiaison (IDMembre,Sujets) VALUES ('$IDMembre','$Value2Insert')");
           }
         }
-        //Fermeture de BDD
-        mysqli_close($PFM['db']['link']);
-
-        //Connection à la BDD
-        
 
         //Requête pour insérer le login du nouveau membre dans la BDD
         $result = mysqli_query($PFM['db']['link'],"INSERT INTO $TableLogin(Login,Pw) VALUES ('$Login','$Pw')");
         include("EmailSendFunctions.php");
         EmailNouveauMembre($IDMembre,$Nom,$Prenom,$Email,$Login);
         $message="Enregistré en temps que nouveau membre du site du FabLab On l'Fait";
-
-        //Fermeture de BDD
-        mysqli_close($PFM['db']['link']);
       }else{
         $message="Ce login est déjà utilisé";
       }
@@ -382,7 +366,7 @@ $AddOutilVariableName = securite_bdd($_POST['AddOutilVariableName']);
     $message="Le champs n'est pas complété";
   }else{
     //Connection à la BDD
-    
+
 
     include("Upload.php");
     $dossier = '../Image/Picto/';
@@ -398,8 +382,6 @@ $AddOutilVariableName = securite_bdd($_POST['AddOutilVariableName']);
     }else{
       $message=$MessageImage;
     }
-    //Fermeture de BDD
-    mysqli_close($PFM['db']['link']);
 
   }
 
@@ -415,7 +397,7 @@ $AddOutilVariableName = securite_bdd($_POST['AddOutilVariableName']);
     $message="Le champs n'est pas complété";
   }else{
     //Connection à la BDD
-    
+
 
     //Requête pour insérer un nouveau sujet dans la BDD
     $result = mysqli_query($PFM['db']['link'],"INSERT INTO $TableSujets(SujetName,SujetVariableName) VALUES ('$AddSujetName','$AddSujetVariableName')");
@@ -425,10 +407,6 @@ $AddOutilVariableName = securite_bdd($_POST['AddOutilVariableName']);
     $NomImage="Sujet_".$AddSujetVariableName;
     $extensions = array('.png');
     $MessageImage = UploadImage($dossier,$NomImage,$extensions);
-
-    //Fermeture de BDD
-    mysqli_close($PFM['db']['link']);
-
     $message="Enregistrement du nouveau sujet effectué";
   }
 
@@ -445,7 +423,7 @@ $AddOutilVariableName = securite_bdd($_POST['AddOutilVariableName']);
     $message="Le champs n'est pas complété";
   }else{
     //Connection à la BDD
-    
+
 
     //Requête pour insérer un nouveau type d'atelier dans la BDD
     $result = mysqli_query($PFM['db']['link'],"INSERT INTO $TableAteliers(AtelierName,AtelierVariableName) VALUES ('$AddAtelierName','$AddAtelierVariableName')");
@@ -455,9 +433,6 @@ $AddOutilVariableName = securite_bdd($_POST['AddOutilVariableName']);
     $NomImage="Atelier_".$AddAtelierVariableName;
     $extensions = array('.png');
     $MessageImage = UploadImage($dossier,$NomImage,$extensions);
-
-    //Fermeture de BDD
-    mysqli_close($PFM['db']['link']);
 
     $message="Enregistrement du nouvel atelier effectué";
   }

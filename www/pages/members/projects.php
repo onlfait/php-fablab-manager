@@ -211,8 +211,6 @@
         </table>
         <?php
       }
-      //Fermeture de BDD
-      mysqli_close($PFM['db']['link']);
       ?>
 
 

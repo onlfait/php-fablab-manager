@@ -1021,8 +1021,6 @@ function MembrePersoOK(){ ?>
 
         <?php
       }
-      //Fermeture de BDD
-      mysqli_close($PFM['db']['link']);
     }
 
 
@@ -1113,9 +1111,7 @@ function MembrePersoOK(){ ?>
             <td colspan="3" class="TexteC" valign="top">
               <?php while ($ligne = mysqli_fetch_array($resultSujets)){ ?>
                 <input type="checkbox" name=<?php echo $ligne["SujetVariableName"]?> value=<?php echo "SUJET_".$ligne["SujetVariableName"]?>><?php echo $ligne["SujetName"]?><br>
-              <?php }
-              //Fermeture de BDD
-              mysqli_close($PFM['db']['link']); ?>
+              <?php } ?>
             </td>
           </tr>
           <tr>

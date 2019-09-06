@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 include("SecurePOST2BDD.php");
 
@@ -161,14 +161,6 @@ if ($Variable2Change=='NbreHeure'){
     }
   }
 }
-
-
-
-
-//Fermeture de BDD
-mysqli_close($PFM['db']['link']);
-
-
 ?>
 
 

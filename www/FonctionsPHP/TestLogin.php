@@ -5,7 +5,7 @@
 function TestLogin($Login,$Pw){
 
   //Connection à la BDD
-  
+
 
   //Requête pour récupérer le login dans la tobleLogin
   $result = mysqli_query($PFM['db']['link'],"SELECT ID FROM $TableLogin WHERE Login='$Login'");
@@ -40,7 +40,5 @@ function TestLogin($Login,$Pw){
     session_destroy();
     return $message="Ce Login n'est pas connu";
   }
-  //Fermeture de BDD
-  mysqli_close($PFM['db']['link']);
 }
 ?>

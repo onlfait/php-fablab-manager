@@ -31,7 +31,7 @@
       <p class="TexteC">L'inscription est enregistrée et un email vous a été envoyé</p>
       <?php
       //Connection à la BDD
-      
+
 
       //Requête pour insérer l'inscription à l'événement dans la BDD
       $result = mysqli_query($PFM['db']['link'],"INSERT INTO $TableInscrEvent(NoEvent,Nom,Prenom,Email) VALUES ('$NoEvent','$Nom','$Prenom','$Email')");
@@ -47,10 +47,6 @@
       include("EmailSendFunctions.php");
       EmailInscriptionEvent($Nom,$Prenom,$Email,$Titre,$Lieu,$HeureDebut,$HeureFin);
       $message="L'inscription est enregistrée, un email vous a été envoyé";
-
-
-      //Fermeture de BDD
-      mysqli_close($PFM['db']['link']);
       ?>
 
       <form action="../atelier.php">
