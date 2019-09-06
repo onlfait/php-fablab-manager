@@ -10,8 +10,8 @@ function securite_bdd($string)
 	// Pour tous les autres types
 	else
 	{
-		include("BDDConnect.php");
-		$string = mysqli_real_escape_string($connect,$string);
+		
+		$string = mysqli_real_escape_string($PFM['db']['link'],$string);
 		$string = addcslashes($string, '%_');
 	}
 

@@ -20,8 +20,8 @@ if($WhichEmail=="InfoGenerale"){
 	$sujet = $Titre;
 	//=========
 
-	include("BDDConnect.php");
-	$result = mysqli_query($connect,"SELECT Email FROM $TableMembres");
+	
+	$result = mysqli_query($PFM['db']['link'],"SELECT Email FROM $TableMembres");
 	//$mail = 'sebastienthomas001@gmail.com'; // Déclaration de l'adresse de destination.
 
 	//=====Déclaration des messages au format texte et au format HTML.

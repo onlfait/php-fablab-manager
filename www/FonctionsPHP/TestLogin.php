@@ -5,16 +5,16 @@
 function TestLogin($Login,$Pw){
 
   //Connection à la BDD
-  include("BDDConnect.php");
+  
 
   //Requête pour récupérer le login dans la tobleLogin
-  $result = mysqli_query($connect,"SELECT ID FROM $TableLogin WHERE Login='$Login'");
+  $result = mysqli_query($PFM['db']['link'],"SELECT ID FROM $TableLogin WHERE Login='$Login'");
   $Array = mysqli_fetch_array($result);
   $IDLogin=$Array["ID"];
 
   if (ISSET($IDLogin)){
     //Recherche du password correspondant à cet ID
-    $result = mysqli_query($connect,"SELECT Pw FROM $TableLogin WHERE ID='$IDLogin'");
+    $result = mysqli_query($PFM['db']['link'],"SELECT Pw FROM $TableLogin WHERE ID='$IDLogin'");
     $Array = mysqli_fetch_array($result);
     $PwFromTable=$Array["Pw"];
 
@@ -41,6 +41,6 @@ function TestLogin($Login,$Pw){
     return $message="Ce Login n'est pas connu";
   }
   //Fermeture de BDD
-  mysqli_close($connect);
+  mysqli_close($PFM['db']['link']);
 }
 ?>

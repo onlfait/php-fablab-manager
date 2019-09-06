@@ -47,18 +47,12 @@ include("FonctionsPHP/SecurePOST2BDD.php");
 <?php
 function MembrePersoOK(){ ?>
   <?php
-  //Connection à la BDD
-  include("FonctionsPHP/BDDConnect.php");
-
   ////////////////////////////////////////////////////////////////////////////
   //Afficher les données personnelle
   ////////////////////////////////////////////////////////////////////////////
 
-  //Connection à la BDD
-  include("FonctionsPHP/BDDConnect.php");
-
   //Requête pour récupérer les informations de l'utilisateur
-  $result = mysqli_query($connect,"SELECT Nom, Prenom, Email, Newsletter, DateInscription, EcheanceCoti, NbreHeure, AdminMembre FROM $TableMembres WHERE ID='$_SESSION[IDLogin]'");
+  $result = mysqli_query($PFM['db']['link'],"SELECT Nom, Prenom, Email, Newsletter, DateInscription, EcheanceCoti, NbreHeure, AdminMembre FROM $TableMembres WHERE ID='$_SESSION[IDLogin]'");
   $Array = mysqli_fetch_array($result);
 
   $_SESSION['Nom'] = $Array["Nom"];
@@ -133,12 +127,12 @@ function MembrePersoOK(){ ?>
       <td class="TexteC" valign="top">
         <?php
         //Requête pour récupérer le choix de outils
-        $resultOutils = mysqli_query($connect,"SELECT * FROM $TableOutils ORDER BY ID");
+        $resultOutils = mysqli_query($PFM['db']['link'],"SELECT * FROM $TableOutils ORDER BY ID");
         while ($rowAll = mysqli_fetch_array($resultOutils)){
           $rowAllTemp=$rowAll["OutilVariableName"];
 
           $checked=0;
-          $resultLiaison = mysqli_query($connect,"SELECT * FROM $TableLiaison WHERE IDMembre='$_SESSION[IDLogin]' AND Outils IS NOT NULL");
+          $resultLiaison = mysqli_query($PFM['db']['link'],"SELECT * FROM $TableLiaison WHERE IDMembre='$_SESSION[IDLogin]' AND Outils IS NOT NULL");
           while ($row = mysqli_fetch_array($resultLiaison)){
             $rowTemp=$row["Outils"];
             if($rowAllTemp==$rowTemp){
@@ -158,7 +152,7 @@ function MembrePersoOK(){ ?>
       <td colspan=3 align="left" valign="center" class="TexteC" width="85%">
         <?php
         //Requête pour récupérer les outils liés à chaque projet
-        $resultLiaison = mysqli_query($connect,"SELECT * FROM $TableLiaison WHERE IDMembre='$_SESSION[IDLogin]' AND Outils IS NOT NULL");
+        $resultLiaison = mysqli_query($PFM['db']['link'],"SELECT * FROM $TableLiaison WHERE IDMembre='$_SESSION[IDLogin]' AND Outils IS NOT NULL");
         while ($row = mysqli_fetch_array($resultLiaison)){
           $ImagePath="Image/Picto/Outil_" . $row["Outils"] . ".png" ?>
           <img src=<?php echo $ImagePath; ?> height="75">
@@ -172,12 +166,12 @@ function MembrePersoOK(){ ?>
       <td class="TexteC" valign="top">
         <?php
         //Requête pour récupérer le choix de sujets
-        $resultSujets = mysqli_query($connect,"SELECT * FROM $TableSujets ORDER BY ID");
+        $resultSujets = mysqli_query($PFM['db']['link'],"SELECT * FROM $TableSujets ORDER BY ID");
         while ($rowAll = mysqli_fetch_array($resultSujets)){
           $rowAllTemp=$rowAll["SujetVariableName"];
 
           $checked=0;
-          $resultLiaison = mysqli_query($connect,"SELECT * FROM $TableLiaison WHERE IDMembre='$_SESSION[IDLogin]' AND Sujets IS NOT NULL");
+          $resultLiaison = mysqli_query($PFM['db']['link'],"SELECT * FROM $TableLiaison WHERE IDMembre='$_SESSION[IDLogin]' AND Sujets IS NOT NULL");
           while ($row = mysqli_fetch_array($resultLiaison)){
             $rowTemp=$row["Sujets"];
             if($rowAllTemp==$rowTemp){
@@ -197,7 +191,7 @@ function MembrePersoOK(){ ?>
       <td  colspan=3 align="left" valign="center" class="TexteC">
         <?php
         //Requête pour récupérer les sujets liés à chaque projet
-        $resultLiaison = mysqli_query($connect,"SELECT * FROM $TableLiaison WHERE IDMembre='$_SESSION[IDLogin]' AND Sujets IS NOT NULL");
+        $resultLiaison = mysqli_query($PFM['db']['link'],"SELECT * FROM $TableLiaison WHERE IDMembre='$_SESSION[IDLogin]' AND Sujets IS NOT NULL");
         while ($row = mysqli_fetch_array($resultLiaison)){
           $ImagePath="Image/Picto/Sujet_" . $row["Sujets"] . ".png"?>
           <img src=<?php echo $ImagePath; ?> height="75">
@@ -235,7 +229,7 @@ function MembrePersoOK(){ ?>
         <td class="TexteC" width=50%>
           <?php
           //Requête pour lire les réservation du membre
-          $result = mysqli_query($connect,"SELECT * FROM $TableMembres WHERE AdminMembre='1' ORDER BY Prenom DESC");?>
+          $result = mysqli_query($PFM['db']['link'],"SELECT * FROM $TableMembres WHERE AdminMembre='1' ORDER BY Prenom DESC");?>
           <select name="PersonneRequete">
           <?php
           while ($row = mysqli_fetch_array($result)){ ?>
@@ -250,7 +244,7 @@ function MembrePersoOK(){ ?>
         <td class="TexteC" width=50%>
           <?php
           //Requête pour lire les réservation du membre
-          $result = mysqli_query($connect,"SELECT * FROM $TableMembres WHERE AdminMembre='1' ORDER BY Prenom DESC");?>
+          $result = mysqli_query($PFM['db']['link'],"SELECT * FROM $TableMembres WHERE AdminMembre='1' ORDER BY Prenom DESC");?>
           <select name="PersonneReservation">
           <?php
           while ($row = mysqli_fetch_array($result)){ ?>
@@ -352,7 +346,7 @@ function MembrePersoOK(){ ?>
           <td class="TexteC" width=75%>
             <?php
             //Requête pour lire les différents ateliers
-            $result = mysqli_query($connect,"SELECT * FROM $TableMembres ORDER BY Nom ASC");?>
+            $result = mysqli_query($PFM['db']['link'],"SELECT * FROM $TableMembres ORDER BY Nom ASC");?>
             <select name="IDMembre">
               <?php
               while ($row = mysqli_fetch_array($result)){ ?>
@@ -485,7 +479,7 @@ function MembrePersoOK(){ ?>
         <td class="TexteC" width=75%>
           <?php
           //Requête pour lire les réservation du membre
-          $result = mysqli_query($connect,"SELECT * FROM $TableCalendrier WHERE IDMembre='$_SESSION[IDLogin]' ORDER BY start_timestamp DESC");?>
+          $result = mysqli_query($PFM['db']['link'],"SELECT * FROM $TableCalendrier WHERE IDMembre='$_SESSION[IDLogin]' ORDER BY start_timestamp DESC");?>
           <select name="NumeroReservationMachine">
           <?php
           while ($row = mysqli_fetch_array($result)){ ?>
@@ -615,9 +609,9 @@ function MembrePersoOK(){ ?>
       </tr>
       <?php
       //Requête pour récupérer le choix d'outils
-      $resultOutils = mysqli_query($connect,"SELECT * FROM $TableOutils ORDER BY ID");
+      $resultOutils = mysqli_query($PFM['db']['link'],"SELECT * FROM $TableOutils ORDER BY ID");
       //Requête pour récupérer le choix de sujets
-      $resultSujets = mysqli_query($connect,"SELECT * FROM $TableSujets ORDER BY ID");
+      $resultSujets = mysqli_query($PFM['db']['link'],"SELECT * FROM $TableSujets ORDER BY ID");
       ?>
       <tr>
         <td class="TexteC" valign="top">
@@ -718,7 +712,7 @@ function MembrePersoOK(){ ?>
             <td class="TexteC">Type d'événement :</td>
             <?php
             //Requête pour récupérer le choix d'ateliers
-            $result = mysqli_query($connect,"SELECT * FROM $TableAteliers ORDER BY ID");
+            $result = mysqli_query($PFM['db']['link'],"SELECT * FROM $TableAteliers ORDER BY ID");
             ?>
             <td class="TexteC">
               <select size="1" name="Atelier">
@@ -760,9 +754,9 @@ function MembrePersoOK(){ ?>
             <tr>
               <?php
               //Requête pour récupérer le choix d'outils
-              $resultOutils = mysqli_query($connect,"SELECT * FROM $TableOutils ORDER BY ID");
+              $resultOutils = mysqli_query($PFM['db']['link'],"SELECT * FROM $TableOutils ORDER BY ID");
               //Requête pour récupérer le choix de sujets
-              $resultSujets = mysqli_query($connect,"SELECT * FROM $TableSujets ORDER BY ID");
+              $resultSujets = mysqli_query($PFM['db']['link'],"SELECT * FROM $TableSujets ORDER BY ID");
               ?>
               <td class="TexteC" valign="top">
                 <?php while ($ligne = mysqli_fetch_array($resultOutils)){ ?>
@@ -803,7 +797,7 @@ function MembrePersoOK(){ ?>
               <td class="TexteC" width=75%>
                 <?php
                 //Requête pour lire les différents ateliers
-                $result = mysqli_query($connect,"SELECT * FROM $TableEvent ORDER BY NoEvent DESC");?>
+                $result = mysqli_query($PFM['db']['link'],"SELECT * FROM pfm_events ORDER BY NoEvent DESC");?>
                 <select name="NumeroAtelier">
                 <?php
                 while ($row = mysqli_fetch_array($result)){ ?>
@@ -1028,7 +1022,7 @@ function MembrePersoOK(){ ?>
         <?php
       }
       //Fermeture de BDD
-      mysqli_close($connect);
+      mysqli_close($PFM['db']['link']);
     }
 
 
@@ -1106,12 +1100,10 @@ function MembrePersoOK(){ ?>
           </tr>
           <tr>
             <?php
-            //Connection à la BDD
-            include("FonctionsPHP/BDDConnect.php");
             //Requête pour récupérer le choix d'outils
-            $resultOutils = mysqli_query($connect,"SELECT * FROM $TableOutils ORDER BY ID");
+            $resultOutils = mysqli_query($PFM['db']['link'],"SELECT * FROM $TableOutils ORDER BY ID");
             //Requête pour récupérer le choix de sujets
-            $resultSujets = mysqli_query($connect,"SELECT * FROM $TableSujets ORDER BY ID");
+            $resultSujets = mysqli_query($PFM['db']['link'],"SELECT * FROM $TableSujets ORDER BY ID");
             ?>
             <td colspan="3" class="TexteC" valign="top">
               <?php while ($ligne = mysqli_fetch_array($resultOutils)){ ?>
@@ -1123,7 +1115,7 @@ function MembrePersoOK(){ ?>
                 <input type="checkbox" name=<?php echo $ligne["SujetVariableName"]?> value=<?php echo "SUJET_".$ligne["SujetVariableName"]?>><?php echo $ligne["SujetName"]?><br>
               <?php }
               //Fermeture de BDD
-              mysqli_close($connect); ?>
+              mysqli_close($PFM['db']['link']); ?>
             </td>
           </tr>
           <tr>

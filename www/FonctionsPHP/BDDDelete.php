@@ -5,15 +5,15 @@ include("SecurePOST2BDD.php");
 $DeleteWhat = securite_bdd($_POST['DeleteWhat']);
 
 //Connection à la BDD
-include("BDDConnect.php");
+
 
 if($DeleteWhat=="DeleteOutil"){
 
   $DeleteOutilName = securite_bdd($_POST['DeleteOutilName']);
 
   //Requête pour voir si l'outil à effacer existe
-  $query = mysqli_query($connect,"SELECT * FROM $TableOutils WHERE OutilName='$DeleteOutilName'");
-  $NbreRow=mysqli_affected_rows($connect);
+  $query = mysqli_query($PFM['db']['link'],"SELECT * FROM $TableOutils WHERE OutilName='$DeleteOutilName'");
+  $NbreRow=mysqli_affected_rows($PFM['db']['link']);
 
   $Array = mysqli_fetch_array($query);
   $OutilVariableName = $Array['OutilVariableName'];
@@ -22,8 +22,8 @@ if($DeleteWhat=="DeleteOutil"){
     $message="L'outil n'existe pas";
   }else{
     //Requête pour effacer un outils
-    $result = mysqli_query($connect,"DELETE FROM $TableOutils WHERE OutilName='$DeleteOutilName'");
-    $result = mysqli_query($connect,"DELETE FROM $TableLiaison WHERE Outils='$OutilVariableName'");
+    $result = mysqli_query($PFM['db']['link'],"DELETE FROM $TableOutils WHERE OutilName='$DeleteOutilName'");
+    $result = mysqli_query($PFM['db']['link'],"DELETE FROM $TableLiaison WHERE Outils='$OutilVariableName'");
 
     unlink('../Image/Picto/Outil_' . $OutilVariableName . ".png");
     $message="Effacement de l'outil effectué";
@@ -34,8 +34,8 @@ if($DeleteWhat=="DeleteOutil"){
   $DeleteSujetName = securite_bdd($_POST['DeleteSujetName']);
 
   //Requête pour voir si le sujet à effacer existe
-  $query = mysqli_query($connect,"SELECT * FROM $TableSujets WHERE SujetName='$DeleteSujetName'");
-  $NbreRow=mysqli_affected_rows($connect);
+  $query = mysqli_query($PFM['db']['link'],"SELECT * FROM $TableSujets WHERE SujetName='$DeleteSujetName'");
+  $NbreRow=mysqli_affected_rows($PFM['db']['link']);
 
   $Array = mysqli_fetch_array($query);
   $SujetVariableName = $Array['SujetVariableName'];
@@ -44,8 +44,8 @@ if($DeleteWhat=="DeleteOutil"){
     $message="Le sujet n'existe pas";
   }else{
     //Requête pour effacer un sujet
-    $result = mysqli_query($connect,"DELETE FROM $TableSujets WHERE SujetName='$DeleteSujetName'");
-    $result = mysqli_query($connect,"DELETE FROM $TableLiaison WHERE Sujets='$SujetVariableName'");
+    $result = mysqli_query($PFM['db']['link'],"DELETE FROM $TableSujets WHERE SujetName='$DeleteSujetName'");
+    $result = mysqli_query($PFM['db']['link'],"DELETE FROM $TableLiaison WHERE Sujets='$SujetVariableName'");
 
     unlink('../Image/Picto/Sujet_' . $SujetVariableName . ".png");
     $message="Effacement du sujet effectué";
@@ -56,8 +56,8 @@ if($DeleteWhat=="DeleteOutil"){
   $DeleteAtelierName = securite_bdd($_POST['DeleteAtelierName']);
 
   //Requête pour voir si l'outil à effacer existe
-  $query = mysqli_query($connect,"SELECT * FROM $TableAteliers WHERE AtelierName='$DeleteAtelierName'");
-  $NbreRow=mysqli_affected_rows($connect);
+  $query = mysqli_query($PFM['db']['link'],"SELECT * FROM $TableAteliers WHERE AtelierName='$DeleteAtelierName'");
+  $NbreRow=mysqli_affected_rows($PFM['db']['link']);
 
   $Array = mysqli_fetch_array($query);
   $AtelierVariableName = $Array['AtelierVariableName'];
@@ -66,8 +66,8 @@ if($DeleteWhat=="DeleteOutil"){
     $message="L'Atelier n'existe pas";
   }else{
     //Requête pour effacer un atelier
-    $result = mysqli_query($connect,"DELETE FROM $TableAteliers WHERE AtelierName='$DeleteAtelierName'");
-    $result = mysqli_query($connect,"DELETE FROM $TableLiaison WHERE Ateliers=$AtelierVariableName");
+    $result = mysqli_query($PFM['db']['link'],"DELETE FROM $TableAteliers WHERE AtelierName='$DeleteAtelierName'");
+    $result = mysqli_query($PFM['db']['link'],"DELETE FROM $TableLiaison WHERE Ateliers=$AtelierVariableName");
 
     unlink("../Image/Picto/Atelier_" . $AtelierVariableName . ".png");
     $message="Effacement du Atelier effectué";
@@ -77,16 +77,16 @@ if($DeleteWhat=="DeleteOutil"){
 
   $ID = securite_bdd($_POST['ID']);
   unlink("../Upload/ProjetZip/" . $ID . ".zip");
-  mysqli_query($connect,"UPDATE $TableProjetPerso SET ZipFile='0' WHERE ID='$ID'");
+  mysqli_query($PFM['db']['link'],"UPDATE $TableProjetPerso SET ZipFile='0' WHERE ID='$ID'");
   $message="Effacement du fichier Zip effectué";
 
 }elseif($DeleteWhat=="Membre"){
 
   $IDMembre = securite_bdd($_POST['IDMembre']);
   //Requête pour effacer un atelier
-  $result = mysqli_query($connect,"DELETE FROM $TableMembres WHERE ID='$IDMembre'");
-  $result = mysqli_query($connect,"DELETE FROM $TableLiaison WHERE IDMembre='$IDMembre'");
-  $result = mysqli_query($connect,"DELETE FROM $TableLogin WHERE ID='$IDMembre'");
+  $result = mysqli_query($PFM['db']['link'],"DELETE FROM $TableMembres WHERE ID='$IDMembre'");
+  $result = mysqli_query($PFM['db']['link'],"DELETE FROM $TableLiaison WHERE IDMembre='$IDMembre'");
+  $result = mysqli_query($PFM['db']['link'],"DELETE FROM $TableLogin WHERE ID='$IDMembre'");
   $message="Effacement du membre des bases de données effectué";
 
 }elseif($DeleteWhat=="ReservationMachine"){
@@ -95,7 +95,7 @@ if($DeleteWhat=="DeleteOutil"){
 
   if(substr($Subject,6)!="FabLab"){
     //Requête pour connaitre le nombre d'heure à rembourser et la date de réservation
-    $result = mysqli_query($connect,"SELECT start_date, start_timestamp, end_timestamp FROM $TableCalendrier WHERE id='$NumeroReservationMachine'");
+    $result = mysqli_query($PFM['db']['link'],"SELECT start_date, start_timestamp, end_timestamp FROM $TableCalendrier WHERE id='$NumeroReservationMachine'");
     $row = mysqli_fetch_array($result);
 
     if(date_timestamp_get(date_create($row['start_date']))>(24*3600)+date_timestamp_get(date_create(date('d-m-Y')))){
@@ -106,11 +106,11 @@ if($DeleteWhat=="DeleteOutil"){
       $_SESSION['NbreHeure']=$heure . ":" . $minute . ":" . $seconde;
 
       //Requête pour updater les heures disponibles du membre qui a annulé la réservaation plus de 24h avant
-      $result = mysqli_query($connect,"UPDATE $TableMembres SET NbreHeure='$_SESSION[NbreHeure]' WHERE ID='$_SESSION[IDLogin]'");
+      $result = mysqli_query($PFM['db']['link'],"UPDATE $TableMembres SET NbreHeure='$_SESSION[NbreHeure]' WHERE ID='$_SESSION[IDLogin]'");
     }
   }
   //Requête pour effacer la réservation
-  $result = mysqli_query($connect,"DELETE FROM $TableCalendrier WHERE id='$NumeroReservationMachine'");
+  $result = mysqli_query($PFM['db']['link'],"DELETE FROM $TableCalendrier WHERE id='$NumeroReservationMachine'");
 
   $message="La réservation a été annulée";
 
@@ -123,8 +123,8 @@ if($DeleteWhat=="DeleteOutil"){
     unlink("../Upload/ProjetZip/" . $ID . ".zip");
   }
   unlink("../Upload/ProjetImage/" . $ID . ".jpg");
-  $result = mysqli_query($connect,"DELETE FROM $TableProjetPerso WHERE ID='$ID'");
-  $result = mysqli_query($connect,"DELETE FROM $TableLiaison WHERE IDProjet='$ID'");
+  $result = mysqli_query($PFM['db']['link'],"DELETE FROM $TableProjetPerso WHERE ID='$ID'");
+  $result = mysqli_query($PFM['db']['link'],"DELETE FROM $TableLiaison WHERE IDProjet='$ID'");
 
   $message="La projet a été supprimé";
 
@@ -133,15 +133,15 @@ if($DeleteWhat=="DeleteOutil"){
   $ID = securite_bdd($_POST['IDEvent']);
 
   unlink("../Upload/EventImage/" . $ID . ".jpg");
-  $result = mysqli_query($connect,"DELETE FROM $TableEvent WHERE NoEvent='$ID'");
-  $result = mysqli_query($connect,"DELETE FROM $TableLiaison WHERE IDEvent='$ID'");
+  $result = mysqli_query($PFM['db']['link'],"DELETE FROM pfm_events WHERE NoEvent='$ID'");
+  $result = mysqli_query($PFM['db']['link'],"DELETE FROM $TableLiaison WHERE IDEvent='$ID'");
 
   $message="L'événements' a été supprimé";
 }
 
 
 //Fermeture de BDD
-mysqli_close($connect);
+mysqli_close($PFM['db']['link']);
 ?>
 
 

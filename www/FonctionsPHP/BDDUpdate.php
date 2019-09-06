@@ -7,7 +7,7 @@ $NewValue = securite_bdd($_POST['NewValue']);
 $IDMembre2Update = securite_bdd($_POST['IDMembre2Update']);
 
 //Connection à la BDD
-include("BDDConnect.php");
+
 
 //Mise à jour des données personnelles
 if ($Variable2Change=='NbreHeure'){
@@ -16,7 +16,7 @@ if ($Variable2Change=='NbreHeure'){
   $_SESSION['NbreHeure']=$heure . ":" . $minute . ":" . $seconde;
 
   //Requête pour mettre à jour le nombre d'heure disponible
-  $result = mysqli_query($connect,"UPDATE $TableMembres SET NbreHeure='$_SESSION[NbreHeure]' WHERE ID='$_SESSION[IDLogin]'");
+  $result = mysqli_query($PFM['db']['link'],"UPDATE $TableMembres SET NbreHeure='$_SESSION[NbreHeure]' WHERE ID='$_SESSION[IDLogin]'");
 
 }elseif ($Variable2Change=='EcheanceCoti') {
   if(date_timestamp_get(date_create($_SESSION['EcheanceCoti']))>date_timestamp_get(date_create(date('d-m-Y')))){
@@ -26,7 +26,7 @@ if ($Variable2Change=='NbreHeure'){
   }
     $_SESSION['EcheanceCoti']=date("Y-m-d", mktime(0, 0, 0, $mois, $jour, $annee+"1"));
     //Requête pour mettre à jour la date d'échéance de la cotisation
-    $result = mysqli_query($connect,"UPDATE $TableMembres SET EcheanceCoti='$_SESSION[EcheanceCoti]' WHERE ID='$_SESSION[IDLogin]'");
+    $result = mysqli_query($PFM['db']['link'],"UPDATE $TableMembres SET EcheanceCoti='$_SESSION[EcheanceCoti]' WHERE ID='$_SESSION[IDLogin]'");
 
 }elseif ($Variable2Change=='ProjetMembre') {
   $ID = securite_bdd($_POST['ID']);
@@ -34,8 +34,8 @@ if ($Variable2Change=='NbreHeure'){
   $Description = securite_bdd($_POST['Description']);
 
   //Requête pour mettre à jour le nom du projet
-  mysqli_query($connect,"UPDATE $TableProjetPerso SET Titre='$Titre' WHERE ID='$ID'");
-  mysqli_query($connect,"UPDATE $TableProjetPerso SET Description='$Description' WHERE ID='$ID'");
+  mysqli_query($PFM['db']['link'],"UPDATE $TableProjetPerso SET Titre='$Titre' WHERE ID='$ID'");
+  mysqli_query($PFM['db']['link'],"UPDATE $TableProjetPerso SET Description='$Description' WHERE ID='$ID'");
 
   //Mise à jour des fichiers images et Zip
   include("Upload.php");
@@ -50,22 +50,22 @@ if ($Variable2Change=='NbreHeure'){
   $MessageZip = UploadZip($dossier,$NomZip,$extensions);
 
   if ($MessageZip=='Upload du fichier zip effectué avec succès !'){
-    mysqli_query($connect,"UPDATE $TableProjetPerso SET ZipFile='1' WHERE ID='$ID'");
+    mysqli_query($PFM['db']['link'],"UPDATE $TableProjetPerso SET ZipFile='1' WHERE ID='$ID'");
   }
 
   //Requête pour mettre à jour la table liaison avec les nouveaux outils et sujets
-  mysqli_query($connect,"DELETE FROM $TableLiaison WHERE IDProjet='$ID'");
+  mysqli_query($PFM['db']['link'],"DELETE FROM $TableLiaison WHERE IDProjet='$ID'");
   foreach($_POST as $key => $value){
     if(substr($value,0,6)=='OUTIL_'){
       $Value2Insert=substr($value,6);
       //Requête pour insérer les outils utilisés par le nouveau projet
-      $result = mysqli_query($connect,"INSERT INTO $TableLiaison (IDProjet,Outils) VALUES ('$ID','$Value2Insert')");
+      $result = mysqli_query($PFM['db']['link'],"INSERT INTO $TableLiaison (IDProjet,Outils) VALUES ('$ID','$Value2Insert')");
     }
 
     if(substr($value,0,6)=='SUJET_'){
       $Value2Insert=substr($value,6);
       //Requête pour insérer les sujets utilisés par le nouveau projet
-      $result = mysqli_query($connect,"INSERT INTO $TableLiaison (IDProjet,Sujets) VALUES ('$ID','$Value2Insert')");
+      $result = mysqli_query($PFM['db']['link'],"INSERT INTO $TableLiaison (IDProjet,Sujets) VALUES ('$ID','$Value2Insert')");
     }
   }
 }elseif ($Variable2Change=='DonneeMembre') {
@@ -74,10 +74,10 @@ if ($Variable2Change=='NbreHeure'){
   $Prenom = securite_bdd($_POST['Prenom']);
   $Email = securite_bdd($_POST['Email']);
   //Requête pour mettre à jour les données des membres
-  mysqli_query($connect,"UPDATE $TableLogin SET Pw='$Password' WHERE ID='$_SESSION[IDLogin]'");
-  mysqli_query($connect,"UPDATE $TableMembres SET Nom='$Nom' WHERE ID='$_SESSION[IDLogin]'");
-  mysqli_query($connect,"UPDATE $TableMembres SET Prenom='$Prenom' WHERE ID='$_SESSION[IDLogin]'");
-  mysqli_query($connect,"UPDATE $TableMembres SET Email='$Email' WHERE ID='$_SESSION[IDLogin]'");
+  mysqli_query($PFM['db']['link'],"UPDATE $TableLogin SET Pw='$Password' WHERE ID='$_SESSION[IDLogin]'");
+  mysqli_query($PFM['db']['link'],"UPDATE $TableMembres SET Nom='$Nom' WHERE ID='$_SESSION[IDLogin]'");
+  mysqli_query($PFM['db']['link'],"UPDATE $TableMembres SET Prenom='$Prenom' WHERE ID='$_SESSION[IDLogin]'");
+  mysqli_query($PFM['db']['link'],"UPDATE $TableMembres SET Email='$Email' WHERE ID='$_SESSION[IDLogin]'");
   $checked=0;
   foreach($_POST as $key => $value){
     if($value=='Newsletter'){
@@ -85,21 +85,21 @@ if ($Variable2Change=='NbreHeure'){
       $checked=1;
     }
   }
-  mysqli_query($connect,"UPDATE $TableMembres SET Newsletter='$checked' WHERE ID='$_SESSION[IDLogin]'");
+  mysqli_query($PFM['db']['link'],"UPDATE $TableMembres SET Newsletter='$checked' WHERE ID='$_SESSION[IDLogin]'");
 
   //Requête pour mettre à jour la table liaison avec les nouveaux outils et sujets
-  mysqli_query($connect,"DELETE FROM $TableLiaison WHERE IDMembre='$_SESSION[IDLogin]'");
+  mysqli_query($PFM['db']['link'],"DELETE FROM $TableLiaison WHERE IDMembre='$_SESSION[IDLogin]'");
   foreach($_POST as $key => $value){
     if(substr($value,0,6)=='OUTIL_'){
       $Value2Insert=substr($value,6);
       //Requête pour insérer les nouveaux outils utilisés par le membre
-      $result = mysqli_query($connect,"INSERT INTO $TableLiaison (IDMembre,Outils) VALUES ('$_SESSION[IDLogin]','$Value2Insert')");
+      $result = mysqli_query($PFM['db']['link'],"INSERT INTO $TableLiaison (IDMembre,Outils) VALUES ('$_SESSION[IDLogin]','$Value2Insert')");
     }
 
     if(substr($value,0,6)=='SUJET_'){
       $Value2Insert=substr($value,6);
       //Requête pour insérer les nouveaux sujets utilisés par le membre
-      $result = mysqli_query($connect,"INSERT INTO $TableLiaison (IDMembre,Sujets) VALUES ('$_SESSION[IDLogin]','$Value2Insert')");
+      $result = mysqli_query($PFM['db']['link'],"INSERT INTO $TableLiaison (IDMembre,Sujets) VALUES ('$_SESSION[IDLogin]','$Value2Insert')");
     }
   }
 }elseif ($Variable2Change=='DonneeMembreByAdmin') {
@@ -109,9 +109,9 @@ if ($Variable2Change=='NbreHeure'){
   $AdminMembre = securite_bdd($_POST['AdminMembre']);
 
   //Requête pour mettre à jour les données des membres
-  mysqli_query($connect,"UPDATE $TableMembres SET EcheanceCoti='$EcheanceCoti' WHERE ID='$IDMembre'");
-  mysqli_query($connect,"UPDATE $TableMembres SET NbreHeure='$NbreHeure' WHERE ID='$IDMembre'");
-  mysqli_query($connect,"UPDATE $TableMembres SET AdminMembre='$AdminMembre' WHERE ID='$IDMembre'");
+  mysqli_query($PFM['db']['link'],"UPDATE $TableMembres SET EcheanceCoti='$EcheanceCoti' WHERE ID='$IDMembre'");
+  mysqli_query($PFM['db']['link'],"UPDATE $TableMembres SET NbreHeure='$NbreHeure' WHERE ID='$IDMembre'");
+  mysqli_query($PFM['db']['link'],"UPDATE $TableMembres SET AdminMembre='$AdminMembre' WHERE ID='$IDMembre'");
 
 }elseif ($Variable2Change=='Event') {
   $IDEvent = securite_bdd($_POST['IDEvent']);
@@ -124,13 +124,13 @@ if ($Variable2Change=='NbreHeure'){
   $PrixNonMembre = securite_bdd($_POST['PrixNonMembre']);
 
   //Requête pour mettre à jour l'event
-  mysqli_query($connect,"UPDATE $TableEvent SET Titre='$Titre' WHERE NoEvent='$IDEvent'");
-  mysqli_query($connect,"UPDATE $TableEvent SET HeureDebut='$HeureDebut' WHERE NoEvent='$IDEvent'");
-  mysqli_query($connect,"UPDATE $TableEvent SET HeureFin='$HeureFin' WHERE NoEvent='$IDEvent'");
-  mysqli_query($connect,"UPDATE $TableEvent SET Description='$Description' WHERE NoEvent='$IDEvent'");
-  mysqli_query($connect,"UPDATE $TableEvent SET Age='$Age' WHERE NoEvent='$IDEvent'");
-  mysqli_query($connect,"UPDATE $TableEvent SET PrixMembre='$PrixMembre' WHERE NoEvent='$IDEvent'");
-  mysqli_query($connect,"UPDATE $TableEvent SET PrixNonMembre='$PrixNonMembre' WHERE NoEvent='$IDEvent'");
+  mysqli_query($PFM['db']['link'],"UPDATE pfm_events SET Titre='$Titre' WHERE NoEvent='$IDEvent'");
+  mysqli_query($PFM['db']['link'],"UPDATE pfm_events SET HeureDebut='$HeureDebut' WHERE NoEvent='$IDEvent'");
+  mysqli_query($PFM['db']['link'],"UPDATE pfm_events SET HeureFin='$HeureFin' WHERE NoEvent='$IDEvent'");
+  mysqli_query($PFM['db']['link'],"UPDATE pfm_events SET Description='$Description' WHERE NoEvent='$IDEvent'");
+  mysqli_query($PFM['db']['link'],"UPDATE pfm_events SET Age='$Age' WHERE NoEvent='$IDEvent'");
+  mysqli_query($PFM['db']['link'],"UPDATE pfm_events SET PrixMembre='$PrixMembre' WHERE NoEvent='$IDEvent'");
+  mysqli_query($PFM['db']['link'],"UPDATE pfm_events SET PrixNonMembre='$PrixNonMembre' WHERE NoEvent='$IDEvent'");
 
   //Mise à jour des fichiers images
   include("Upload.php");
@@ -140,24 +140,24 @@ if ($Variable2Change=='NbreHeure'){
   $MessageImage = UploadImage($dossier,$NomImage,$extensions);
 
   //Requête pour mettre à jour la table liaison avec les nouveaux outils et sujets
-  mysqli_query($connect,"DELETE FROM $TableLiaison WHERE IDEvent='$IDEvent'");
+  mysqli_query($PFM['db']['link'],"DELETE FROM $TableLiaison WHERE IDEvent='$IDEvent'");
   foreach($_POST as $key => $value){
     if(substr($value,0,8)=='ATELIER_'){
       $Value2Insert=substr($value,8);
       //Requête pour insérer les atliers utilisés par l'évenement
-      $result = mysqli_query($connect,"INSERT INTO $TableLiaison (IDEvent,Ateliers) VALUES ('$IDEvent','$Value2Insert')");
+      $result = mysqli_query($PFM['db']['link'],"INSERT INTO $TableLiaison (IDEvent,Ateliers) VALUES ('$IDEvent','$Value2Insert')");
     }
 
     if(substr($value,0,6)=='OUTIL_'){
       $Value2Insert=substr($value,6);
       //Requête pour insérer les outils utilisés par l'évéenement
-      $result = mysqli_query($connect,"INSERT INTO $TableLiaison (IDEvent,Outils) VALUES ('$IDEvent','$Value2Insert')");
+      $result = mysqli_query($PFM['db']['link'],"INSERT INTO $TableLiaison (IDEvent,Outils) VALUES ('$IDEvent','$Value2Insert')");
     }
 
     if(substr($value,0,6)=='SUJET_'){
       $Value2Insert=substr($value,6);
       //Requête pour insérer les sujets utilisés par l'évenement
-      $result = mysqli_query($connect,"INSERT INTO $TableLiaison (IDEvent,Sujets) VALUES ('$IDEvent','$Value2Insert')");
+      $result = mysqli_query($PFM['db']['link'],"INSERT INTO $TableLiaison (IDEvent,Sujets) VALUES ('$IDEvent','$Value2Insert')");
     }
   }
 }
@@ -166,7 +166,7 @@ if ($Variable2Change=='NbreHeure'){
 
 
 //Fermeture de BDD
-mysqli_close($connect);
+mysqli_close($PFM['db']['link']);
 
 
 ?>

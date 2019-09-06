@@ -31,17 +31,17 @@
       <p class="TexteC">L'inscription est enregistrée et un email vous a été envoyé</p>
       <?php
       //Connection à la BDD
-      include("BDDConnect.php");
+      
 
       //Requête pour insérer l'inscription à l'événement dans la BDD
-      $result = mysqli_query($connect,"INSERT INTO $TableInscrEvent(NoEvent,Nom,Prenom,Email) VALUES ('$NoEvent','$Nom','$Prenom','$Email')");
+      $result = mysqli_query($PFM['db']['link'],"INSERT INTO $TableInscrEvent(NoEvent,Nom,Prenom,Email) VALUES ('$NoEvent','$Nom','$Prenom','$Email')");
 
       //Requête pour mettre à jour le nombre de place disponible
-      $result = mysqli_query($connect,"SELECT * FROM $TableEvent WHERE NoEvent='$NoEvent'");
+      $result = mysqli_query($PFM['db']['link'],"SELECT * FROM pfm_events WHERE NoEvent='$NoEvent'");
       $Array=mysqli_fetch_array($result);
       $PlaceDispoUpdate = $Array["PlaceDispo"];
       $PlaceDispoUpdate = $PlaceDispoUpdate - 1;
-      $result = mysqli_query($connect,"UPDATE $TableEvent SET PlaceDispo='$PlaceDispoUpdate' WHERE NoEvent='$NoEvent'");
+      $result = mysqli_query($PFM['db']['link'],"UPDATE pfm_events SET PlaceDispo='$PlaceDispoUpdate' WHERE NoEvent='$NoEvent'");
 
       //Envoi email Confirmation
       include("EmailSendFunctions.php");
@@ -50,7 +50,7 @@
 
 
       //Fermeture de BDD
-      mysqli_close($connect);
+      mysqli_close($PFM['db']['link']);
       ?>
 
       <form action="../atelier.php">

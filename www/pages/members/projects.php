@@ -4,12 +4,8 @@
   <p class="SousTitreC"> Projet Membres </p>
 
   <?php
-  //Connection à la BDD
-  include("FonctionsPHP/BDDConnect.php");
-
   //Requête pour récupérer les données des projets des membres
-  $result = mysqli_query($connect,"SELECT * FROM $TableProjetPerso ORDER BY DateSave DESC");
-
+  $result = mysqli_query($PFM['db']['link'], "SELECT * FROM $TableProjetPerso ORDER BY DateSave DESC");
 
   while ($ligne = mysqli_fetch_array($result)){
     ?>
@@ -54,7 +50,7 @@
               <td colspan=3 align="left" valign="center" class="TexteC" width="85%">
                 <?php
                 //Requête pour récupérer les outils liés à chaque projet
-                $resultLiaison = mysqli_query($connect,"SELECT * FROM $TableLiaison WHERE IDProjet='$ligne[ID]' AND Outils IS NOT NULL");
+                $resultLiaison = mysqli_query($PFM['db']['link'],"SELECT * FROM $TableLiaison WHERE IDProjet='$ligne[ID]' AND Outils IS NOT NULL");
                 while ($row = mysqli_fetch_array($resultLiaison)){
                   $ImagePath="Image/Picto/Outil_" . $row["Outils"] . ".png" ?>
                   <img src=<?php echo $ImagePath; ?> height="75">
@@ -65,12 +61,12 @@
               <td class="TexteC" valign="top" colspan=4>
                 <?php
                 //Requête pour récupérer le choix de outils
-                $resultOutils = mysqli_query($connect,"SELECT * FROM $TableOutils ORDER BY ID");
+                $resultOutils = mysqli_query($PFM['db']['link'],"SELECT * FROM $TableOutils ORDER BY ID");
                 while ($rowAll = mysqli_fetch_array($resultOutils)){
                   $rowAllTemp=$rowAll["OutilVariableName"];
 
                   $checked=0;
-                  $resultLiaison = mysqli_query($connect,"SELECT * FROM $TableLiaison WHERE IDProjet='$ligne[ID]' AND Outils IS NOT NULL");
+                  $resultLiaison = mysqli_query($PFM['db']['link'],"SELECT * FROM $TableLiaison WHERE IDProjet='$ligne[ID]' AND Outils IS NOT NULL");
                   while ($row = mysqli_fetch_array($resultLiaison)){
                     $rowTemp=$row["Outils"];
                     if($rowAllTemp==$rowTemp){
@@ -93,7 +89,7 @@
               <td colspan=3 align="left" valign="center" class="TexteC">
                 <?php
                 //Requête pour récupérer les sujets liés à chaque projet
-                $resultLiaison = mysqli_query($connect,"SELECT * FROM $TableLiaison WHERE IDProjet='$ligne[ID]' AND Sujets IS NOT NULL");
+                $resultLiaison = mysqli_query($PFM['db']['link'],"SELECT * FROM $TableLiaison WHERE IDProjet='$ligne[ID]' AND Sujets IS NOT NULL");
                 while ($row = mysqli_fetch_array($resultLiaison)){
                   $ImagePath="Image/Picto/Sujet_" . $row["Sujets"] . ".png"?>
                   <img src=<?php echo $ImagePath; ?> height="75">
@@ -105,12 +101,12 @@
               <td class="TexteC" valign="top" colspan=4>
                 <?php
                 //Requête pour récupérer le choix de sujets
-                $resultSujets = mysqli_query($connect,"SELECT * FROM $TableSujets ORDER BY ID");
+                $resultSujets = mysqli_query($PFM['db']['link'],"SELECT * FROM $TableSujets ORDER BY ID");
                 while ($rowAll = mysqli_fetch_array($resultSujets)){
                   $rowAllTemp=$rowAll["SujetVariableName"];
 
                   $checked=0;
-                  $resultLiaison = mysqli_query($connect,"SELECT * FROM $TableLiaison WHERE IDProjet='$ligne[ID]' AND Sujets IS NOT NULL");
+                  $resultLiaison = mysqli_query($PFM['db']['link'],"SELECT * FROM $TableLiaison WHERE IDProjet='$ligne[ID]' AND Sujets IS NOT NULL");
                   while ($row = mysqli_fetch_array($resultLiaison)){
                     $rowTemp=$row["Sujets"];
                     if($rowAllTemp==$rowTemp){
@@ -185,7 +181,7 @@
               <td colspan=3 align="left" valign="center" class="TexteC" width="85%">
                 <?php
                 //Requête pour récupérer les outils liés à chaque projet
-                $resultLiaison = mysqli_query($connect,"SELECT * FROM $TableLiaison WHERE IDProjet='$ligne[ID]' AND Outils IS NOT NULL");
+                $resultLiaison = mysqli_query($PFM['db']['link'],"SELECT * FROM $TableLiaison WHERE IDProjet='$ligne[ID]' AND Outils IS NOT NULL");
                 while ($row = mysqli_fetch_array($resultLiaison)){
                   $ImagePath="Image/Picto/Outil_" . $row["Outils"] . ".png" ?>
                   <img src=<?php echo $ImagePath; ?> height="75">
@@ -198,7 +194,7 @@
               <td colspan=3 align="left" valign="center" class="TexteC" width="85%">
                 <?php
                 //Requête pour récupérer les sujets liés à chaque projet
-                $resultLiaison = mysqli_query($connect,"SELECT * FROM $TableLiaison WHERE IDProjet='$ligne[ID]' AND Sujets IS NOT NULL");
+                $resultLiaison = mysqli_query($PFM['db']['link'],"SELECT * FROM $TableLiaison WHERE IDProjet='$ligne[ID]' AND Sujets IS NOT NULL");
                 while ($row = mysqli_fetch_array($resultLiaison)){
                   $ImagePath="Image/Picto/Sujet_" . $row["Sujets"] . ".png" ?>
                   <img src=<?php echo $ImagePath; ?> height="75">
@@ -216,7 +212,7 @@
         <?php
       }
       //Fermeture de BDD
-      mysqli_close($connect);
+      mysqli_close($PFM['db']['link']);
       ?>
 
 

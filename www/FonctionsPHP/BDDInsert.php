@@ -82,9 +82,9 @@ if($InsertWhat=='Reservation'){
 
   //Disponibilité de la plage horaire
   //Connection à la BDD
-  include("BDDConnect.php");
+  
   //Requête pour récupérer les réservations dans la plage horaire de la réservation
-  $result = mysqli_query($connect,"SELECT COUNT(*) as Occupation FROM $TableCalendrier WHERE ((title='$Subject' or title='Fablab') and start_timestamp<$EndTimeTS and end_timestamp>$StartTimeTS)");
+  $result = mysqli_query($PFM['db']['link'],"SELECT COUNT(*) as Occupation FROM $TableCalendrier WHERE ((title='$Subject' or title='Fablab') and start_timestamp<$EndTimeTS and end_timestamp>$StartTimeTS)");
   $Array = mysqli_fetch_array($result);
   $Occupation=$Array["Occupation"];
   if($Occupation!=0){
@@ -98,7 +98,7 @@ if($InsertWhat=='Reservation'){
 
   if($MessageError==""){
     //Requête pour insérer la réservation dans la BDD
-    $result = mysqli_query($connect,"INSERT INTO $TableCalendrier (cal_id,IDMembre,start_date,start_time,start_timestamp,end_date,end_time,end_timestamp,title,backgroundColor,borderColor,available)
+    $result = mysqli_query($PFM['db']['link'],"INSERT INTO $TableCalendrier (cal_id,IDMembre,start_date,start_time,start_timestamp,end_date,end_time,end_timestamp,title,backgroundColor,borderColor,available)
     VALUES ('1','$IDMembre','$StartDate','$StartTime','$StartTimeTS','$EndDate','$EndTime','$EndTimeTS','$Subject','$Color','$Color','1')");
 
     if(substr($Subject,6)!="FabLab"){
@@ -107,7 +107,7 @@ if($InsertWhat=='Reservation'){
       $hour=$hour-1;
       $_SESSION['NbreHeure']=$hour+(24*$day) . ":" . $minute . ":" . $seconde;
       //Requête pour updater les heures disponibles du membre qui a fait la réservaation
-      $result = mysqli_query($connect,"UPDATE $TableMembres SET NbreHeure='$_SESSION[NbreHeure]' WHERE ID='$_SESSION[IDLogin]'");
+      $result = mysqli_query($PFM['db']['link'],"UPDATE $TableMembres SET NbreHeure='$_SESSION[NbreHeure]' WHERE ID='$_SESSION[IDLogin]'");
     }
 
     include("EmailSendFunctions.php");
@@ -119,7 +119,7 @@ if($InsertWhat=='Reservation'){
     $message=$MessageError;
   }
   //Fermeture de BDD
-  mysqli_close($connect);
+  mysqli_close($PFM['db']['link']);
 
 
 
@@ -134,9 +134,9 @@ if($InsertWhat=='Reservation'){
   $DateSave = date("Y.m.d");
 
   //Connection à la BDD
-  include("BDDConnect.php");
+  
   //Requête pour récupérer l'ID du dernier projet. Incrémenté de 1, il correspondra au nom de l'image et du zip
-  $result = mysqli_query($connect,"SELECT MAX(ID) as MaxID FROM $TableProjetPerso");
+  $result = mysqli_query($PFM['db']['link'],"SELECT MAX(ID) as MaxID FROM $TableProjetPerso");
   $Array = mysqli_fetch_array($result);
   $ID=$Array["MaxID"]+1;
 
@@ -158,20 +158,20 @@ if($InsertWhat=='Reservation'){
         $ZipFile=1;
       }
       //Requête pour insérer le nouveau projet dans la BDD
-      $result = mysqli_query($connect,"INSERT INTO $TableProjetPerso (ID,NoMembre,Titre,Description,DateSave,ZipFile)
+      $result = mysqli_query($PFM['db']['link'],"INSERT INTO $TableProjetPerso (ID,NoMembre,Titre,Description,DateSave,ZipFile)
       VALUES ('$ID','$NoMembre','$Titre','$Description','$DateSave','$ZipFile')");
 
       foreach($_POST as $key => $value){
         if(substr($value,0,6)=='OUTIL_'){
           $Value2Insert=substr($value,6);
           //Requête pour insérer les outils utilisés par le nouveau projet
-          $result = mysqli_query($connect,"INSERT INTO $TableLiaison (IDProjet,Outils) VALUES ('$ID','$Value2Insert')");
+          $result = mysqli_query($PFM['db']['link'],"INSERT INTO $TableLiaison (IDProjet,Outils) VALUES ('$ID','$Value2Insert')");
         }
 
         if(substr($value,0,6)=='SUJET_'){
           $Value2Insert=substr($value,6);
           //Requête pour insérer les sujets utilisés par le nouveau projet
-          $result = mysqli_query($connect,"INSERT INTO $TableLiaison (IDProjet,Sujets) VALUES ('$ID','$Value2Insert')");
+          $result = mysqli_query($PFM['db']['link'],"INSERT INTO $TableLiaison (IDProjet,Sujets) VALUES ('$ID','$Value2Insert')");
         }
       }
 
@@ -183,7 +183,7 @@ if($InsertWhat=='Reservation'){
     $message=$MessageImage;
   }
   //Fermeture de BDD
-  mysqli_close($connect);
+  mysqli_close($PFM['db']['link']);
 
 
 
@@ -216,11 +216,11 @@ if($InsertWhat=='Reservation'){
   $Description = securite_bdd($_POST['Description']);
 
   //Connection à la BDD
-  include("BDDConnect.php");
+  
 
   if($StartTimeTS<$EndTimeTS){
     //Requête pour récupérer l'ID du dernier événement. Incrémenté de 1, il correspondra au nom de l'image
-    $result = mysqli_query($connect,"SELECT MAX(NoEvent) as MaxNoEvent FROM $TableEvent");
+    $result = mysqli_query($PFM['db']['link'],"SELECT MAX(NoEvent) as MaxNoEvent FROM pfm_events");
     $Array = mysqli_fetch_array($result);
     $IDEvent=$Array["MaxNoEvent"]+1;
 
@@ -232,26 +232,26 @@ if($InsertWhat=='Reservation'){
 
     if(substr($MessageImage,0,6)=='Upload'){
       //Requête pour insérer l'événement dans la BDD
-      $result = mysqli_query($connect,"INSERT INTO $TableEvent (Titre,Description,Lieu,HeureDebut,HeureFin,Age,PrixMembre,PrixNonMembre,PlaceDispo,PlaceMax)
+      $result = mysqli_query($PFM['db']['link'],"INSERT INTO pfm_events (Titre,Description,Lieu,HeureDebut,HeureFin,Age,PrixMembre,PrixNonMembre,PlaceDispo,PlaceMax)
       VALUES ('$Titre','$Description','$Lieu','$StartTime','$EndTime','$Age','$PrixMembre','$PrixNonMembre','$PlaceDispo','$PlaceMax')");
 
       foreach($_POST as $key => $value){
         if(substr($value,0,8)=='ATELIER_'){
           $Value2Insert=substr($value,8);
           //Requête pour insérer le type d'atelier utilisé pour cet événement
-          $result = mysqli_query($connect,"INSERT INTO $TableLiaison (IDEvent,Ateliers) VALUES ('$IDEvent','$Value2Insert')");
+          $result = mysqli_query($PFM['db']['link'],"INSERT INTO $TableLiaison (IDEvent,Ateliers) VALUES ('$IDEvent','$Value2Insert')");
         }
 
         if(substr($value,0,6)=='OUTIL_'){
           $Value2Insert=substr($value,6);
           //Requête pour insérer le type d'outils utilisés pour cet événement
-          $result = mysqli_query($connect,"INSERT INTO $TableLiaison (IDEvent,Outils) VALUES ('$IDEvent','$Value2Insert')");
+          $result = mysqli_query($PFM['db']['link'],"INSERT INTO $TableLiaison (IDEvent,Outils) VALUES ('$IDEvent','$Value2Insert')");
         }
 
         if(substr($value,0,6)=='SUJET_'){
           $Value2Insert=substr($value,6);
           //Requête pour insérer le type de sujets utilisés pour cet événement
-          $result = mysqli_query($connect,"INSERT INTO $TableLiaison (IDEvent,Sujets) VALUES ('$IDEvent','$Value2Insert')");
+          $result = mysqli_query($PFM['db']['link'],"INSERT INTO $TableLiaison (IDEvent,Sujets) VALUES ('$IDEvent','$Value2Insert')");
         }
       }
 
@@ -265,7 +265,7 @@ if($InsertWhat=='Reservation'){
     $message="Le temps de réservation est trop court";
   }
   //Fermeture de BDD
-  mysqli_close($connect);
+  mysqli_close($PFM['db']['link']);
 
 
 
@@ -292,29 +292,29 @@ if($InsertWhat=='Reservation'){
     if(strpos($Email,'@')!==false){
 
       //Connection à la BDD
-      include("BDDConnect.php");
+      
 
       //Requête pour récupérer un Login identique à celui utilisé pour l'enregistrement d'un nouveau membre
-      $result = mysqli_query($connect,"SELECT * FROM $TableLogin WHERE Login='$Login'");
+      $result = mysqli_query($PFM['db']['link'],"SELECT * FROM $TableLogin WHERE Login='$Login'");
       $NbreLogin = mysqli_num_rows($result);
 
       //Fermeture de BDD
-      mysqli_close($connect);
+      mysqli_close($PFM['db']['link']);
 
       if($NbreLogin==0){
 
         //Connection à la BDD
-        include("BDDConnect.php");
+        
 
         $DateInscription = date("y.m.d");
         $EcheanceCoti = date("y.m.d");
 
         //Requête pour insérer le nouveau membre dans la BDD
-        $result = mysqli_query($connect,"INSERT INTO $TableMembres(Nom,Prenom,Email,DateInscription,EcheanceCoti)
+        $result = mysqli_query($PFM['db']['link'],"INSERT INTO $TableMembres(Nom,Prenom,Email,DateInscription,EcheanceCoti)
         VALUES ('$Nom','$Prenom','$Email','$DateInscription','$EcheanceCoti')");
 
         //Requête pour récupérer l'ID du nouveau membre
-        $result = mysqli_query($connect,"SELECT MAX(ID) as MaxNoMembre FROM $TableMembres");
+        $result = mysqli_query($PFM['db']['link'],"SELECT MAX(ID) as MaxNoMembre FROM $TableMembres");
         $Array = mysqli_fetch_array($result);
         $IDMembre=$Array["MaxNoMembre"];
 
@@ -326,35 +326,35 @@ if($InsertWhat=='Reservation'){
             $checked=1;
           }
         }
-        mysqli_query($connect,"UPDATE $TableMembres SET Newsletter='$checked' WHERE ID='$IDMembre'");
+        mysqli_query($PFM['db']['link'],"UPDATE $TableMembres SET Newsletter='$checked' WHERE ID='$IDMembre'");
 
         foreach($_POST as $key => $value){
           if(substr($value,0,6)=='OUTIL_'){
             $Value2Insert=substr($value,6);
             //Requête pour insérer les outils utilisés par le nouveau membre
-            $result = mysqli_query($connect,"INSERT INTO $TableLiaison (IDMembre,Outils) VALUES ('$IDMembre','$Value2Insert')");
+            $result = mysqli_query($PFM['db']['link'],"INSERT INTO $TableLiaison (IDMembre,Outils) VALUES ('$IDMembre','$Value2Insert')");
           }
 
           if(substr($value,0,6)=='SUJET_'){
             //Requête pour insérer les sujets utilisés par le nouveau membre
             $Value2Insert=substr($value,6);
-            $result = mysqli_query($connect,"INSERT INTO $TableLiaison (IDMembre,Sujets) VALUES ('$IDMembre','$Value2Insert')");
+            $result = mysqli_query($PFM['db']['link'],"INSERT INTO $TableLiaison (IDMembre,Sujets) VALUES ('$IDMembre','$Value2Insert')");
           }
         }
         //Fermeture de BDD
-        mysqli_close($connect);
+        mysqli_close($PFM['db']['link']);
 
         //Connection à la BDD
-        include("BDDConnect.php");
+        
 
         //Requête pour insérer le login du nouveau membre dans la BDD
-        $result = mysqli_query($connect,"INSERT INTO $TableLogin(Login,Pw) VALUES ('$Login','$Pw')");
+        $result = mysqli_query($PFM['db']['link'],"INSERT INTO $TableLogin(Login,Pw) VALUES ('$Login','$Pw')");
         include("EmailSendFunctions.php");
         EmailNouveauMembre($IDMembre,$Nom,$Prenom,$Email,$Login);
         $message="Enregistré en temps que nouveau membre du site du FabLab On l'Fait";
 
         //Fermeture de BDD
-        mysqli_close($connect);
+        mysqli_close($PFM['db']['link']);
       }else{
         $message="Ce login est déjà utilisé";
       }
@@ -382,7 +382,7 @@ $AddOutilVariableName = securite_bdd($_POST['AddOutilVariableName']);
     $message="Le champs n'est pas complété";
   }else{
     //Connection à la BDD
-    include("BDDConnect.php");
+    
 
     include("Upload.php");
     $dossier = '../Image/Picto/';
@@ -392,14 +392,14 @@ $AddOutilVariableName = securite_bdd($_POST['AddOutilVariableName']);
 
     if(substr($MessageImage,0,6)=='Upload'){
       //Requête pour insérer un nouvel outil dans la BDD
-      $result = mysqli_query($connect,"INSERT INTO $TableOutils(OutilName,OutilVariableName) VALUES ('$AddOutilName','$AddOutilVariableName')");
+      $result = mysqli_query($PFM['db']['link'],"INSERT INTO $TableOutils(OutilName,OutilVariableName) VALUES ('$AddOutilName','$AddOutilVariableName')");
 
       $message="Enregistrement du nouvel outil effectué";
     }else{
       $message=$MessageImage;
     }
     //Fermeture de BDD
-    mysqli_close($connect);
+    mysqli_close($PFM['db']['link']);
 
   }
 
@@ -415,10 +415,10 @@ $AddOutilVariableName = securite_bdd($_POST['AddOutilVariableName']);
     $message="Le champs n'est pas complété";
   }else{
     //Connection à la BDD
-    include("BDDConnect.php");
+    
 
     //Requête pour insérer un nouveau sujet dans la BDD
-    $result = mysqli_query($connect,"INSERT INTO $TableSujets(SujetName,SujetVariableName) VALUES ('$AddSujetName','$AddSujetVariableName')");
+    $result = mysqli_query($PFM['db']['link'],"INSERT INTO $TableSujets(SujetName,SujetVariableName) VALUES ('$AddSujetName','$AddSujetVariableName')");
 
     include("Upload.php");
     $dossier = '../Image/Picto/';
@@ -427,7 +427,7 @@ $AddOutilVariableName = securite_bdd($_POST['AddOutilVariableName']);
     $MessageImage = UploadImage($dossier,$NomImage,$extensions);
 
     //Fermeture de BDD
-    mysqli_close($connect);
+    mysqli_close($PFM['db']['link']);
 
     $message="Enregistrement du nouveau sujet effectué";
   }
@@ -445,10 +445,10 @@ $AddOutilVariableName = securite_bdd($_POST['AddOutilVariableName']);
     $message="Le champs n'est pas complété";
   }else{
     //Connection à la BDD
-    include("BDDConnect.php");
+    
 
     //Requête pour insérer un nouveau type d'atelier dans la BDD
-    $result = mysqli_query($connect,"INSERT INTO $TableAteliers(AtelierName,AtelierVariableName) VALUES ('$AddAtelierName','$AddAtelierVariableName')");
+    $result = mysqli_query($PFM['db']['link'],"INSERT INTO $TableAteliers(AtelierName,AtelierVariableName) VALUES ('$AddAtelierName','$AddAtelierVariableName')");
 
     include("Upload.php");
     $dossier = '../Image/Picto/';
@@ -457,7 +457,7 @@ $AddOutilVariableName = securite_bdd($_POST['AddOutilVariableName']);
     $MessageImage = UploadImage($dossier,$NomImage,$extensions);
 
     //Fermeture de BDD
-    mysqli_close($connect);
+    mysqli_close($PFM['db']['link']);
 
     $message="Enregistrement du nouvel atelier effectué";
   }

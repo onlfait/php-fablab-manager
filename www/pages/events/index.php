@@ -4,11 +4,9 @@
     <p class="SousTitreC"> Ateliers et Evénements </p>
 
     <?php
-    //Connection à la BDD
-    include("FonctionsPHP/BDDConnect.php");
     //Requête pour récupérer tous les évéenements
-    $query = "SELECT * FROM $TableEvent ORDER BY HeureDebut";
-    $result = mysqli_query($connect,$query);
+    $query = "SELECT * FROM pfm_events ORDER BY HeureDebut";
+    $result = mysqli_query($PFM['db']['link'], $query);
 
     while ($ligne = mysqli_fetch_array($result)){
       ?>
@@ -34,7 +32,7 @@
           <tr>
             <?php
             //Requête pour récupérer le type d'événement dans la table liaison
-            $resultLiaison = mysqli_query($connect,"SELECT * FROM $TableLiaison WHERE IDEvent='$ligne[NoEvent]' AND Ateliers IS NOT NULL");
+            $resultLiaison = mysqli_query($PFM['db']['link'],"SELECT * FROM $TableLiaison WHERE IDEvent='$ligne[NoEvent]' AND Ateliers IS NOT NULL");
             $row = mysqli_fetch_array($resultLiaison)
             ?>
             <td align="center" width="25%"><img src="Image/Picto/Atelier_<?php echo $row["Ateliers"]?>.png" height="100"></td>
@@ -45,7 +43,7 @@
           <tr>
             <?php
             //Requête pour récupérer le choix d'ateliers
-            $resultMenuAteliers = mysqli_query($connect,"SELECT * FROM $TableAteliers ORDER BY ID");
+            $resultMenuAteliers = mysqli_query($PFM['db']['link'],"SELECT * FROM $TableAteliers ORDER BY ID");
             ?>
             <td class="TexteC">
               <select size="1" name="Atelier">
@@ -63,7 +61,7 @@
             <td colspan=3 align="left" valign="center" class="TexteC" width="85%">
               <?php
               //Requête pour récupérer les outils liés à chaque event
-              $resultLiaison = mysqli_query($connect,"SELECT * FROM $TableLiaison WHERE IDEvent='$ligne[NoEvent]' AND Outils IS NOT NULL");
+              $resultLiaison = mysqli_query($PFM['db']['link'],"SELECT * FROM $TableLiaison WHERE IDEvent='$ligne[NoEvent]' AND Outils IS NOT NULL");
               while ($row = mysqli_fetch_array($resultLiaison)){
                 $ImagePath="Image/Picto/Outil_" . $row["Outils"] . ".png" ?>
                 <img src=<?php echo $ImagePath; ?> height="75">
@@ -74,12 +72,12 @@
             <td class="TexteC" valign="top" colspan=4>
               <?php
               //Requête pour récupérer le choix de outils
-              $resultOutils = mysqli_query($connect,"SELECT * FROM $TableOutils ORDER BY ID");
+              $resultOutils = mysqli_query($PFM['db']['link'],"SELECT * FROM $TableOutils ORDER BY ID");
               while ($rowAll = mysqli_fetch_array($resultOutils)){
                 $rowAllTemp=$rowAll["OutilVariableName"];
 
                 $checked=0;
-                $resultLiaison = mysqli_query($connect,"SELECT * FROM $TableLiaison WHERE IDEvent='$ligne[NoEvent]' AND Outils IS NOT NULL");
+                $resultLiaison = mysqli_query($PFM['db']['link'],"SELECT * FROM $TableLiaison WHERE IDEvent='$ligne[NoEvent]' AND Outils IS NOT NULL");
                 while ($row = mysqli_fetch_array($resultLiaison)){
                   $rowTemp=$row["Outils"];
                   if($rowAllTemp==$rowTemp){
@@ -102,7 +100,7 @@
             <td colspan=3 align="left" valign="center" class="TexteC">
               <?php
               //Requête pour récupérer les sujets liés à chaque event
-              $resultLiaison = mysqli_query($connect,"SELECT * FROM $TableLiaison WHERE IDEvent='$ligne[NoEvent]' AND Sujets IS NOT NULL");
+              $resultLiaison = mysqli_query($PFM['db']['link'],"SELECT * FROM $TableLiaison WHERE IDEvent='$ligne[NoEvent]' AND Sujets IS NOT NULL");
               while ($row = mysqli_fetch_array($resultLiaison)){
                 $ImagePath="Image/Picto/Sujet_" . $row["Sujets"] . ".png"?>
                 <img src=<?php echo $ImagePath; ?> height="75">
@@ -114,12 +112,12 @@
             <td class="TexteC" valign="top" colspan=4>
               <?php
               //Requête pour récupérer le choix de sujets
-              $resultSujets = mysqli_query($connect,"SELECT * FROM $TableSujets ORDER BY ID");
+              $resultSujets = mysqli_query($PFM['db']['link'],"SELECT * FROM $TableSujets ORDER BY ID");
               while ($rowAll = mysqli_fetch_array($resultSujets)){
                 $rowAllTemp=$rowAll["SujetVariableName"];
 
                 $checked=0;
-                $resultLiaison = mysqli_query($connect,"SELECT * FROM $TableLiaison WHERE IDEvent='$ligne[NoEvent]' AND Sujets IS NOT NULL");
+                $resultLiaison = mysqli_query($PFM['db']['link'],"SELECT * FROM $TableLiaison WHERE IDEvent='$ligne[NoEvent]' AND Sujets IS NOT NULL");
                 while ($row = mysqli_fetch_array($resultLiaison)){
                   $rowTemp=$row["Sujets"];
                   if($rowAllTemp==$rowTemp){
@@ -167,7 +165,7 @@
           <tr>
             <?php
             //Requête pour récupérer le type d'événement dans la table liaison
-            $resultLiaison = mysqli_query($connect,"SELECT * FROM $TableLiaison WHERE IDEvent='$ligne[NoEvent]' AND Ateliers IS NOT NULL");
+            $resultLiaison = mysqli_query($PFM['db']['link'],"SELECT * FROM $TableLiaison WHERE IDEvent='$ligne[NoEvent]' AND Ateliers IS NOT NULL");
             $row = mysqli_fetch_array($resultLiaison)
             ?>
             <td align="center" width="25%"><img src="Image/Picto/Atelier_<?php echo $row["Ateliers"]?>.png" height="100"></td>
@@ -182,7 +180,7 @@
             <td colspan=3 align="left" valign="center" class="TexteC">
               <?php
               //Requête pour récupérer le type de sujet dans la table liaison
-              $resultLiaison = mysqli_query($connect,"SELECT * FROM $TableLiaison WHERE IDEvent='$ligne[NoEvent]' AND Sujets IS NOT NULL");
+              $resultLiaison = mysqli_query($PFM['db']['link'],"SELECT * FROM $TableLiaison WHERE IDEvent='$ligne[NoEvent]' AND Sujets IS NOT NULL");
               while ($row = mysqli_fetch_array($resultLiaison)){
                 $ImagePath="Image/Picto/Sujet_" . $row["Sujets"] . ".png" ?>
                 <img src=<?php echo $ImagePath; ?> height="75">
@@ -196,7 +194,7 @@
             <td colspan=3 align="left" valign="center" class="TexteC">
               <?php
               //Requête pour récupérer le type d'outils' dans la table liaison
-              $resultLiaison = mysqli_query($connect,"SELECT * FROM $TableLiaison WHERE IDEvent='$ligne[NoEvent]' AND Outils IS NOT NULL");
+              $resultLiaison = mysqli_query($PFM['db']['link'],"SELECT * FROM $TableLiaison WHERE IDEvent='$ligne[NoEvent]' AND Outils IS NOT NULL");
               while ($row = mysqli_fetch_array($resultLiaison)){
                 $ImagePath="Image/Picto/Outil_" . $row["Outils"] . ".png" ?>
                 <img src=<?php echo $ImagePath; ?> height="75">
@@ -241,7 +239,7 @@
       <?php
     }
     //Fermeture de BDD
-    mysqli_close($connect);
+    mysqli_close($PFM['db']['link']);
     ?>
 
 

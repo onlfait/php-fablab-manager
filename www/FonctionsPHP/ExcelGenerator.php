@@ -1,6 +1,6 @@
 <?php 
 
-include("BDDConnect.php");
+
 
 if(isset($_POST["Export"])){
 
@@ -11,7 +11,7 @@ if(isset($_POST["Export"])){
 		 ob_end_clean();
 
 		 fputcsv($output, array_map("utf8_decode",array('Email','Nom','Prénom')),",");
-		 $result = mysqli_query($connect, "SELECT Email,Nom,Prenom FROM $TableMembres WHERE Newsletter=1");
+		 $result = mysqli_query($PFM['db']['link'], "SELECT Email,Nom,Prenom FROM $TableMembres WHERE Newsletter=1");
 		 while($row = mysqli_fetch_assoc($result))
 		 {
 					fputcsv($output, array_map("utf8_decode",$row));

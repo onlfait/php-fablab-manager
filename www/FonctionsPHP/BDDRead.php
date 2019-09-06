@@ -5,19 +5,19 @@ include("SecurePOST2BDD.php");
 $Info2Get = securite_bdd($_POST['Info2Get']);
 
 //Connection à la BDD
-include("BDDConnect.php");
+
 
 if($Info2Get=="ParticipantAtelier"){
 
   $NumeroAtelier = securite_bdd($_POST['NumeroAtelier']);
   //Requête pour lire les inscriptions à l'atelier
-  $result = mysqli_query($connect,"SELECT Nom, Prenom, Email FROM $TableInscrEvent WHERE NoEvent='$NumeroAtelier'");
+  $result = mysqli_query($PFM['db']['link'],"SELECT Nom, Prenom, Email FROM $TableInscrEvent WHERE NoEvent='$NumeroAtelier'");
 
 }elseif($Info2Get=="DonneeMembreByAdmin"){
 
   $IDMembre = securite_bdd($_POST['IDMembre']);
   //Requête pour lire les inscriptions à l'atelier
-  $result = mysqli_query($connect,"SELECT * FROM $TableMembres WHERE ID='$IDMembre'");
+  $result = mysqli_query($PFM['db']['link'],"SELECT * FROM $TableMembres WHERE ID='$IDMembre'");
 }
 ?>
 
