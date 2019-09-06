@@ -1,4 +1,4 @@
-<?php session_start();
+<?php 
 
 include("config.php");
 $connect=mysqli_connect($host, $user, $pass, $bdd) or die("Connection failed: " . mysqli_connect_error());

@@ -1,6 +1,6 @@
 <?php
 //Avant tout, on ouvre la session
-session_start();
+
 
 function TestLogin($Login,$Pw){
 

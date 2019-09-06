@@ -1,4 +1,4 @@
-<?php session_start();
+<?php 
 
 function EmailNouveauMembre($IDMembre,$Nom,$Prenom,$Email,$Login){
 

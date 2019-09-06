@@ -1,4 +1,4 @@
-<?php session_start();
+<?php 
 
 function securite_bdd($string)
 {

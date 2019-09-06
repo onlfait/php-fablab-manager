@@ -1,5 +1,4 @@
 <?php
-session_start();
 include("FonctionsPHP/head_global.php");
 include("FonctionsPHP/head_datepicker.php");
 include("FonctionsPHP/SecurePOST2BDD.php");

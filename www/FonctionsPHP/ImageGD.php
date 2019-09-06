@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 
 $im = ImageCreateFromJPEG('../Image/Picto/Fond.jpg');
 
