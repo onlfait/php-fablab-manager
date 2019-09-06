@@ -22,13 +22,13 @@ $PFM['routes'] = [
 
   // events routes
   'events' => [
-    'title' => 'Événements / Ateliers',
+    'title' => 'Événements',
     'page'  => 'events/index'
   ],
 
   // members routes
   'members' => [
-    'title' => 'Espace membres',
+    'title' => 'Membres',
     'page'  => 'members/index'
   ],
 
