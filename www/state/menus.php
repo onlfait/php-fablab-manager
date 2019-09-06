@@ -4,10 +4,11 @@ $PFM['menus'] = [
 
   // Main menu
   'main' => [
+    '',
     'association',
     'workshop',
     'events',
-    'members/projects',
+    'members',
     'portfolio',
     'contact'
   ]
