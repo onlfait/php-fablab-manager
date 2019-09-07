@@ -16,13 +16,13 @@
         ?>
         <form method="POST" action="FonctionsPHP/BDDUpdate.php" enctype="multipart/form-data">
           <input name="Variable2Change" type="hidden" size=20 value="ProjetMembre">
-          <input name="ID" type="hidden" size=20 value="<?php printf("%s", $ligne["ID"]);?>">
+          <input name="ID" type="hidden" size=20 value="<?php echo $ligne["ID"] ?>">
           <tr>
-            <td colspan="4" class="SousTitreC"><input name="Titre" type="VarChar" size=20 value="<?php printf("%s", $ligne["Titre"]);?>"> (<?php printf("%s", $ligne["ID"]);?>)</td>
+            <td colspan="4" class="SousTitreC"><input name="Titre" type="VarChar" size=20 value="<?php echo $ligne["Titre"] ?>"> (<?php echo $ligne["ID"] ?>)</td>
           </tr>
           <tr>
-            <td colspan="2" class="TexteC" width="50%">Enregistré par le membre : <?php printf("%s", $ligne["NoMembre"]);?></td>
-            <td class="TexteC" width="25%">Enregistré le : <?php printf("%s", $ligne["DateSave"]);?></td>
+            <td colspan="2" class="TexteC" width="50%">Enregistré par le membre : <?php echo $ligne["NoMembre"] ?></td>
+            <td class="TexteC" width="25%">Enregistré le : <?php echo $ligne["DateSave"] ?></td>
             <?php
             if($ligne["ZipFile"]==1){
               ?>
@@ -40,7 +40,7 @@
             </tr>
             <tr>
               <td colspan="2" class="TexteC"><img src=<?php echo 'Upload/ProjetImage/'. $ligne["ID"] . '.jpg' ?> width="300"/></td>
-              <td colspan="2"><textarea class="TexteC" name="Description" type="VarChar" rows="8" cols="45"><?php printf("%s", $ligne["Description"]);?></textarea></td>
+              <td colspan="2"><textarea class="TexteC" name="Description" type="VarChar" rows="8" cols="45"><?php echo $ligne["Description"] ?></textarea></td>
             </tr>
             <tr>
               <td colspan="2"><input type="file" name="SendImage"></td>
@@ -137,7 +137,7 @@
               if($ligne["ZipFile"]==1){
                 ?>
                 <input name="DeleteWhat" type="hidden" size=20 value="ZipFile">
-                <input name="ID" type="hidden" size=20 value="<?php printf("%s", $ligne["ID"]);?>">
+                <input name="ID" type="hidden" size=20 value="<?php echo $ligne["ID"] ?>">
                 <td colspan="4" class="TexteC"><input style="width:170px" type="submit" name="SuppressZip" value="Supprimer Fichier Zip"></td>
                 <?php
               }?>
@@ -146,8 +146,8 @@
           <form method="POST" action="FonctionsPHP/BDDDelete.php" enctype="multipart/form-data">
             <tr>
               <input name="DeleteWhat" type="hidden" size=20 value="ProjetMembre">
-              <input name="ZipFile" type="hidden" size=20 value="<?php printf("%s", $ligne["ZipFile"]);?>">
-              <input name="IDProjet" type="hidden" size=20 value="<?php printf("%s", $ligne["ID"]);?>">
+              <input name="ZipFile" type="hidden" size=20 value="<?php echo $ligne["ZipFile"] ?>">
+              <input name="IDProjet" type="hidden" size=20 value="<?php echo $ligne["ID"] ?>">
               <td colspan="4" class="TexteC"><input style="width:170px" type="submit" name="SupprimerProjet" value="Supprimer le projet"></td>
             </tr>
           </form>
@@ -156,11 +156,11 @@
           //Dans ce cas les projets sont en mode lecture
           ?>
           <tr>
-            <td colspan="4" class="SousTitreC"><?php printf("%s", $ligne["Titre"]);?> (<?php printf("%s", $ligne["ID"]);?>)</td>
+            <td colspan="4" class="SousTitreC"><?php echo $ligne["Titre"] ?> (<?php echo $ligne["ID"] ?>)</td>
           </tr>
           <tr>
-            <td colspan="2" class="TexteC" width="50%">Enregistré par le membre : <?php printf("%s", $ligne["NoMembre"]);?></td>
-            <td class="TexteC" width="25%">Enregistré le : <?php printf("%s", $ligne["DateSave"]);?></td>
+            <td colspan="2" class="TexteC" width="50%">Enregistré par le membre : <?php echo $ligne["NoMembre"] ?></td>
+            <td class="TexteC" width="25%">Enregistré le : <?php echo $ligne["DateSave"] ?></td>
             <?php
             if($ligne["ZipFile"]==1){
               ?>
@@ -174,7 +174,7 @@
             </tr>
             <tr>
               <td colspan="2" class="TexteC"><img src=<?php echo 'Upload/ProjetImage/'. $ligne["ID"] . '.jpg' ?> width="300"/></td>
-              <td name="Description" colspan="2" class="TexteC" width="50%"><?php printf("%s", $ligne["Description"]);?></td>
+              <td name="Description" colspan="2" class="TexteC" width="50%"><?php echo $ligne["Description"] ?></td>
             </tr>
             <tr>
               <td height="80" align="left" valign="center" class="TexteC" width="15%">Outils :</td>

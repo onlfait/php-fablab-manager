@@ -76,27 +76,27 @@ function MembrePersoOK(){ ?>
     <input name="Variable2Change" type="hidden" size=20 value="DonneeMembre">
     <tr>
       <td class="TexteC" width=25%>N° Membre :</td>
-      <td class="TexteC" width=75%><?php printf("%s", $_SESSION['IDLogin']);?></td>
+      <td class="TexteC" width=75%><?php echo $_SESSION['IDLogin'] ?></td>
     </tr>
     <tr>
       <td class="TexteC">Login :</td>
-      <td class="TexteC"><?php printf("%s", $_SESSION['Login']);?></td>
+      <td class="TexteC"><?php echo $_SESSION['Login'] ?></td>
     </tr>
     <tr>
       <td class="TexteC">Password :</td>
-      <td class="TexteC"><input name="Password" type="password" size=20 value="<?php printf("%s", $_SESSION["Password"]);?>"></td>
+      <td class="TexteC"><input name="Password" type="password" size=20 value="<?php echo $_SESSION["Password"] ?>"></td>
     </tr>
     <tr>
       <td class="TexteC">Nom :</td>
-      <td class="TexteC"><input name="Nom" type="VarChar" size=20 value="<?php printf("%s", $_SESSION["Nom"]);?>"></td>
+      <td class="TexteC"><input name="Nom" type="VarChar" size=20 value="<?php echo $_SESSION["Nom"] ?>"></td>
     </tr>
     <tr>
       <td class="TexteC">Prénom :</td>
-      <td class="TexteC"><input name="Prenom" type="VarChar" size=20 value="<?php printf("%s", $_SESSION["Prenom"]);?>"></td>
+      <td class="TexteC"><input name="Prenom" type="VarChar" size=20 value="<?php echo $_SESSION["Prenom"] ?>"></td>
     </tr>
     <tr>
       <td class="TexteC">Email :</td>
-      <td class="TexteC"><input name="Email" type="VarChar" size=50 value="<?php printf("%s", $_SESSION["Email"]);?>"></td>
+      <td class="TexteC"><input name="Email" type="VarChar" size=50 value="<?php echo $_SESSION["Email"] ?>"></td>
     </tr>
     <tr>
       <td class="TexteC">Inscription Newsletter mensuelle :</td>
@@ -109,15 +109,15 @@ function MembrePersoOK(){ ?>
     </tr>
     <tr>
       <td class="TexteC">Date d'inscription :</td>
-      <td class="TexteC"><?php printf("%s", $_SESSION['DateInscription']);?></td>
+      <td class="TexteC"><?php echo $_SESSION['DateInscription'] ?></td>
     </tr>
     <tr>
       <td class="TexteC">Echéance de la cotisation :</td>
-      <td class="TexteC"><?php printf("%s", $_SESSION['EcheanceCoti']);?></td>
+      <td class="TexteC"><?php echo $_SESSION['EcheanceCoti'] ?></td>
     </tr>
     <tr>
       <td class="TexteC">Nbre d'heure à disposition :</td>
-      <td class="TexteC"><?php printf("%s", $_SESSION['NbreHeure']);?></td>
+      <td class="TexteC"><?php echo $_SESSION['NbreHeure'] ?></td>
     </tr>
 
     <tr>
@@ -317,7 +317,7 @@ function MembrePersoOK(){ ?>
         </td>
       </tr>
       <tr>
-        <input name="InsertWhat" type="hidden" size=20 value="<?php printf("%s", "Reservation");?>">
+        <input name="InsertWhat" type="hidden" size=20 value="<?php echo "Reservation" ?>">
         <td class="TexteC"></td>
         <td><input style="width:100px" type="submit" value="Réserver"></td>
       </tr>
@@ -462,7 +462,7 @@ function MembrePersoOK(){ ?>
         </td>
       </tr>
       <tr>
-        <input name="InsertWhat" type="hidden" size=20 value="<?php printf("%s", "Reservation");?>">
+        <input name="InsertWhat" type="hidden" size=20 value="<?php echo "Reservation" ?>">
         <td class="TexteC"></td>
         <td><input style="width:100px" type="submit" value="Réserver"></td>
       </tr>

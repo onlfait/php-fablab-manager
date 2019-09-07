@@ -19,19 +19,19 @@
           //Si le membre est un membre admin, l'event est en mode édition ?>
         <form method="POST" action="FonctionsPHP/BDDUpdate.php" enctype="multipart/form-data">
           <tr>
-            <td colspan="2" class="SousTitreC"><input name="Titre" size=20 value="<?php printf("%s", $event["Titre"]);?>">(<?php printf("%s", $event["NoEvent"]);?>)</td>
-            <td colspan="2" class="SousTitreC">Lieu: <input name="Lieu" size=20 value="<?php printf("%s", $event["Lieu"]);?>"></td>
+            <td colspan="2" class="SousTitreC"><input name="Titre" size=20 value="<?php echo $event["Titre"] ?>">(<?php echo $event["NoEvent"] ?>)</td>
+            <td colspan="2" class="SousTitreC">Lieu: <input name="Lieu" size=20 value="<?php echo $event["Lieu"] ?>"></td>
           </tr>
           <tr>
             <td colspan="2" class="TexteC"><img src=<?php echo 'Upload/EventImage/'. $event["NoEvent"] . '.jpg' ?> width="300"/></td>
-            <td align="center" class="TexteC">Début: <br><input name="HeureDebut" size=20 value="<?php printf("%s", $event["HeureDebut"]);?>"></td>
-            <td align="center" class="TexteC">Fin: <br><input name="HeureFin" size=20 value="<?php printf("%s", $event["HeureFin"]);?>"></td>
+            <td align="center" class="TexteC">Début: <br><input name="HeureDebut" size=20 value="<?php echo $event["HeureDebut"] ?>"></td>
+            <td align="center" class="TexteC">Fin: <br><input name="HeureFin" size=20 value="<?php echo $event["HeureFin"] ?>"></td>
           </tr>
           <tr>
             <td colspan="2"><input type="file" name="SendImage"></td>
           </tr>
           <tr>
-            <td colspan="4"><textarea class="TexteC" name="Description" type="VarChar" rows="8" cols="45"><?php printf("%s", $event["Description"]);?></textarea></td>
+            <td colspan="4"><textarea class="TexteC" name="Description" type="VarChar" rows="8" cols="45"><?php echo $event["Description"] ?></textarea></td>
           </tr>
           <tr>
             <?php
@@ -56,9 +56,9 @@
                 <?php } ?>
               </select>
             </td>
-            <td align="center" class="TexteC"><input name="Age" size=20 value="<?php printf("%s", $event["Age"]);?>"></td>
-            <td align="center" class="TexteC"><input name="PrixMembre" size=20 value="<?php printf("%s", $event["PrixMembre"]);?>"></td>
-            <td align="center" class="TexteC"><input name="PrixNonMembre" size=20 value="<?php printf("%s", $event["PrixNonMembre"]);?>"></td>
+            <td align="center" class="TexteC"><input name="Age" size=20 value="<?php echo $event["Age"] ?>"></td>
+            <td align="center" class="TexteC"><input name="PrixMembre" size=20 value="<?php echo $event["PrixMembre"] ?>"></td>
+            <td align="center" class="TexteC"><input name="PrixNonMembre" size=20 value="<?php echo $event["PrixNonMembre"] ?>"></td>
           </tr>
           <tr>
             <td height="80" align="left" valign="center" class="TexteC" width="15%">Outils :</td>
@@ -141,30 +141,30 @@
           </tr>
           <tr>
             <input name="Variable2Change" type="hidden" size=20 value="Event">
-            <input name="IDEvent" type="hidden" size=20 value="<?php printf("%s", $event["NoEvent"]);?>">
+            <input name="IDEvent" type="hidden" size=20 value="<?php echo $event["NoEvent"] ?>">
             <td colspan="4" class="TexteC"><input style="width:170px" type="submit" name="MiseAJour" value="Mettre à jour"></td>
           </tr>
         </form>
         <form method="POST" action="FonctionsPHP/BDDDelete.php" enctype="multipart/form-data">
           <tr>
             <input name="DeleteWhat" type="hidden" size=20 value="Event">
-            <input name="IDEvent" type="hidden" size=20 value="<?php printf("%s", $event["NoEvent"]);?>">
+            <input name="IDEvent" type="hidden" size=20 value="<?php echo $event["NoEvent"] ?>">
             <td colspan="4" class="TexteC"><input style="width:170px" type="submit" name="SupprimerEvent" value="Supprimer l'événement"></td>
           </tr>
         </form>
       <?php }else{
           //Si le membre n'est pas un membre admin, l'event est en lecture seul ?>
           <tr>
-            <td colspan="2" class="SousTitreC"><?php printf("%s", $event["Titre"]);?> (<?php printf("%s", $event["NoEvent"]);?>)</td>
-            <td colspan="2" class="SousTitreC">Lieu: <?php printf("%s", $event["Lieu"]);?></td>
+            <td colspan="2" class="SousTitreC"><?php echo $event["Titre"] ?> (<?php echo $event["NoEvent"] ?>)</td>
+            <td colspan="2" class="SousTitreC">Lieu: <?php echo $event["Lieu"] ?></td>
           </tr>
           <tr>
             <td colspan="2" class="TexteC"><img src=<?php echo 'Upload/EventImage/'. $event["NoEvent"] . '.jpg' ?> width="300"/></td>
-            <td class="SousSousTitreC">Début: <br><?php printf("%s", $event["HeureDebut"]);?></td>
-            <td class="SousSousTitreC"> Fin: <br><?php printf("%s", $event["HeureFin"]);?></td>
+            <td class="SousSousTitreC">Début: <br><?php echo $event["HeureDebut"] ?></td>
+            <td class="SousSousTitreC"> Fin: <br><?php echo $event["HeureFin"] ?></td>
           </tr>
           <tr>
-            <td colspan="4" class="TexteC"><?php printf("%s", $event["Description"]);?></td>
+            <td colspan="4" class="TexteC"><?php echo $event["Description"] ?></td>
           </tr>
           <tr>
             <?php
@@ -223,13 +223,13 @@
               <?php
             }else{
               ?>
-              <input type="hidden" name="NoEvent" value="<?php printf("%s", $event["NoEvent"]);?>"></td>
-              <input type="hidden" name="Titre" value="<?php printf("%s", $event["Titre"]);?>"></td>
-              <input type="hidden" name="Lieu" value="<?php printf("%s", $event["Lieu"]);?>"></td>
-              <input type="hidden" name="HeureDebut" value="<?php printf("%s", $event["HeureDebut"]);?>"></td>
-              <input type="hidden" name="HeureFin" value="<?php printf("%s", $event["HeureFin"]);?>"></td>
+              <input type="hidden" name="NoEvent" value="<?php echo $event["NoEvent"] ?>"></td>
+              <input type="hidden" name="Titre" value="<?php echo $event["Titre"] ?>"></td>
+              <input type="hidden" name="Lieu" value="<?php echo $event["Lieu"] ?>"></td>
+              <input type="hidden" name="HeureDebut" value="<?php echo $event["HeureDebut"] ?>"></td>
+              <input type="hidden" name="HeureFin" value="<?php echo $event["HeureFin"] ?>"></td>
               <td colspan="2" class="TexteC"><input style="width:100px" type="submit" name="soumettre" value="S'inscrire"></td>
-              <td colspan="2" class="TexteC">Places disponibles : <?php printf("%s", $event["PlaceDispo"]);?>/<?php printf("%s", $event["PlaceMax"]);?></td>
+              <td colspan="2" class="TexteC">Places disponibles : <?php echo $event["PlaceDispo"] ?>/<?php echo $event["PlaceMax"] ?></td>
               <?php
             }
             ?>
