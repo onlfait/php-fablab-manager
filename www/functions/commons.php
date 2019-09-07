@@ -76,27 +76,9 @@ function pfm_router_url($uri = null) {
   global $PFM;
 
   // add uri prefix
-  if ($uri !== null) {
+  if (! empty($uri)) {
     $uri = '?uri=' . $uri;
   }
 
   return pfm_url($uri);
-}
-
-function pfm_print_menu($items, $class = 'menu-item') {
-  global $PFM;
-
-  foreach ($items as $key => $value) {
-    // If the value is a string, link to route name
-    if (is_string($value)) {
-      // add selected class
-      $_class = $class;
-      if ($value === $PFM['route']['uri']) {
-        $_class .= ' selected';
-      }
-      $url = pfm_router_url($value);
-      $title = $PFM['routes'][$value]['title'];
-      printf('<a class="%s" href="%s">%s</a>', $_class, $url, $title);
-    }
-  }
 }
