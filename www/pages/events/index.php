@@ -1,44 +1,48 @@
+<?php
+  // include events functions
+  require_once PFM_ROOT_PATH . 'functions/events.php';
+
+  // get all events
+  $pfm_events = pfm_get_events();
+?>
+
 <div id="content" >
   <div id="centercolumn">
 
     <p class="SousTitreC"> Ateliers et Evénements </p>
 
     <?php
-    //Requête pour récupérer tous les évéenements
-    $query = "SELECT * FROM pfm_events ORDER BY HeureDebut";
-    $result = mysqli_query($PFM['db']['link'], $query);
-
-    while ($ligne = mysqli_fetch_array($result)){
+    while ($event = mysqli_fetch_array($pfm_events)) {
       ?>
       <table border="0" class="Texte" align="center" width="100%">
         <?php if($_SESSION['AdminMembre']==1){
           //Si le membre est un membre admin, l'event est en mode édition ?>
         <form method="POST" action="FonctionsPHP/BDDUpdate.php" enctype="multipart/form-data">
           <tr>
-            <td colspan="2" class="SousTitreC"><input name="Titre" size=20 value="<?php printf("%s", $ligne["Titre"]);?>">(<?php printf("%s", $ligne["NoEvent"]);?>)</td>
-            <td colspan="2" class="SousTitreC">Lieu: <input name="Lieu" size=20 value="<?php printf("%s", $ligne["Lieu"]);?>"></td>
+            <td colspan="2" class="SousTitreC"><input name="Titre" size=20 value="<?php printf("%s", $event["Titre"]);?>">(<?php printf("%s", $event["NoEvent"]);?>)</td>
+            <td colspan="2" class="SousTitreC">Lieu: <input name="Lieu" size=20 value="<?php printf("%s", $event["Lieu"]);?>"></td>
           </tr>
           <tr>
-            <td colspan="2" class="TexteC"><img src=<?php echo 'Upload/EventImage/'. $ligne["NoEvent"] . '.jpg' ?> width="300"/></td>
-            <td align="center" class="TexteC">Début: <br><input name="HeureDebut" size=20 value="<?php printf("%s", $ligne["HeureDebut"]);?>"></td>
-            <td align="center" class="TexteC">Fin: <br><input name="HeureFin" size=20 value="<?php printf("%s", $ligne["HeureFin"]);?>"></td>
+            <td colspan="2" class="TexteC"><img src=<?php echo 'Upload/EventImage/'. $event["NoEvent"] . '.jpg' ?> width="300"/></td>
+            <td align="center" class="TexteC">Début: <br><input name="HeureDebut" size=20 value="<?php printf("%s", $event["HeureDebut"]);?>"></td>
+            <td align="center" class="TexteC">Fin: <br><input name="HeureFin" size=20 value="<?php printf("%s", $event["HeureFin"]);?>"></td>
           </tr>
           <tr>
             <td colspan="2"><input type="file" name="SendImage"></td>
           </tr>
           <tr>
-            <td colspan="4"><textarea class="TexteC" name="Description" type="VarChar" rows="8" cols="45"><?php printf("%s", $ligne["Description"]);?></textarea></td>
+            <td colspan="4"><textarea class="TexteC" name="Description" type="VarChar" rows="8" cols="45"><?php printf("%s", $event["Description"]);?></textarea></td>
           </tr>
           <tr>
             <?php
             //Requête pour récupérer le type d'événement dans la table liaison
-            $resultLiaison = mysqli_query($PFM['db']['link'],"SELECT * FROM $TableLiaison WHERE IDEvent='$ligne[NoEvent]' AND Ateliers IS NOT NULL");
+            $resultLiaison = mysqli_query($PFM['db']['link'],"SELECT * FROM $TableLiaison WHERE IDEvent='$event[NoEvent]' AND Ateliers IS NOT NULL");
             $row = mysqli_fetch_array($resultLiaison)
             ?>
             <td align="center" width="25%"><img src="Image/Picto/Atelier_<?php echo $row["Ateliers"]?>.png" height="100"></td>
-            <td align="center" width="25%"><img src="FonctionsPHP/ImageGD.php?text1=<?php echo $ligne["Age"]." ans" ?>&text2=Age min" alt="Age" height="100"></td>
-            <td align="center" width="25%"><img src="FonctionsPHP/ImageGD.php?text1=<?php echo $ligne["PrixMembre"]."CHF"?>&text2=Membre" alt="PrixMembre" height="100"></td>
-            <td align="center" width="25%"><img src="FonctionsPHP/ImageGD.php?text1=<?php echo $ligne["PrixNonMembre"]."CHF" ?>&text2=Non-Membre" alt="PrixNonMembre" height="100"></td>
+            <td align="center" width="25%"><img src="FonctionsPHP/ImageGD.php?text1=<?php echo $event["Age"]." ans" ?>&text2=Age min" alt="Age" height="100"></td>
+            <td align="center" width="25%"><img src="FonctionsPHP/ImageGD.php?text1=<?php echo $event["PrixMembre"]."CHF"?>&text2=Membre" alt="PrixMembre" height="100"></td>
+            <td align="center" width="25%"><img src="FonctionsPHP/ImageGD.php?text1=<?php echo $event["PrixNonMembre"]."CHF" ?>&text2=Non-Membre" alt="PrixNonMembre" height="100"></td>
           </tr>
           <tr>
             <?php
@@ -47,21 +51,21 @@
             ?>
             <td class="TexteC">
               <select size="1" name="Atelier">
-                <?php while ($ligneMenuAtelier = mysqli_fetch_array($resultMenuAteliers)){ ?>
-                  <option value=<?php echo "ATELIER_".$ligneMenuAtelier["AtelierVariableName"]?>><?php echo $ligneMenuAtelier["AtelierName"]?></option>
+                <?php while ($eventMenuAtelier = mysqli_fetch_array($resultMenuAteliers)){ ?>
+                  <option value=<?php echo "ATELIER_".$eventMenuAtelier["AtelierVariableName"]?>><?php echo $eventMenuAtelier["AtelierName"]?></option>
                 <?php } ?>
               </select>
             </td>
-            <td align="center" class="TexteC"><input name="Age" size=20 value="<?php printf("%s", $ligne["Age"]);?>"></td>
-            <td align="center" class="TexteC"><input name="PrixMembre" size=20 value="<?php printf("%s", $ligne["PrixMembre"]);?>"></td>
-            <td align="center" class="TexteC"><input name="PrixNonMembre" size=20 value="<?php printf("%s", $ligne["PrixNonMembre"]);?>"></td>
+            <td align="center" class="TexteC"><input name="Age" size=20 value="<?php printf("%s", $event["Age"]);?>"></td>
+            <td align="center" class="TexteC"><input name="PrixMembre" size=20 value="<?php printf("%s", $event["PrixMembre"]);?>"></td>
+            <td align="center" class="TexteC"><input name="PrixNonMembre" size=20 value="<?php printf("%s", $event["PrixNonMembre"]);?>"></td>
           </tr>
           <tr>
             <td height="80" align="left" valign="center" class="TexteC" width="15%">Outils :</td>
             <td colspan=3 align="left" valign="center" class="TexteC" width="85%">
               <?php
               //Requête pour récupérer les outils liés à chaque event
-              $resultLiaison = mysqli_query($PFM['db']['link'],"SELECT * FROM $TableLiaison WHERE IDEvent='$ligne[NoEvent]' AND Outils IS NOT NULL");
+              $resultLiaison = mysqli_query($PFM['db']['link'],"SELECT * FROM $TableLiaison WHERE IDEvent='$event[NoEvent]' AND Outils IS NOT NULL");
               while ($row = mysqli_fetch_array($resultLiaison)){
                 $ImagePath="Image/Picto/Outil_" . $row["Outils"] . ".png" ?>
                 <img src=<?php echo $ImagePath; ?> height="75">
@@ -77,7 +81,7 @@
                 $rowAllTemp=$rowAll["OutilVariableName"];
 
                 $checked=0;
-                $resultLiaison = mysqli_query($PFM['db']['link'],"SELECT * FROM $TableLiaison WHERE IDEvent='$ligne[NoEvent]' AND Outils IS NOT NULL");
+                $resultLiaison = mysqli_query($PFM['db']['link'],"SELECT * FROM $TableLiaison WHERE IDEvent='$event[NoEvent]' AND Outils IS NOT NULL");
                 while ($row = mysqli_fetch_array($resultLiaison)){
                   $rowTemp=$row["Outils"];
                   if($rowAllTemp==$rowTemp){
@@ -100,7 +104,7 @@
             <td colspan=3 align="left" valign="center" class="TexteC">
               <?php
               //Requête pour récupérer les sujets liés à chaque event
-              $resultLiaison = mysqli_query($PFM['db']['link'],"SELECT * FROM $TableLiaison WHERE IDEvent='$ligne[NoEvent]' AND Sujets IS NOT NULL");
+              $resultLiaison = mysqli_query($PFM['db']['link'],"SELECT * FROM $TableLiaison WHERE IDEvent='$event[NoEvent]' AND Sujets IS NOT NULL");
               while ($row = mysqli_fetch_array($resultLiaison)){
                 $ImagePath="Image/Picto/Sujet_" . $row["Sujets"] . ".png"?>
                 <img src=<?php echo $ImagePath; ?> height="75">
@@ -117,7 +121,7 @@
                 $rowAllTemp=$rowAll["SujetVariableName"];
 
                 $checked=0;
-                $resultLiaison = mysqli_query($PFM['db']['link'],"SELECT * FROM $TableLiaison WHERE IDEvent='$ligne[NoEvent]' AND Sujets IS NOT NULL");
+                $resultLiaison = mysqli_query($PFM['db']['link'],"SELECT * FROM $TableLiaison WHERE IDEvent='$event[NoEvent]' AND Sujets IS NOT NULL");
                 while ($row = mysqli_fetch_array($resultLiaison)){
                   $rowTemp=$row["Sujets"];
                   if($rowAllTemp==$rowTemp){
@@ -137,42 +141,42 @@
           </tr>
           <tr>
             <input name="Variable2Change" type="hidden" size=20 value="Event">
-            <input name="IDEvent" type="hidden" size=20 value="<?php printf("%s", $ligne["NoEvent"]);?>">
+            <input name="IDEvent" type="hidden" size=20 value="<?php printf("%s", $event["NoEvent"]);?>">
             <td colspan="4" class="TexteC"><input style="width:170px" type="submit" name="MiseAJour" value="Mettre à jour"></td>
           </tr>
         </form>
         <form method="POST" action="FonctionsPHP/BDDDelete.php" enctype="multipart/form-data">
           <tr>
             <input name="DeleteWhat" type="hidden" size=20 value="Event">
-            <input name="IDEvent" type="hidden" size=20 value="<?php printf("%s", $ligne["NoEvent"]);?>">
+            <input name="IDEvent" type="hidden" size=20 value="<?php printf("%s", $event["NoEvent"]);?>">
             <td colspan="4" class="TexteC"><input style="width:170px" type="submit" name="SupprimerEvent" value="Supprimer l'événement"></td>
           </tr>
         </form>
       <?php }else{
           //Si le membre n'est pas un membre admin, l'event est en lecture seul ?>
           <tr>
-            <td colspan="2" class="SousTitreC"><?php printf("%s", $ligne["Titre"]);?> (<?php printf("%s", $ligne["NoEvent"]);?>)</td>
-            <td colspan="2" class="SousTitreC">Lieu: <?php printf("%s", $ligne["Lieu"]);?></td>
+            <td colspan="2" class="SousTitreC"><?php printf("%s", $event["Titre"]);?> (<?php printf("%s", $event["NoEvent"]);?>)</td>
+            <td colspan="2" class="SousTitreC">Lieu: <?php printf("%s", $event["Lieu"]);?></td>
           </tr>
           <tr>
-            <td colspan="2" class="TexteC"><img src=<?php echo 'Upload/EventImage/'. $ligne["NoEvent"] . '.jpg' ?> width="300"/></td>
-            <td class="SousSousTitreC">Début: <br><?php printf("%s", $ligne["HeureDebut"]);?></td>
-            <td class="SousSousTitreC"> Fin: <br><?php printf("%s", $ligne["HeureFin"]);?></td>
+            <td colspan="2" class="TexteC"><img src=<?php echo 'Upload/EventImage/'. $event["NoEvent"] . '.jpg' ?> width="300"/></td>
+            <td class="SousSousTitreC">Début: <br><?php printf("%s", $event["HeureDebut"]);?></td>
+            <td class="SousSousTitreC"> Fin: <br><?php printf("%s", $event["HeureFin"]);?></td>
           </tr>
           <tr>
-            <td colspan="4" class="TexteC"><?php printf("%s", $ligne["Description"]);?></td>
+            <td colspan="4" class="TexteC"><?php printf("%s", $event["Description"]);?></td>
           </tr>
           <tr>
             <?php
             //Requête pour récupérer le type d'événement dans la table liaison
-            $resultLiaison = mysqli_query($PFM['db']['link'],"SELECT * FROM $TableLiaison WHERE IDEvent='$ligne[NoEvent]' AND Ateliers IS NOT NULL");
+            $resultLiaison = mysqli_query($PFM['db']['link'],"SELECT * FROM $TableLiaison WHERE IDEvent='$event[NoEvent]' AND Ateliers IS NOT NULL");
             $row = mysqli_fetch_array($resultLiaison)
             ?>
             <td align="center" width="25%"><img src="Image/Picto/Atelier_<?php echo $row["Ateliers"]?>.png" height="100"></td>
 
-            <td align="center" width="25%"><img src="FonctionsPHP/ImageGD.php?text1=<?php echo $ligne["Age"]." ans" ?>&text2=Age min" alt="Age" height="100"></td>
-            <td align="center" width="25%"><img src="FonctionsPHP/ImageGD.php?text1=<?php echo $ligne["PrixMembre"]."CHF"?>&text2=Membre" alt="PrixMembre" height="100"></td>
-            <td align="center" width="25%"><img src="FonctionsPHP/ImageGD.php?text1=<?php echo $ligne["PrixNonMembre"]."CHF" ?>&text2=Non-Membre" alt="PrixNonMembre" height="100"></td>
+            <td align="center" width="25%"><img src="FonctionsPHP/ImageGD.php?text1=<?php echo $event["Age"]." ans" ?>&text2=Age min" alt="Age" height="100"></td>
+            <td align="center" width="25%"><img src="FonctionsPHP/ImageGD.php?text1=<?php echo $event["PrixMembre"]."CHF"?>&text2=Membre" alt="PrixMembre" height="100"></td>
+            <td align="center" width="25%"><img src="FonctionsPHP/ImageGD.php?text1=<?php echo $event["PrixNonMembre"]."CHF" ?>&text2=Non-Membre" alt="PrixNonMembre" height="100"></td>
           </tr>
           <tr>
             <td height="80" align="left" valign="center" class="TexteC">Sujet :
@@ -180,7 +184,7 @@
             <td colspan=3 align="left" valign="center" class="TexteC">
               <?php
               //Requête pour récupérer le type de sujet dans la table liaison
-              $resultLiaison = mysqli_query($PFM['db']['link'],"SELECT * FROM $TableLiaison WHERE IDEvent='$ligne[NoEvent]' AND Sujets IS NOT NULL");
+              $resultLiaison = mysqli_query($PFM['db']['link'],"SELECT * FROM $TableLiaison WHERE IDEvent='$event[NoEvent]' AND Sujets IS NOT NULL");
               while ($row = mysqli_fetch_array($resultLiaison)){
                 $ImagePath="Image/Picto/Sujet_" . $row["Sujets"] . ".png" ?>
                 <img src=<?php echo $ImagePath; ?> height="75">
@@ -194,7 +198,7 @@
             <td colspan=3 align="left" valign="center" class="TexteC">
               <?php
               //Requête pour récupérer le type d'outils' dans la table liaison
-              $resultLiaison = mysqli_query($PFM['db']['link'],"SELECT * FROM $TableLiaison WHERE IDEvent='$ligne[NoEvent]' AND Outils IS NOT NULL");
+              $resultLiaison = mysqli_query($PFM['db']['link'],"SELECT * FROM $TableLiaison WHERE IDEvent='$event[NoEvent]' AND Outils IS NOT NULL");
               while ($row = mysqli_fetch_array($resultLiaison)){
                 $ImagePath="Image/Picto/Outil_" . $row["Outils"] . ".png" ?>
                 <img src=<?php echo $ImagePath; ?> height="75">
@@ -212,20 +216,20 @@
           </tr>
           <tr>
             <?php
-            if ($ligne["PlaceDispo"]==0){
+            if ($event["PlaceDispo"]==0){
               ?>
               <td colspan="2" class="TexteC"></td>
               <td colspan="2" class="TexteC">Complet</td>
               <?php
             }else{
               ?>
-              <input type="hidden" name="NoEvent" value="<?php printf("%s", $ligne["NoEvent"]);?>"></td>
-              <input type="hidden" name="Titre" value="<?php printf("%s", $ligne["Titre"]);?>"></td>
-              <input type="hidden" name="Lieu" value="<?php printf("%s", $ligne["Lieu"]);?>"></td>
-              <input type="hidden" name="HeureDebut" value="<?php printf("%s", $ligne["HeureDebut"]);?>"></td>
-              <input type="hidden" name="HeureFin" value="<?php printf("%s", $ligne["HeureFin"]);?>"></td>
+              <input type="hidden" name="NoEvent" value="<?php printf("%s", $event["NoEvent"]);?>"></td>
+              <input type="hidden" name="Titre" value="<?php printf("%s", $event["Titre"]);?>"></td>
+              <input type="hidden" name="Lieu" value="<?php printf("%s", $event["Lieu"]);?>"></td>
+              <input type="hidden" name="HeureDebut" value="<?php printf("%s", $event["HeureDebut"]);?>"></td>
+              <input type="hidden" name="HeureFin" value="<?php printf("%s", $event["HeureFin"]);?>"></td>
               <td colspan="2" class="TexteC"><input style="width:100px" type="submit" name="soumettre" value="S'inscrire"></td>
-              <td colspan="2" class="TexteC">Places disponibles : <?php printf("%s", $ligne["PlaceDispo"]);?>/<?php printf("%s", $ligne["PlaceMax"]);?></td>
+              <td colspan="2" class="TexteC">Places disponibles : <?php printf("%s", $event["PlaceDispo"]);?>/<?php printf("%s", $event["PlaceMax"]);?></td>
               <?php
             }
             ?>
