@@ -11,6 +11,9 @@ require_once PFM_ROOT_PATH . 'functions/commons.php';
 // DB connection
 require_once PFM_ROOT_PATH . 'functions/db.php';
 
+// Layout helpers
+require_once PFM_ROOT_PATH . 'functions/layout.php';
+
 // Start a session
 session_start();
 
