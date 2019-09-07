@@ -7,17 +7,17 @@
 <body>
 <?php
 //Accès de la BDD
-$host = "sql.demo.com";
-$user = "demo";
-$pass = "****";
-$bdd = "demo";
+$host = "localhost";
+$user = "root";
+$pass = "1234";
+$bdd = "php-fablab-manager_";
 
 //Nom des tables de la BDD
 $TableLogin = "Login";
 $TablePw = "Pw";
 $TableMembres = "Membres";
 $TableProjetPerso="ProjetsPersonnels";
-$TableEvent="Evenements";
+
 $TableCalendrier="pec_events";
 $TableInscrEvent="InscrEvent";
 $TableLiaison="Liaison";
