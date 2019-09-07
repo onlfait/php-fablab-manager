@@ -1,4 +1,6 @@
 <?php
+// get all events
+// TODO limit to last X events
 function pfm_get_events() {
   global $PFM;
 
@@ -7,6 +9,8 @@ function pfm_get_events() {
   return mysqli_query($PFM['db']['link'], $query);
 }
 
+// get event info by info id
+// TODO reduce/optimize query number
 function pfm_get_event_info($id, $type) {
   global $PFM;
 
@@ -22,6 +26,8 @@ function pfm_get_event_info($id, $type) {
   return $results;
 }
 
+// fetch an event if any,
+// call pfm_get_events() before and pass the result
 function pfm_fetch_event($events) {
   $event = mysqli_fetch_object($events);
 
