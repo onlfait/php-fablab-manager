@@ -25,10 +25,12 @@ function pfm_get_event_info($id, $type) {
 function pfm_fetch_event($events) {
   $event = mysqli_fetch_object($events);
 
+  // no more events
   if (! $event) {
     return null;
   }
 
+  // get infos
   $results = pfm_get_event_info($event->id, 'Ateliers');
   $event->Ateliers = $results[0]->Ateliers;
 
