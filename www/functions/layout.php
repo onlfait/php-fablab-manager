@@ -30,5 +30,22 @@ function pfm_print_picto($title, $subtitle = null, $rotate = false) {
 }
 
 function pfm_print_picto_img($name) {
-  pfm_print_picto('<img class="responsive" src="Image/Picto/' . $name .'.png">');
+  pfm_print_picto('<img class="responsive" src="public/images/picto/' . $name . '">');
+}
+
+function pfm_print_picto_svg($name, $color = null, $bg_color = null) {
+  // get SVG contents
+  $svg = file_get_contents(PFM_ROOT_PATH . 'public/images/picto/' . $name);
+
+  // change colors
+  if ($color !== null) {
+    $svg = str_replace('#fff', $color, $svg);
+  }
+
+  if ($bg_color !== null) {
+    $svg = str_replace('#000', $bg_color, $svg);
+  }
+  
+  // print SVG contents
+  echo '<div class="picto"><div>' . $svg . '</div></div>';
 }
