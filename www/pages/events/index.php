@@ -36,7 +36,7 @@
         <div class="cell h-spacer height-x2"></div>
 
         <div class="cell cell-12 cell-desktop-6">
-          <?php pfm_print_picto_img('Atelier_' . $event->category) ?>
+          <?php pfm_print_picto_svg($event->image, '#F2EACC', '#182722') ?>
           <?php pfm_print_picto('Age min.', $event->age_min . ' ans', true) ?>
           <?php pfm_print_picto('Membre', $event->member_price . ' CHF', true) ?>
           <?php pfm_print_picto('Non-Membre', $event->price . ' CHF', true) ?>
