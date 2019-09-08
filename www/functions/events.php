@@ -4,7 +4,10 @@
 function pfm_get_events() {
   global $PFM;
 
-  $query = "SELECT * FROM pfm_events ORDER BY HeureDebut";
+  $query = "SELECT e.*, c.name as category, c.image FROM pfm_events as e
+  LEFT JOIN pfm_events_categories as c
+  ON e.category_id = c.id
+  ORDER BY e.start_time";
 
   return mysqli_query($PFM['db']['link'], $query);
 }
@@ -37,9 +40,6 @@ function pfm_fetch_event($events) {
   }
 
   // get infos
-  $results = pfm_get_event_info($event->id, 'Ateliers');
-  $event->Ateliers = $results[0]->Ateliers;
-
   $results = pfm_get_event_info($event->id, 'Sujets');
   $event->Sujets = $results;
 
