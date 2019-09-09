@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "build": "postcss ./www/layouts/onlfait/postcss/index.scss -o ./www/layouts/onlfait/styles/index.css --verbose",
+    "build": "postcss ./www/pfm/layouts/onlfait/postcss/index.scss -o ./www/pfm/layouts/onlfait/styles/index.css --verbose",
     "dev": "yarn build --watch"
   },
   "browserslist": "last 2 versions",

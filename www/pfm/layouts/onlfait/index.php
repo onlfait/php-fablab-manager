@@ -8,7 +8,7 @@
     <meta name="mobile-web-app-capable" content="yes">
     <title>Onl'Fait - <?php echo $PFM['route']['title'] ?></title>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <link rel="stylesheet" href="<?php echo pfm_url('layouts/onlfait/styles/index.css') ?>">
+    <link rel="stylesheet" href="<?php echo pfm_layout_url('onlfait/styles/index.css') ?>">
   </head>
   <body>
     <header>
@@ -22,6 +22,6 @@
     <footer>
       Copyleft 2019 - Onl'Fait
     </footer>
-    <script src="<?php echo pfm_url('layouts/onlfait/scripts/index.js') ?>"></script>
+    <script src="<?php echo pfm_layout_url('onlfait/scripts/index.js') ?>"></script>
   </body>
 </html>

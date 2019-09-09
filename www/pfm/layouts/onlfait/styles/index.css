@@ -541,6 +541,7 @@ img.responsive{
   -webkit-transform:rotate(-30deg);
           transform:rotate(-30deg);
 }
+
 body{
   margin-left:auto;
   margin-right:auto;
@@ -548,14 +549,14 @@ body{
   font-size:16px;
   font-family:Roboto,system-ui,-apple-system,Segoe UI,Ubuntu,Cantarell,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
   background-color:#f2eacc;
-  background-image:url(/layouts/onlfait/images/background.png);
+  background-image:url(/pfm/layouts/onlfait/images/background.png);
 }
 
 header{
   padding-top:300px;
   background-repeat:no-repeat;
   background-position:center -100px;
-  background-image:url(/layouts/onlfait/images/banner.png);
+  background-image:url(/pfm/layouts/onlfait/images/banner.png);
 }
 header .title{
   padding:16px;

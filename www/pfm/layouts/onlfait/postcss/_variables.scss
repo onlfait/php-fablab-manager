@@ -1,5 +1,9 @@
+// path
+$images-path: "/pfm/layouts/onlfait/images";
+
 // images
-$background-image: "/layouts/onlfait/images/background.png";
+$background-image: "#{$images-path}/background.png";
+$banner-image    : "#{$images-path}/banner.png";
 
 // Breakpoints
 $mobile : 480px  !default;

@@ -2,7 +2,7 @@
 // require a file from the root path
 function pfm_require_file($file) {
   global $PFM;
-  require PFM_ROOT_PATH . $file . '.php';
+  require PFM_PATH . $file . '.php';
 }
 
 // require a page from pages directory
@@ -69,6 +69,10 @@ function pfm_url($uri = null) {
   }
 
   return $url;
+}
+
+function pfm_layout_url($uri = null) {
+  return pfm_url('pfm/layouts/' . $uri);
 }
 
 // Return an local URL with [ http(s)://host(/?uri=...) ]

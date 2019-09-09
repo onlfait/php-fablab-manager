@@ -1,6 +1,6 @@
 <?php
   // include events functions
-  require_once PFM_ROOT_PATH . 'functions/events.php';
+  require_once PFM_PATH . 'functions/events.php';
 
   // get all events
   $pfm_events = pfm_get_events();

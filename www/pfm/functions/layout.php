@@ -35,7 +35,7 @@ function pfm_print_picto_img($name) {
 
 function pfm_print_picto_svg($name, $color = null, $bg_color = null) {
   // get SVG contents
-  $svg = file_get_contents(PFM_ROOT_PATH . 'public/images/picto/' . $name);
+  $svg = file_get_contents(PFM_PATH . 'public/images/picto/' . $name);
 
   // change colors
   if ($color !== null) {
