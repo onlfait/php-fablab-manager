@@ -33,35 +33,26 @@ function pfm_get_founders() {
 ?>
 
 <section>
-
   <h1 class="title">La Mission</h1>
-
   <p>
     Fondée en mars 2016 la mission de l’association Onl’Fait est de créer,
     animer et maintenir des espaces dédiés (fablabs) à l’innovation technologique pour des particuliers,
     et organisations souhaitant apprendre, enseigner et partager de façon collective sur des problématiques techniques,
     sociales et environnementales et ainsi développer la responsabilité citoyenne de chacun.
   </p>
-
   <h1 class="title">Les Statuts</h1>
-
-  <p>
-    <a href="<?php echo pfm_public_url('PDF/status_07_2019.pdf') ?>">TÉLÉCHARGER LES STATUTS AU FORMAT PDF</a>
-  </p>
-
+  <p><a href="<?php echo pfm_public_url('PDF/status_07_2019.pdf') ?>">TÉLÉCHARGER LES STATUTS AU FORMAT PDF</a></p>
   <h1 class="title">Fondatrices & Fondateurs</h1>
-
   <div class="grid v-pad-x2">
     <?php foreach (pfm_get_founders() as $founder): ?>
-    <div class="cell cell-12 cell-tablet-2 h-pad-x2">
+    <div class="cell cell-12 cell-tablet-4 h-pad-x2">
       <img class="responsive" src="<?php echo $founder['picture'] ?>" alt="<?php echo $founder['name'] ?>">
       <div class="cell h-spacer height-x2"></div>
     </div>
-    <div class="cell cell-12 cell-tablet-10 h-pad-x2">
+    <div class="cell cell-12 cell-tablet-8 h-pad-x2">
       <?php echo $founder['description'] ?>
     </div>
     <div class="cell h-spacer height-x5"></div>
     <?php endforeach; ?>
   </div>
-
 </section>
