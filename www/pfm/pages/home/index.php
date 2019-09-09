@@ -19,6 +19,8 @@
     les fablabs de chaque pays, ville, quartier sont en contact et travaillent ensemble en partageant le fruit de leurs recherches et développements.
   </p>
 
-  <iframe width="100%" height="400px" src="https://www.youtube.com/embed/zawAJr2RZUU" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  <div class="h-pad-x2 v-pad-x4">
+    <iframe width="100%" height="400px" src="https://www.youtube.com/embed/zawAJr2RZUU" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  </div>
 
 </section>

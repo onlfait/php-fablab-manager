@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap");
 *,:after,:before{
   -webkit-box-sizing:border-box;
           box-sizing:border-box;
@@ -302,10 +303,6 @@ a{
   text-decoration:none;
 }
 
-.strong,strong{
-  font-weight:600;
-}
-
 .flip-x{
   -webkit-transform:rotateX(180deg);
           transform:rotateX(180deg);
@@ -318,6 +315,26 @@ a{
 .flip-y{
   -webkit-transform:rotateY(180deg);
           transform:rotateY(180deg);
+}
+
+.text-center{
+  text-align:center;
+}
+
+.text-light{
+  font-weight:300;
+}
+
+.text-regular{
+  font-weight:400;
+}
+
+.text-medium,strong{
+  font-weight:500;
+}
+
+.text-bold{
+  font-weight:700;
 }
 
 .h-spacer{
@@ -492,8 +509,14 @@ a{
   padding-bottom:80px;
 }
 
-.subtitle,.title{
+.subtitle,.title,h1,h2,h3,h4,h5,h6,p{
+  padding:16px;
   margin:0;
+}
+
+p{
+  padding-top:0;
+  padding-bottom:0;
 }
 
 img.responsive{
@@ -560,7 +583,7 @@ header{
 }
 header .title{
   padding:16px;
-  font-weight:600;
+  font-weight:700;
   -ms-flex-item-align:center;
       align-self:center;
   -webkit-box-pack:center;
@@ -612,8 +635,10 @@ footer,main{
   background-color:#fff;
 }
 
-section{
-  padding:16px;
+footer{
+  color:#f2eacc;
+  background-color:#182722;
+  padding:32px 16px 64px;
 }
 
 @media (min-width:768px){
@@ -765,5 +790,9 @@ section{
   }
   header .menu-item{
     border-bottom:0;
+  }
+
+  section{
+    padding:16px;
   }
 }

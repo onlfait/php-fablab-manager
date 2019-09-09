@@ -7,7 +7,6 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
     <title>Onl'Fait - <?php echo $PFM['route']['title'] ?></title>
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" href="<?php echo pfm_layout_url('onlfait/styles/index.css') ?>">
   </head>
   <body>
@@ -20,7 +19,11 @@
       <?php pfm_require_page($PFM['route']['page']) ?>
     </main>
     <footer>
-      Copyleft 2019 - Onl'Fait
+      <p class="text-center">
+        <strong>PHP FabLab Manager</strong> par <a href="<?php echo pfm_url() ?>">Onl'Fait</a>.
+        Le code source est sous licence <a href="http://opensource.org/licenses/mit-license.php">MIT</a>.
+        Le contenu du site est sous licence <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
+      </p>
     </footer>
     <script src="<?php echo pfm_layout_url('onlfait/scripts/index.js') ?>"></script>
   </body>

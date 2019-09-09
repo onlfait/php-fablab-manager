@@ -17,12 +17,13 @@
 
   <h1 class="title">Le Comité</h1>
 
-  <div class="grid">
+  <div class="grid v-pad-x2">
 
-    <div class="cell cell-12 cell-tablet-2">
+    <div class="cell cell-12 cell-tablet-2 h-pad-x2">
       <img class="responsive" src="Image/Comite/cristina.jpg" alt="Cristina Olivotto">
+      <div class="cell h-spacer height-x2"></div>
     </div>
-    <div class="cell cell-12 cell-tablet-10 pad-x2">
+    <div class="cell cell-12 cell-tablet-10 h-pad-x2">
       Cristina Olivotto (secrétaire), physicienne de formation,
       travaille depuis 15 ans dans le domaine de la communication et didactique formelle et informelle de la science.
       Elle a travaillé dans des organisations nationales et internationales en tant qu’indépendante depuis 2011.
@@ -32,10 +33,11 @@
 
     <div class="cell h-spacer height-x5"></div>
 
-    <div class="cell cell-12 cell-tablet-2">
+    <div class="cell cell-12 cell-tablet-2 h-pad-x2">
       <img class="responsive" src="Image/Comite/mathieu.jpg" alt="Mathieu Jacquesson">
+      <div class="cell h-spacer height-x2"></div>
     </div>
-    <div class="cell cell-12 cell-tablet-10 pad-x2">
+    <div class="cell cell-12 cell-tablet-10 h-pad-x2">
       Mathieu Jacquesson (président), économiste d’entreprise, cofondateur de l’association Onl’Fait,
       s’est spécialisé dans l’entrepreneuriat social avec 6 ans d’expérience à la chambre de l’économie sociale et solidaire de Genève.
       Il est aussi entrepreneur et gère la société The Square Sarl.
@@ -44,10 +46,11 @@
 
     <div class="cell h-spacer height-x5"></div>
 
-    <div class="cell cell-12 cell-tablet-2">
+    <div class="cell cell-12 cell-tablet-2 h-pad-x2">
       <img class="responsive" src="Image/Comite/sebastien.jpg" alt="Sébastien Mischler">
+      <div class="cell h-spacer height-x2"></div>
     </div>
-    <div class="cell cell-12 cell-tablet-10 pad-x2">
+    <div class="cell cell-12 cell-tablet-10 h-pad-x2">
       Sébastien Mischler (trésorier), électricien de formation, et cofondateur de l’association Onl’Fait.
       Il contribue activement depuis plusieurs années à des projets Open-Source tels que RepRap, LaserWeb, SmoothieBoard.
       Il est également le créateur d’un modèle d’imprimante 3D utilisé dans d’autres fablabs (le modèle RepRap iTopie).

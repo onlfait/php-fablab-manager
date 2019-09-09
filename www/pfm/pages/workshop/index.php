@@ -3,9 +3,9 @@
   <h1 class="title">Espace de Travail</h1>
   <h2 class="subtitle">Présentation des machines</h2>
 
-  <div class="grid">
+  <div class="grid v-pad-x2">
 
-    <div class="cell cell-12 cell-tablet-4">
+    <div class="cell cell-12 cell-tablet-4 h-pad-x2">
       <img class="responsive"src="Image/Machine/DecoupeuseLaser.jpg">
     </div>
     <div class="cell cell-12 cell-tablet-8 pad">
@@ -23,7 +23,7 @@
 
     <div class="cell h-spacer height-x5"></div>
 
-    <div class="cell cell-12 cell-tablet-4">
+    <div class="cell cell-12 cell-tablet-4 h-pad-x2">
       <img class="responsive"src="Image/Machine/Imprimante3D.jpg">
     </div>
     <div class="cell cell-12 cell-tablet-8 pad">
@@ -41,7 +41,7 @@
 
     <div class="cell h-spacer height-x5"></div>
 
-    <div class="cell cell-12 cell-tablet-4">
+    <div class="cell cell-12 cell-tablet-4 h-pad-x2">
       <img class="responsive"src="Image/Machine/CNC.jpg">
     </div>
     <div class="cell cell-12 cell-tablet-8 pad">
