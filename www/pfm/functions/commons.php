@@ -75,6 +75,10 @@ function pfm_layout_url($uri = null) {
   return pfm_url('pfm/layouts/' . $uri);
 }
 
+function pfm_public_url($uri = null) {
+  return pfm_url('pfm/public/' . $uri);
+}
+
 // Return an local URL with [ http(s)://host(/?uri=...) ]
 function pfm_router_url($uri = null) {
   global $PFM;
