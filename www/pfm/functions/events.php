@@ -36,6 +36,7 @@ function pfm_fetch_event($events) {
 
   // no more events
   if (! $event) {
+    mysqli_free_result($events);
     return null;
   }
 
