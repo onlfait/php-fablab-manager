@@ -44,6 +44,19 @@ a {
   font-weight: 700;
 }
 
+// title, subtitle, paragraph
+h1, h2, h3, h4, h5, h6,
+.title, .subtitle,
+p {
+  padding: $unit-x2;
+  margin: 0;
+}
+
+p {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
 // spacers
 .h-spacer {
   width: 100%;
@@ -61,7 +74,7 @@ a {
   padding: $unit;
 }
 
-@for $i from 2 through 10 {
+@for $i from 0 through 10 {
   .pad-x#{$i} {
     padding: ($i * $unit);
   }
@@ -72,7 +85,7 @@ a {
   padding-right: $unit;
 }
 
-@for $i from 2 through 10 {
+@for $i from 0 through 10 {
   .h-pad-x#{$i} {
     padding-left : ($i * $unit);
     padding-right: ($i * $unit);
@@ -84,24 +97,11 @@ a {
   padding-bottom: $unit;
 }
 
-@for $i from 2 through 10 {
+@for $i from 0 through 10 {
   .v-pad-x#{$i} {
     padding-top   : ($i * $unit);
     padding-bottom: ($i * $unit);
   }
-}
-
-// title, subtitle, paragraph
-h1, h2, h3, h4, h5, h6,
-.title, .subtitle,
-p {
-  padding: $unit-x2;
-  margin: 0;
-}
-
-p {
-  padding-top: 0;
-  padding-bottom: 0;
 }
 
 // images
@@ -112,6 +112,7 @@ img {
   }
 }
 
+// picto
 .picto {
   width: 120px;
   height: 120px;
@@ -147,6 +148,15 @@ img {
     }
   }
 }
+
+// colors
+.bg-dark      { background-color: $dark-color;      }
+.bg-primary   { background-color: $primary-color;   }
+.bg-secondary { background-color: $secondary-color; }
+
+.text-dark      { color: $dark-color;      }
+.text-primary   { color: $primary-color;   }
+.text-secondary { color: $secondary-color; }
 
 // layout
 body {
