@@ -10,7 +10,7 @@
   <div class="grid">
   <?php while ($event = pfm_fetch_event($pfm_events)): ?>
     <div class="cell cell-12 cell-desktop-6 pad-x2">
-      <img class="responsive" src="Upload/EventImage/<?php echo $event->id?>.jpg" />
+      <img class="responsive" src="<?php echo pfm_public_url('images/events/' . $event->image) ?>" />
       <h2 class="title h-pad-x0 bg-primary text-secondary text-center"><?php echo $event->title ?></h2>
       <div class="grid bg-secondary pad-x2">
         <div class="cell cell-12">
@@ -21,7 +21,7 @@
         </div>
         <div class="cell h-spacer height-x2"></div>
         <div class="cell cell-12 cell-desktop-6">
-          <?php pfm_print_picto_svg($event->image, '#F2EACC', '#182722') ?>
+          <?php pfm_print_picto_svg($event->category_image, '#F2EACC', '#182722') ?>
           <?php pfm_print_picto('Age min.', $event->age_min . ' ans', true) ?>
           <?php pfm_print_picto('Membre', $event->member_price . ' CHF', true) ?>
           <?php pfm_print_picto('Non-Membre', $event->price . ' CHF', true) ?>

@@ -4,7 +4,8 @@
 function pfm_get_events() {
   global $PFM;
 
-  $query = "SELECT e.*, c.name as category, c.image FROM pfm_events as e
+  $query = "SELECT e.*, c.name as category_name, c.image as category_image
+  FROM pfm_events as e
   LEFT JOIN pfm_events_categories as c
   ON e.category_id = c.id
   ORDER BY e.start_time";
