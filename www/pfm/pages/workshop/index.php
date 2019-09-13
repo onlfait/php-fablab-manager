@@ -7,7 +7,7 @@ function pfm_get_machines() {
       'picture'     => pfm_public_url('images/machines/laser_cutter.jpg'),
       'description' => 'Elle permet de découper/graver le bois, le plexiglass, le cuire.',
       'details'     => [
-        'power'     => '90W',
+        'tool'      => 'RECI 90W',
         'workspace' => '1000 x 600 mm',
         'model'     => 'SignsTech / 1060SP',
         'hardware'  => 'SmoothieBoard',
@@ -32,8 +32,8 @@ function pfm_get_machines() {
       'picture'     => pfm_public_url('images/machines/cnc.jpg'),
       'description' => 'Elle permet d\'usiner du bois.',
       'details'     => [
+        'tool'      => 'KRESS 1050W',
         'workspace' => '800 x 700 x 150 mm',
-        'spindle'   => 'KRESS 1500',
         'model'     => 'OpenBuilds OX',
         'hardware'  => 'SmoothieBoard',
         'software'  => 'CamBam, MeshCAM, Pronterface'
@@ -66,9 +66,8 @@ function pfm_get_machines() {
 // TODO implements internatonalization
 function pfm_get_machines_label($label) {
   static $labels = [
-    'power'     => 'Puissance',
+    'tool'      => 'Outil',
     'workspace' => 'Espace de travail',
-    'spindle'   => 'Broche',
     'model'     => 'Modèle',
     'hardware'  => 'Electronique',
     'software'  => 'Logiciels'
