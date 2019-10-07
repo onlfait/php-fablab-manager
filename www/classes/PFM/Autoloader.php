@@ -12,8 +12,7 @@ class Autoloader {
   }
 
   public static function loadClass(string $name): bool {
-    $filename = preg_replace('/^PFM\\\/', '', $name);
-    $filename = str_replace('\\', DIRECTORY_SEPARATOR, $filename);
+    $filename = str_replace('\\', DIRECTORY_SEPARATOR, $name);
 
     foreach (self::$_paths as $path) {
       $filepath = $path . DIRECTORY_SEPARATOR . $filename . '.php';
