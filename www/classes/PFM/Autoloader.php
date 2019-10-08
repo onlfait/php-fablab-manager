@@ -1,7 +1,7 @@
 <?php
 namespace PFM;
 
-class Autoloader {
+abstract class Autoloader {
 
   protected static $_paths = [];
 

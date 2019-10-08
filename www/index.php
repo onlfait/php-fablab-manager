@@ -21,12 +21,12 @@ View::addPath(VIEWS_PATH);
 // Router::setToken('title', '[a-zA-Z0-9_\-\.]+');
 
 // Add Error 404 controller
-Router::notFound('\OLF\Controllers\Error404');
+Router::notFound('\PFM\Controllers\Error404');
 
 // Map routes and controllers
-Router::addRoute('/'       , '\OLF\Controllers\Home');
-Router::addRoute('/events' , '\OLF\Controllers\Events');
-Router::addRoute('/contact', '\OLF\Controllers\Contact');
+Router::addRoute('/'       , '\PFM\Controllers\Home');
+Router::addRoute('/events' , '\PFM\Controllers\Events');
+Router::addRoute('/contact', '\PFM\Controllers\Contact');
 
 // Dispatch the request
 Router::dispatch(Router::uri());

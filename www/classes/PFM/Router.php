@@ -1,6 +1,6 @@
 <?php namespace PFM;
 
-class Router {
+abstract class Router {
   protected static $_tokens = [];
   protected static $_routes = [];
   protected static $_route = null;
