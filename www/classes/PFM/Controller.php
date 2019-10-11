@@ -14,8 +14,8 @@ abstract class Controller
             $this->_view = 'pages/' . strtolower($this->_name) . '.php';
         }
 
-        $this->_layout = new \PFM\View($this->_layout);
-        $this->_view = new \PFM\View($this->_view);
+        $this->_layout = new View($this->_layout);
+        $this->_view = new View($this->_view);
 
         $this->_layout->set('contents', $this->_view);
     }

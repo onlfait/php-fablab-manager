@@ -20,7 +20,7 @@ class View
         $this->_file = $file;
     }
 
-    public function setParent(\PFM\View $view): void
+    public function setParent(View $view): void
     {
         $this->_parent = $view;
     }
@@ -33,7 +33,7 @@ class View
             }
             return;
         }
-        if ($value instanceof \PFM\View) {
+        if ($value instanceof View) {
             $value->setParent($this);
         }
         $this->_data[$key] = $value;
