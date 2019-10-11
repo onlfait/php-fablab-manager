@@ -5,7 +5,7 @@ define('PFM\ROOT_PATH', dirname(__FILE__));
 
 // Absolute paths to commons directories
 define('PFM\CLASSES_PATH', ROOT_PATH . '/classes');
-define('PFM\VIEWS_PATH'  , ROOT_PATH . '/views');
+define('PFM\VIEWS_PATH', ROOT_PATH . '/views');
 
 // Import the classes autoloader
 require_once CLASSES_PATH . '/PFM/Autoloader.php';
@@ -23,9 +23,9 @@ View::addPath(VIEWS_PATH);
 // Add Error 404 controller
 Router::notFound('\PFM\Controllers\Error404');
 
-// Map routes and controllers
-Router::addRoute('/'       , '\PFM\Controllers\Home');
-Router::addRoute('/events' , '\PFM\Controllers\Events');
+// Map routes to controllers
+Router::addRoute('/', '\PFM\Controllers\Home');
+Router::addRoute('/events', '\PFM\Controllers\Events');
 Router::addRoute('/contact', '\PFM\Controllers\Contact');
 
 // Dispatch the request
