@@ -7,8 +7,8 @@ class Error404 extends \PFM\Controller {
   public function request(array $args = null): void {
     // escape html special chars
     $url = HTML::escape($args['route']);
-    // set view data
-    $this->data('title', 'Erreur 404');
-    $this->data('message', "L'URL demandée {$url} est introuvable sur ce serveur.");
+    // set layout and view data
+    $this->_layout->set('title', 'Erreur 404');
+    $this->_view->set('message', "L'URL demandée {$url} est introuvable sur ce serveur.");
   }
 }
