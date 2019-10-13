@@ -40,10 +40,10 @@ abstract class Controller
      */
     public function __construct()
     {
-        $this->_name = str_replace('PFM\\Controllers\\', '', get_class($this));
+        $this->_name = \str_replace('PFM\\Controllers\\', '', \get_class($this));
 
         if ($this->_view === null) {
-            $this->_view = 'pages/' . strtolower($this->_name) . '.php';
+            $this->_view = 'pages/' . \strtolower($this->_name) . '.php';
         }
 
         $this->_view = new View($this->_view);

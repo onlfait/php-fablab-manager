@@ -40,8 +40,8 @@ abstract class Autoloader
      */
     public static function normalizePath(string $path): string
     {
-        $path = str_replace('\\', DIRECTORY_SEPARATOR, $path);
-        $path = rtrim($path, DIRECTORY_SEPARATOR);
+        $path = \str_replace('\\', DIRECTORY_SEPARATOR, $path);
+        $path = \rtrim($path, DIRECTORY_SEPARATOR);
 
         return $path;
     }
@@ -55,8 +55,8 @@ abstract class Autoloader
     {
         $path = self::normalizePath($path);
 
-        if (! in_array($path, self::$_paths)) {
-            array_push(self::$_paths, $path);
+        if (! \in_array($path, self::$_paths)) {
+            \array_push(self::$_paths, $path);
         }
     }
 
@@ -74,7 +74,7 @@ abstract class Autoloader
         foreach (self::$_paths as $path) {
             $filepath = $path . DIRECTORY_SEPARATOR . $name . '.php';
 
-            if (is_file($filepath)) {
+            if (\is_file($filepath)) {
                 require_once $filepath;
                 return true;
             }
@@ -92,7 +92,7 @@ abstract class Autoloader
             return;
         }
 
-        spl_autoload_register(array('\PFM\Autoloader', 'loadClass'));
+        \spl_autoload_register(['\PFM\Autoloader', 'loadClass']);
 
         self::$_registered = true;
     }

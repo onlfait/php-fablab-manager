@@ -29,8 +29,8 @@ class View
      */
     public static function addPath(string $path): void
     {
-        if (! in_array($path, self::$_paths)) {
-            array_push(self::$_paths, $path);
+        if (! \in_array($path, self::$_paths)) {
+            \array_push(self::$_paths, $path);
         }
     }
 
@@ -89,7 +89,7 @@ class View
         $data = $this->_data;
 
         if ($this->_parent) {
-            $data = array_merge($this->_parent->data(), $data);
+            $data = \array_merge($this->_parent->data(), $data);
         }
 
         return $data;
@@ -118,7 +118,7 @@ class View
      */
     public function set($key, $value = null): void
     {
-        if (is_array($key)) {
+        if (\is_array($key)) {
             foreach ($key as $k => $v) {
                 $this->set($k, $v);
             }
@@ -162,10 +162,10 @@ class View
      */
     protected function _render(): string
     {
-        ob_start();
-        extract($this->data());
-        require func_get_arg(0);
-        return ob_get_clean();
+        \ob_start();
+        \extract($this->data());
+        require \func_get_arg(0);
+        return \ob_get_clean();
     }
 
     /**
@@ -178,11 +178,11 @@ class View
         foreach (self::$_paths as $path) {
             $filepath = $path . DIRECTORY_SEPARATOR . $this->_file;
 
-            if (is_file($filepath)) {
+            if (\is_file($filepath)) {
                 return $this->_render($filepath);
             }
         }
-        
+
         return "ERROR: view [{$this->_file}] not found...";
     }
 

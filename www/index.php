@@ -11,7 +11,7 @@
 namespace PFM;
 
 /** Absolute path to root directory (www) */
-define('PFM\ROOT_PATH', dirname(__FILE__));
+define('PFM\ROOT_PATH', \dirname(__FILE__));
 
 /** Absolute path to classes directory */
 define('PFM\CLASSES_PATH', ROOT_PATH . '/classes');

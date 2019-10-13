@@ -72,21 +72,21 @@ abstract class Router
      */
     protected static function _parseRoute(string $route): string
     {
-        $parts = explode('/', $route);
+        $parts = \explode('/', $route);
 
         foreach ($parts as $key => $part) {
-            if (strpos($part, ':') !== false) {
-                $parts[$key] = preg_replace('/\<([^:]+):([^\>]+)\>/', '(?<$1>$2)', $part);
+            if (\strpos($part, ':') !== false) {
+                $parts[$key] = \preg_replace('/\<([^:]+):([^\>]+)\>/', '(?<$1>$2)', $part);
             } else {
                 $tokens = self::$_tokens;
-                $parts[$key] = preg_replace_callback('/\<([^\>]+)\>/', function ($matches) use ($tokens) {
+                $parts[$key] = \preg_replace_callback('/\<([^\>]+)\>/', function ($matches) use ($tokens) {
                     $subpattern = isset($tokens[$matches[1]]) ? $tokens[$matches[1]] : '[^\\/]+';
                     return "(?<{$matches[1]}>{$subpattern})";
                 }, $part);
             }
         }
 
-        $pattern = implode('\\/', $parts);
+        $pattern = \implode('\\/', $parts);
 
         return "/^{$pattern}$/";
     }
@@ -99,10 +99,10 @@ abstract class Router
      */
     public static function addRoute(string $route, $callback): void
     {
-        $regexp = !!strpos($route, '<');
+        $regexp = !!\strpos($route, '<');
         $regexp = $regexp ? self::_parseRoute($route) : false;
 
-        array_push(self::$_routes, [
+        \array_push(self::$_routes, [
             'route'    => $route,
             'regexp'   => $regexp,
             'callback' => $callback
@@ -132,18 +132,18 @@ abstract class Router
         self::$_route = $route;
         $callback = $route['callback'];
 
-        if (is_callable($callback)) {
+        if (\is_callable($callback)) {
             $route['callback']($args, $route);
             return true;
         }
 
-        if (class_exists($callback)) {
+        if (\class_exists($callback)) {
             $instance = new $callback();
             $instance->dispatch($args, $route);
             return true;
         }
 
-        http_response_code(500);
+        \http_response_code(500);
 
         throw new \Exception("Undefined callback [{$callback}]");
     }
@@ -159,8 +159,8 @@ abstract class Router
     {
         foreach (self::$_routes as $_route) {
             if ($_route['regexp']) {
-                if (preg_match($_route['regexp'], $route, $matches)) {
-                    $args = array_filter($matches, 'is_string', ARRAY_FILTER_USE_KEY);
+                if (\preg_match($_route['regexp'], $route, $matches)) {
+                    $args = \array_filter($matches, 'is_string', ARRAY_FILTER_USE_KEY);
                     return self::_dispatch($_route, $args);
                 }
             } elseif ($route === $_route['route']) {
@@ -168,7 +168,7 @@ abstract class Router
             }
         }
 
-        http_response_code(404);
+        \http_response_code(404);
 
         if (self::$_notFoundCallback) {
             $route2 = [ 'route' => $route, 'callback' => self::$_notFoundCallback ];
