@@ -1,5 +1,5 @@
 node_modules
 __MACOSX
-doc
+doc/build
 *_.*
 *_
