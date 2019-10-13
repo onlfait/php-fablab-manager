@@ -1,10 +1,22 @@
-<?php namespace PFM;
+<?php
+/**
+ * Single entry point of PHP Fablab Manager.
+ *
+ * This file is responsible for :
+ * - Defines constants
+ * - Autoload classes
+ * - Map routes to controllers
+ * - Dispatch the request
+ */
+namespace PFM;
 
-// Absolute path to root directory (www)
+/** Absolute path to root directory (www) */
 define('PFM\ROOT_PATH', dirname(__FILE__));
 
-// Absolute paths to commons directories
+/** Absolute path to classes directory */
 define('PFM\CLASSES_PATH', ROOT_PATH . '/classes');
+
+/** Absolute path to views directory */
 define('PFM\VIEWS_PATH', ROOT_PATH . '/views');
 
 // Import the classes autoloader
