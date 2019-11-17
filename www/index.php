@@ -13,11 +13,17 @@ namespace PFM;
 /** Absolute path to root directory (www) */
 define('PFM\ROOT_PATH', \dirname(__FILE__));
 
+/** Absolute path to private directory */
+define('PFM\PRIVATE_PATH', ROOT_PATH . '/private');
+
+/** Absolute path to public directory */
+define('PFM\PUBLIC_PATH', ROOT_PATH . '/public');
+
 /** Absolute path to classes directory */
-define('PFM\CLASSES_PATH', ROOT_PATH . '/classes');
+define('PFM\CLASSES_PATH', PRIVATE_PATH . '/classes');
 
 /** Absolute path to views directory */
-define('PFM\VIEWS_PATH', ROOT_PATH . '/views');
+define('PFM\VIEWS_PATH', PRIVATE_PATH . '/views');
 
 // Import the classes autoloader
 require_once CLASSES_PATH . '/PFM/Autoloader.php';
